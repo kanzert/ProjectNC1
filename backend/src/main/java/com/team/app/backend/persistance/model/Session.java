@@ -1,22 +1,27 @@
 package com.team.app.backend.persistance.model;
 
-import org.jasypt.util.text.BasicTextEncryptor;
-
 import java.util.Date;
 
 public class Session {
 
     private Long id;
-    private Long quiz_id;
-    private String access_code;
+    private Long quizId;
+    private String accessCode;
     private Date date;
 
     public Session() {}
 
-    public Session(Long quiz_id) {
-        this.quiz_id = quiz_id;
+    public Session(Long id, Long quizId, String accessCode, Date date) {
+        this.id = id;
+        this.quizId = quizId;
+        this.accessCode = accessCode;
+        this.date = date;
+    }
+
+    public Session(Long quizId) {
+        this.quizId = quizId;
         this.date = new Date();
-        this.access_code = ""; // because of NOT_NULL constraint in the DB
+        this.accessCode = ""; // because of NOT_NULL constraint in the DB
     }
 
     public Long getId() {
@@ -28,21 +33,21 @@ public class Session {
         return this;
     }
 
-    public Long getQuiz_id() {
-        return quiz_id;
+    public Long getQuizId() {
+        return quizId;
     }
 
-    public Session setQuiz_id(Long quiz_id) {
-        this.quiz_id = quiz_id;
+    public Session setQuizId(Long quizId) {
+        this.quizId = quizId;
         return this;
     }
 
-    public String getAccess_code() {
-        return access_code;
+    public String getAccessCode() {
+        return accessCode;
     }
 
-    public Session setAccess_code(String access_code) {
-        this.access_code = access_code;
+    public Session setAccessCode(String accessCode) {
+        this.accessCode = accessCode;
         return this;
     }
 

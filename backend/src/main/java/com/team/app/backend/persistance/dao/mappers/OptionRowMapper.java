@@ -13,10 +13,10 @@ public class OptionRowMapper implements RowMapper<Option> {
     public Option mapRow(ResultSet resultSet, int rownumber) throws SQLException {
         Option option = new Option();
         option.setId((long) resultSet.getInt("id"));
-        option.setIs_correct(resultSet.getBoolean("is_correct"));
+        option.setIsCorrect(resultSet.getBoolean("is_correct"));
         option.setText(resultSet.getString("text"));
         option.setImage(resultSet.getBytes("image"));
-        option.setQuest_id((long) resultSet.getInt("quest_id"));
+        option.setQuestionId((long) resultSet.getInt("quest_id"));
         return option;
     }
 }

@@ -56,7 +56,7 @@ public class QuizServiceImpl implements QuizService {
             DefaultQuest defaultQuest=new DefaultQuest();
             defaultQuest.setAnswer(defOptionDto.getAnswer());
             defaultQuest.setImage(defOptionDto.getImage());
-            defaultQuest.setQuest_id(id);
+            defaultQuest.setQuestionId(id);
             optionDao.addDefaultOption(defaultQuest);
         }
         return id;
@@ -66,14 +66,14 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Long addQuestion(QuestionDto questionDto){
         Question question = new Question();
-        question.setQuiz_id((long)questionDto.getQuiz_id());
+        question.setQuizId((long)questionDto.getQuizId());
         question.setType(questionDto.getType());
         question.setImage(questionDto.getImage());
         question.setText(questionDto.getText());
-        if(questionDto.getMax_points()==null){
-            question.setMax_points(10);
+        if(questionDto.getMaxPoints()==null){
+            question.setMaxPoints(10);
         }else{
-            question.setMax_points(questionDto.getMax_points());
+            question.setMaxPoints(questionDto.getMaxPoints());
         }
         question.setTime(questionDto.getTime());
         return questionDao.save(question);
@@ -92,9 +92,9 @@ public class QuizServiceImpl implements QuizService {
         System.out.println(id);
         for (OptionDto optionDto: questionOptAddDto.getOptions()) {
             Option option=new Option();
-            option.setIs_correct(optionDto.getIs_correct());
+            option.setIsCorrect(optionDto.getIsCorrect());
             option.setImage(optionDto.getImage());
-            option.setQuest_id(id);
+            option.setQuestionId(id);
             option.setText(optionDto.getText());
             optionDao.addOption(option);
         }
@@ -115,8 +115,8 @@ public class QuizServiceImpl implements QuizService {
         for (SeqOptionDto seqOptionDto: questionSeqAddDto.getOptions()) {
             SeqOption seqOption=new SeqOption();
             seqOption.setImage(seqOptionDto.getImage());
-            seqOption.setQuest_id(id);
-            seqOption.setSerial_num(seqOptionDto.getSerial_num());
+            seqOption.setQuestionId(id);
+            seqOption.setSerialNum(seqOptionDto.getSerialNum());
             seqOption.setText(seqOptionDto.getText());
             optionDao.addSeqOption(seqOption);
         }
@@ -169,13 +169,13 @@ public class QuizServiceImpl implements QuizService {
     public Long addQuiz(QuizAddDto quizAddDto) {
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis);
-        System.out.println((long)quizAddDto.getUser_id());
+        System.out.println((long)quizAddDto.getUserId());
         Quiz quiz = new Quiz();
         quiz.setTitle(quizAddDto.getTitle());
         quiz.setDescription(quizAddDto.getDescription());
         quiz.setDate(date);
         quiz.setImage(quizAddDto.getImage());
-        quiz.setUser_id((long)quizAddDto.getUser_id());
+        quiz.setUserId((long)quizAddDto.getUserId());
         quiz.setStatus_Id(new QuizStatus( 1L,"created"));
         Long quiz_id= quizDao.save(quiz);
         for (Long cat_id:quizAddDto.getCategories()) {

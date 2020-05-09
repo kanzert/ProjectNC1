@@ -20,9 +20,9 @@ public class User {
 
     private byte[] image;
 
-    private Date registr_date;
+    private Date registrationDate;
 
-    private String activate_link;
+    private String activateLink;
 
     private UserStatus status;
 
@@ -31,7 +31,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String firstname, String lastname, String username, String password, String email, byte[] image, Date registr_date, String activate_link, UserStatus status, Role role) {
+    public User(Long id, String firstname, String lastname, String username, String password, String email, byte[] image, Date registrationDate, String activateLink, UserStatus status, Role role) {
         this.id = id;
         this.firstName = firstname;
         this.lastName = lastname;
@@ -39,8 +39,8 @@ public class User {
         this.password = password;
         this.email = email;
         this.image = image;
-        this.registr_date = registr_date;
-        this.activate_link = activate_link;
+        this.registrationDate = registrationDate;
+        this.activateLink = activateLink;
         this.status = status;
         this.role = role;
     }
@@ -101,20 +101,20 @@ public class User {
         this.image = image;
     }
 
-    public Date getRegistr_date() {
-        return registr_date;
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegistr_date(Date registr_date) {
-        this.registr_date = registr_date;
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
-    public String getActivate_link() {
-        return activate_link;
+    public String getActivateLink() {
+        return activateLink;
     }
 
-    public void setActivate_link(String activate_link) {
-        this.activate_link = activate_link;
+    public void setActivateLink(String activateLink) {
+        this.activateLink = activateLink;
     }
 
     public UserStatus getStatus() {

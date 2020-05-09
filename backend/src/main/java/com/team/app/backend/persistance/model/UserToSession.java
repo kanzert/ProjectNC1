@@ -3,15 +3,15 @@ package com.team.app.backend.persistance.model;
 public class UserToSession {
 
     private Long id;
-    private Long session_id;
-    private Long user_id;
+    private Long sessionId;
+    private Long userId;
     private int score;
 
     public UserToSession() {}
 
-    public UserToSession(Long session_id, Long user_id) {
-        this.session_id = session_id;
-        this.user_id = user_id;
+    public UserToSession(Long sessionId, Long userId) {
+        this.sessionId = sessionId;
+        this.userId = userId;
     }
 
     public int getScore() {
@@ -32,21 +32,21 @@ public class UserToSession {
         return this;
     }
 
-    public Long getSession_id() {
-        return session_id;
+    public Long getSessionId() {
+        return sessionId;
     }
 
-    public UserToSession setSession_id(Long session_id) {
-        this.session_id = session_id;
+    public UserToSession setSessionId(Long sessionId) {
+        this.sessionId = sessionId;
         return this;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public UserToSession setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public UserToSession setUserId(Long userId) {
+        this.userId = userId;
         return this;
     }
 }

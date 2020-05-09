@@ -1,17 +1,17 @@
-package com.team.app.backend.persistance.dao;
+package com.team.app.backend.persistance.dao.impl;
 
-import com.team.app.backend.persistance.model.Session;
+import com.team.app.backend.persistance.dao.UserToSessionDao;
 import com.team.app.backend.persistance.model.UserToSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 
-@Component
+@Repository
 public class UserToSessionDaoImpl implements UserToSessionDao {
 
     @Autowired
@@ -27,8 +27,8 @@ public class UserToSessionDaoImpl implements UserToSessionDao {
                             sql,
                             new String[] {"id"}
                     );
-                    ps.setLong(1, userToSession.getSession_id());
-                    ps.setLong(2, userToSession.getUser_id());
+                    ps.setLong(1, userToSession.getSessionId());
+                    ps.setLong(2, userToSession.getUserId());
                     ps.setInt(3, userToSession.getScore());
                     return ps;
                 },
@@ -47,8 +47,8 @@ public class UserToSessionDaoImpl implements UserToSessionDao {
                     UserToSession userToSession = new UserToSession();
                     userToSession
                             .setId(resultSet.getLong("id"))
-                            .setSession_id(resultSet.getLong("ses_id"))
-                            .setUser_id(resultSet.getLong("user_id"))
+                            .setSessionId(resultSet.getLong("ses_id"))
+                            .setUserId(resultSet.getLong("user_id"))
                             .setScore(resultSet.getInt("score"));
                     return userToSession;
                 });
@@ -69,8 +69,8 @@ public class UserToSessionDaoImpl implements UserToSessionDao {
                             sql,
                             new String[] {"id"}
                     );
-                    ps.setLong(1, userToSession.getSession_id());
-                    ps.setLong(2, userToSession.getUser_id());
+                    ps.setLong(1, userToSession.getSessionId());
+                    ps.setLong(2, userToSession.getUserId());
                     ps.setInt(3, userToSession.getScore());
                     ps.setLong(4, userToSession.getId());
                     return ps;

@@ -9,32 +9,33 @@ public class Quiz {
     private String description;
     private byte[] image;
     private QuizStatus status;
-    private Long user_id;
-    private String quiz_author;
+    private Long userId;
+    private String quizAuthor;
 
     public void setStatus(QuizStatus status) {
         this.status = status;
     }
 
-    public String getQuiz_author() {
-        return quiz_author;
+    public String getQuizAuthor() {
+        return quizAuthor;
     }
 
-    public void setQuiz_author(String quiz_author) {
-        this.quiz_author = quiz_author;
+    public void setQuizAuthor(String quizAuthor) {
+        this.quizAuthor = quizAuthor;
     }
 
     public Quiz() {
     }
 
-    public Quiz(Long id, String title, Date date, String description, byte[] image, QuizStatus status, Long user_id) {
+    public Quiz(Long id, String title, Date date, String description, byte[] image, QuizStatus status, Long userId, String quizAuthor) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.description = description;
         this.image = image;
         this.status = status;
-        this.user_id = user_id;
+        this.userId = userId;
+        this.quizAuthor = quizAuthor;
     }
 
     public Long getId() {
@@ -85,11 +86,11 @@ public class Quiz {
         this.status = status;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

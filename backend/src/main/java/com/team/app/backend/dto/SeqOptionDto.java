@@ -1,19 +1,19 @@
 package com.team.app.backend.dto;
 
 public class SeqOptionDto {
-    private Integer serial_num;
+    private Integer serialNum;
     private String text;
     private byte[] image;
 
     public SeqOptionDto() {
     }
 
-    public Integer getSerial_num() {
-        return serial_num;
+    public Integer getSerialNum() {
+        return serialNum;
     }
 
-    public void setSerial_num(Integer serial_num) {
-        this.serial_num = serial_num;
+    public void setSerialNum(Integer serialNum) {
+        this.serialNum = serialNum;
     }
 
     public String getText() {

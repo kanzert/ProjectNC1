@@ -2,31 +2,31 @@ package com.team.app.backend.persistance.model;
 
 public class AnswerToOption {
 
-    private Long userAnsw_id;
-    private Long opt_id;
+    private Long userAnswerId;
+    private Long optionId;
 
     public AnswerToOption() {}
 
-    public AnswerToOption(Long userAnsw_id, Long opt_id) {
-        this.userAnsw_id = userAnsw_id;
-        this.opt_id = opt_id;
+    public AnswerToOption(Long userAnswerId, Long optionId) {
+        this.userAnswerId = userAnswerId;
+        this.optionId = optionId;
     }
 
-    public Long getUserAnsw_id() {
-        return userAnsw_id;
+    public Long getUserAnswerId() {
+        return userAnswerId;
     }
 
-    public AnswerToOption setUserAnsw_id(Long userAnsw_id) {
-        this.userAnsw_id = userAnsw_id;
+    public AnswerToOption setUserAnswerId(Long userAnswerId) {
+        this.userAnswerId = userAnswerId;
         return this;
     }
 
-    public Long getOpt_id() {
-        return opt_id;
+    public Long getOptionId() {
+        return optionId;
     }
 
-    public AnswerToOption setOpt_id(Long opt_id) {
-        this.opt_id = opt_id;
+    public AnswerToOption setOptionId(Long optionId) {
+        this.optionId = optionId;
         return this;
     }
 }

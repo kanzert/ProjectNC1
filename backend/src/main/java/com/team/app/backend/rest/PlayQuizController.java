@@ -1,19 +1,12 @@
 package com.team.app.backend.rest;
 
 import com.team.app.backend.dto.FinishedQuizDto;
-import com.team.app.backend.dto.UserAnswerDto;
 import com.team.app.backend.persistance.model.*;
 import com.team.app.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +41,7 @@ public class PlayQuizController {
         Quiz quiz = quizService.getQuiz(quizId);
         Session session = sessionService.newSessionForQuiz(quiz);
         String accessCode = AccessCodeProvider.createAccessCode(session, quiz);
-        session.setAccess_code(accessCode);
+        session.setAccessCode(accessCode);
         sessionService.updateSession(session);
         User user = userService.getUserById(userId);
 
@@ -85,7 +78,7 @@ public class PlayQuizController {
         );
         userToSessionList.forEach(
                 uts -> {
-                    response.put(userService.getUserNameById(uts.getUser_id()), uts.getScore());
+                    response.put(userService.getUsernameById(uts.getUserId()), uts.getScore());
                 }
         );
         return ResponseEntity.ok(response);
@@ -93,7 +86,6 @@ public class PlayQuizController {
 
     @RequestMapping("finish")
     public ResponseEntity finishQuiz(@RequestBody FinishedQuizDto finishedQuizDto) {
-        // TODO: complete
         return null;
     }
 

@@ -26,7 +26,7 @@ public class QuizController {
     @PostMapping("/quiz")
     public HashMap<String,Long> createMewQuiz(
             @RequestBody QuizAddDto quizDto) {
-        System.out.println(quizDto.getUser_id());
+        System.out.println(quizDto.getUserId());
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addQuiz(quizDto));
         return result;

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,11 +23,6 @@ public class SessionServiceImpl implements SessionService {
 
     @Autowired
     UserToSessionService userToSessionService;
-
-    @Override
-    public List<UserToSession> getAllUsersToSession(Long sessionId) {
-        return userToSessionService.getAllBySessionId(sessionId);
-    }
 
     @Override
     public Session newSessionForQuiz(Quiz quiz) {
@@ -41,5 +37,12 @@ public class SessionServiceImpl implements SessionService {
     @Override
     public Session getSessionById(Long id) {
         return sessionDao.getById(id);
+    }
+
+    @Override
+    public List<Session> getAllByQuizId(Long quizId) {
+        return sessionDao.list().stream()
+                .filter(s -> s.getQuizId().equals(quizId))
+                .collect(Collectors.toList());
     }
 }

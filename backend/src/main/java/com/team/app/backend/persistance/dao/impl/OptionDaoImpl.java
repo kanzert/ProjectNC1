@@ -1,4 +1,4 @@
-package com.team.app.backend.persistance.dao;
+package com.team.app.backend.persistance.dao.impl;
 
 
 import com.team.app.backend.persistance.dao.OptionDao;
@@ -9,16 +9,19 @@ import com.team.app.backend.persistance.model.DefaultQuest;
 import com.team.app.backend.persistance.model.Option;
 import com.team.app.backend.persistance.model.SeqOption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-@Component
+@Repository
 public class OptionDaoImpl implements OptionDao {
 
     private JdbcTemplate jdbcTemplate;
+
     public OptionDaoImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -58,10 +61,10 @@ public class OptionDaoImpl implements OptionDao {
     public void addOption(Option option) {
         jdbcTemplate.update(
                 "INSERT INTO public.option(is_correct, text, image, quest_id) VALUES (?, ?, ?, ?);",
-                option.getIs_correct(),
+                option.getIsCorrect(),
                 option.getText(),
                 option.getImage(),
-                option.getQuest_id()
+                option.getQuestionId()
                 );
     }
 
@@ -69,10 +72,10 @@ public class OptionDaoImpl implements OptionDao {
     public void addSeqOption(SeqOption seqOption) {
         jdbcTemplate.update(
                 "INSERT INTO public.seq_option(serial_num, text, image, quest_id) VALUES (?, ?, ?, ?);",
-                seqOption.getSerial_num(),
+                seqOption.getSerialNum(),
                 seqOption.getText(),
                 seqOption.getImage(),
-                seqOption.getQuest_id()
+                seqOption.getQuestionId()
                 );
     }
 
@@ -82,7 +85,7 @@ public class OptionDaoImpl implements OptionDao {
                 "INSERT INTO public.default_quest( answer, image, quest_id) VALUES ( ?, ?, ?)",
                 defaultQuest.getAnswer(),
                 defaultQuest.getImage(),
-                defaultQuest.getQuest_id()
+                defaultQuest.getQuestionId()
        );
     }
 }

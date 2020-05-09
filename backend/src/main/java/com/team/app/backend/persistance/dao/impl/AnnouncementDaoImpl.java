@@ -1,5 +1,6 @@
-package com.team.app.backend.persistance.dao;
+package com.team.app.backend.persistance.dao.impl;
 
+import com.team.app.backend.persistance.dao.AnnouncementDao;
 import com.team.app.backend.persistance.dao.mappers.AnnouncementRowMapper;
 import com.team.app.backend.persistance.dao.mappers.UserRowMapper;
 import com.team.app.backend.persistance.model.Announcement;
@@ -7,13 +8,14 @@ import com.team.app.backend.persistance.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-@Component
+@Repository
 public class AnnouncementDaoImpl implements AnnouncementDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;

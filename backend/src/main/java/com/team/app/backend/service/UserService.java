@@ -11,8 +11,7 @@ import java.util.List;
 
 public interface UserService {
 
-    //TODO: IMPLEMENT
-    String getUserNameById(Long id);
+    String getUsernameById(Long id);
 
     User updateUser(UserUpdateDto userDto);
 

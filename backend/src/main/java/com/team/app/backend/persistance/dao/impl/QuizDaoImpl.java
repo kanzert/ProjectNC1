@@ -1,25 +1,22 @@
-package com.team.app.backend.persistance.dao;
+package com.team.app.backend.persistance.dao.impl;
 
 import com.team.app.backend.persistance.dao.QuizDao;
 import com.team.app.backend.persistance.dao.mappers.QuizRowMapper;
 
-import com.team.app.backend.persistance.model.Question;
 import com.team.app.backend.persistance.model.Quiz;
-import com.team.app.backend.persistance.model.QuizStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 
-@Component
+@Repository
 public class QuizDaoImpl implements QuizDao {
 
     @Autowired
@@ -95,8 +92,8 @@ public class QuizDaoImpl implements QuizDao {
                     ps.setString(3, quiz.getDescription());
                     ps.setBytes(4, quiz.getImage());
                     ps.setLong(5,quiz.getStatus().getId());
-                    System.out.println( quiz.getUser_id());
-                    ps.setLong(6, quiz.getUser_id());
+                    System.out.println( quiz.getUserId());
+                    ps.setLong(6, quiz.getUserId());
 
                     return ps;
                 },
@@ -122,7 +119,7 @@ public class QuizDaoImpl implements QuizDao {
                 quiz.getDescription(),
                 quiz.getImage(),
                 quiz.getStatus().getId(),
-                quiz.getUser_id(),
+                quiz.getUserId(),
                 quiz.getId()
         );
     }

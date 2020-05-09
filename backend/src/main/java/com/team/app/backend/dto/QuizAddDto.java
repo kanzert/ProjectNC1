@@ -1,15 +1,13 @@
 package com.team.app.backend.dto;
 
 
-import com.team.app.backend.persistance.model.QuizCategory;
-
 import java.util.List;
 
 public class QuizAddDto {
     private String title;
     private String description;
     private byte[] image;
-    private int user_id;
+    private int userId;
     private List<Long> categories;
 
     public List<Long> getCategories() {
@@ -44,11 +42,11 @@ public class QuizAddDto {
         this.image = image;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

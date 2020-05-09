@@ -1,22 +1,20 @@
-package com.team.app.backend.persistance.dao;
+package com.team.app.backend.persistance.dao.impl;
 
 import com.team.app.backend.persistance.dao.QuestionDao;
 import com.team.app.backend.persistance.dao.mappers.QuestionRowMapper;
 import com.team.app.backend.persistance.model.Question;
-import com.team.app.backend.persistance.model.QuestionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
-@Component
+@Repository
 public class QuestionDaoImpl implements QuestionDao {
 
     private JdbcTemplate jdbcTemplate;
@@ -56,10 +54,10 @@ public class QuestionDaoImpl implements QuestionDao {
                     PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
                     ps.setInt(1, question.getTime());
                     ps.setString(2, question.getText());
-                    ps.setInt(3, question.getMax_points());
+                    ps.setInt(3, question.getMaxPoints());
                     ps.setBytes(4, question.getImage());
                     ps.setLong(5, question.getType().getId());
-                    ps.setLong(6, question.getQuiz_id());
+                    ps.setLong(6, question.getQuizId());
 
                     return ps;
                 },
@@ -86,10 +84,10 @@ public class QuestionDaoImpl implements QuestionDao {
                 "UPDATE public.question SET time =?, text=?, max_points=?, image=?, type_id=?, quiz_id=? WHERE id = ?",
                 question.getTime(),
                 question.getText(),
-                question.getMax_points(),
+                question.getMaxPoints(),
                 question.getImage(),
                 question.getType().getId(),
-                question.getQuiz_id(),
+                question.getQuizId(),
                 question.getId()
         );
     }

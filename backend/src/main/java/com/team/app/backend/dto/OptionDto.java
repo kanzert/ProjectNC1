@@ -1,19 +1,19 @@
 package com.team.app.backend.dto;
 
 public class OptionDto {
-    private Boolean is_correct;
+    private Boolean isCorrect;
     private String text;
     private byte[] image;
 
     public OptionDto() {
     }
 
-    public Boolean getIs_correct() {
-        return is_correct;
+    public Boolean getIsCorrect() {
+        return isCorrect;
     }
 
-    public void setIs_correct(Boolean is_correct) {
-        this.is_correct = is_correct;
+    public void setIsCorrect(Boolean isCorrect) {
+        this.isCorrect = isCorrect;
     }
 
     public String getText() {

@@ -2,24 +2,24 @@ package com.team.app.backend.dto;
 
 public class UserAnswerDto {
 
-    private long userSes_id;
+    private long userToSessionId;
     private int points;
     private int time;
 
     public UserAnswerDto() {}
 
-    public UserAnswerDto(long userSes_id, int points, int time) {
-        this.userSes_id = userSes_id;
+    public UserAnswerDto(long userToSessionId, int points, int time) {
+        this.userToSessionId = userToSessionId;
         this.points = points;
         this.time = time;
     }
 
-    public long getUserSes_id() {
-        return userSes_id;
+    public long getUserToSessionId() {
+        return userToSessionId;
     }
 
-    public UserAnswerDto setUserSes_id(long userSes_id) {
-        this.userSes_id = userSes_id;
+    public UserAnswerDto setUserToSessionId(long userToSessionId) {
+        this.userToSessionId = userToSessionId;
         return this;
     }
 

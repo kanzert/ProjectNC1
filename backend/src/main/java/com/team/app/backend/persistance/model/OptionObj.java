@@ -3,14 +3,14 @@ package com.team.app.backend.persistance.model;
 public class OptionObj {
 
     private Long id;
-    private Long quest_id;
+    private Long questionId;
 
     public OptionObj() {
     }
 
-    public OptionObj(Long id, Long quest_id) {
+    public OptionObj(Long id, Long questionId) {
         this.id = id;
-        this.quest_id = quest_id;
+        this.questionId = questionId;
     }
 
     public Long getId() {
@@ -21,11 +21,11 @@ public class OptionObj {
         this.id = id;
     }
 
-    public Long getQuest_id() {
-        return quest_id;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setQuest_id(Long quest_id) {
-        this.quest_id = quest_id;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 }

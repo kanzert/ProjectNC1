@@ -2,42 +2,42 @@ package com.team.app.backend.persistance.model;
 
 public class AnswerToSeqOption {
 
-    Long userAnsw_id;
-    Long seqOpt_id;
-    Integer serial_num;
+    private Long userAnswerId;
+    private Long seqOptionId;
+    private Integer serialNum;
 
     public AnswerToSeqOption() {}
 
-    public AnswerToSeqOption(Long userAnsw_id, Long seqOpt_id, Integer serial_num) {
-        this.userAnsw_id = userAnsw_id;
-        this.seqOpt_id = seqOpt_id;
-        this.serial_num = serial_num;
+    public AnswerToSeqOption(Long userAnswerId, Long seqOptionId, Integer serialNum) {
+        this.userAnswerId = userAnswerId;
+        this.seqOptionId = seqOptionId;
+        this.serialNum = serialNum;
     }
 
-    public Long getUserAnsw_id() {
-        return userAnsw_id;
+    public Long getUserAnswerId() {
+        return userAnswerId;
     }
 
-    public AnswerToSeqOption setUserAnsw_id(Long userAnsw_id) {
-        this.userAnsw_id = userAnsw_id;
+    public AnswerToSeqOption setUserAnswerId(Long userAnswerId) {
+        this.userAnswerId = userAnswerId;
         return this;
     }
 
-    public Long getSeqOpt_id() {
-        return seqOpt_id;
+    public Long getSeqOptionId() {
+        return seqOptionId;
     }
 
-    public AnswerToSeqOption setSeqOpt_id(Long seqOpt_id) {
-        this.seqOpt_id = seqOpt_id;
+    public AnswerToSeqOption setSeqOptionId(Long seqOptionId) {
+        this.seqOptionId = seqOptionId;
         return this;
     }
 
-    public Integer getSerial_num() {
-        return serial_num;
+    public Integer getSerialNum() {
+        return serialNum;
     }
 
-    public AnswerToSeqOption setSerial_num(Integer serial_num) {
-        this.serial_num = serial_num;
+    public AnswerToSeqOption setSerialNum(Integer serialNum) {
+        this.serialNum = serialNum;
         return this;
     }
 }

@@ -6,8 +6,8 @@ public class QuestionDto {
     private String text;
     private byte[] image;
     private Integer time;
-    private Integer max_points;
-    private Integer quiz_id;
+    private Integer maxPoints;
+    private Integer quizId;
     private QuestionType type;
 
     public QuestionType getType() {
@@ -42,19 +42,19 @@ public class QuestionDto {
         this.time = time;
     }
 
-    public Integer getMax_points() {
-        return max_points;
+    public Integer getMaxPoints() {
+        return maxPoints;
     }
 
-    public void setMax_points(Integer max_points) {
-        this.max_points = max_points;
+    public void setMaxPoints(Integer maxPoints) {
+        this.maxPoints = maxPoints;
     }
 
-    public Integer getQuiz_id() {
-        return quiz_id;
+    public Integer getQuizId() {
+        return quizId;
     }
 
-    public void setQuiz_id(Integer quiz_id) {
-        this.quiz_id = quiz_id;
+    public void setQuizId(Integer quizId) {
+        this.quizId = quizId;
     }
 }

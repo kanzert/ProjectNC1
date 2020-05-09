@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String getUserNameById(Long id) {
-        return null;
+    public String getUsernameById(Long id) {
+        return userDao.get(id).getUsername();
     }
 
     @Override
@@ -90,8 +90,8 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userCreateDto.getUsername());
         user.setPassword(userCreateDto.getPassword());
         //user.setImage(userDto.getImage());
-        user.setActivate_link("ttest");
-        user.setRegistr_date(new Date());
+        user.setActivateLink("ttest");
+        user.setRegistrationDate(new Date());
         user.setRole(new Role(1L,userCreateDto.getRole().getName()));
         user.setStatus(new UserStatus(1L,"REGISTERED"));
         userDao.save(user);
@@ -114,8 +114,8 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         //user.setImage(userDto.getImage());
-        user.setActivate_link("ttest");
-        user.setRegistr_date(new Date());
+        user.setActivateLink("ttest");
+        user.setRegistrationDate(new Date());
         user.setRole(new Role(1L,"USER"));
         user.setStatus(new UserStatus(1L,"REGISTERED"));
         userDao.save(user);

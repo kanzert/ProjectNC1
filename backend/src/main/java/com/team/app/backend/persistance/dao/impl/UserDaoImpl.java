@@ -1,15 +1,16 @@
-package com.team.app.backend.persistance.dao;
+package com.team.app.backend.persistance.dao.impl;
 
 import com.team.app.backend.persistance.dao.UserDao;
 import com.team.app.backend.persistance.dao.mappers.UserRowMapper;
 import com.team.app.backend.persistance.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.PreparedStatement;
 import java.util.List;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
     @Autowired
@@ -24,8 +25,8 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public List<User> searchByString(String searchstring) {
-        String search="%"+searchstring+"%";
+    public List<User> searchByString(String searchString) {
+        String search="%"+ searchString +"%";
         String sql="SELECT U.id,U.firstname,U.lastname,U.username,U.image,U.password,U.email,U.registr_date,U.activate_link,U.status_id,US.name as status_name,U.role_id,R.name as role_name FROM users U INNER JOIN user_status US ON U.status_id = US.id INNER JOIN role R ON R.id = U.role_id WHERE U.username LIKE ? OR U.firstname LIKE ? OR U.lastname LIKE ?";
         return jdbcTemplate.query(sql,new Object[]{search,search,search},userRowMapper);
     }
@@ -40,8 +41,8 @@ public class UserDaoImpl implements UserDao {
                 user.getPassword(),
                 user.getEmail(),
                 user.getImage(),
-                user.getRegistr_date(),
-                user.getActivate_link(),
+                user.getRegistrationDate(),
+                user.getActivateLink(),
                 user.getStatus().getId(),
                 user.getRole().getId()
         );
@@ -57,8 +58,8 @@ public class UserDaoImpl implements UserDao {
                 user.getPassword(),
                 user.getEmail(),
                 user.getImage(),
-                user.getRegistr_date(),
-                user.getActivate_link(),
+                user.getRegistrationDate(),
+                user.getActivateLink(),
                 user.getStatus().getId(),
                 user.getRole().getId(),
                 user.getId()

@@ -2,6 +2,8 @@ package com.team.app.backend.persistance.dao;
 
 import com.team.app.backend.persistance.model.Session;
 
+import java.util.List;
+
 public interface SessionDao {
 
     Session save(Session session);
@@ -11,5 +13,7 @@ public interface SessionDao {
     Session deleteById(Long id);
 
     Session update(Session session);
+
+    List<Session> list();
 
 }

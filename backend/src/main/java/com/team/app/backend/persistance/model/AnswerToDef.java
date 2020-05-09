@@ -2,33 +2,33 @@ package com.team.app.backend.persistance.model;
 
 public class AnswerToDef {
 
-    private Long userAnsw_id;
-    private Long def_id;
+    private Long userAnswerId;
+    private Long defId;
     private String text;
 
     public AnswerToDef() {}
 
-    public AnswerToDef(Long userAnsw_id, Long def_id, String text) {
-        this.userAnsw_id = userAnsw_id;
-        this.def_id = def_id;
+    public AnswerToDef(Long userAnswerId, Long defId, String text) {
+        this.userAnswerId = userAnswerId;
+        this.defId = defId;
         this.text = text;
     }
 
-    public Long getUserAnsw_id() {
-        return userAnsw_id;
+    public Long getUserAnswerId() {
+        return userAnswerId;
     }
 
-    public AnswerToDef setUserAnsw_id(Long userAnsw_id) {
-        this.userAnsw_id = userAnsw_id;
+    public AnswerToDef setUserAnswerId(Long userAnswerId) {
+        this.userAnswerId = userAnswerId;
         return this;
     }
 
-    public Long getDef_id() {
-        return def_id;
+    public Long getDefId() {
+        return defId;
     }
 
-    public AnswerToDef setDef_id(Long def_id) {
-        this.def_id = def_id;
+    public AnswerToDef setDefId(Long defId) {
+        this.defId = defId;
         return this;
     }
 

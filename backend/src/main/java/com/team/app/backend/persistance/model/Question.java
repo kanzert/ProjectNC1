@@ -6,20 +6,20 @@ public class Question {
     private Long id;
     private Integer time;
     private String text;
-    private Integer max_points;
+    private Integer maxPoints;
     private byte[] image;
     private QuestionType type;
-    private Long quiz_id;
-    private List<OptionObj> options ;
+    private Long quizId;
+    private List<OptionObj> options;
 
-    public Question(Long id, Integer time, String text, Integer max_points, byte[] image, QuestionType type, Long quiz_id) {
+    public Question(Long id, Integer time, String text, Integer maxPoints, byte[] image, QuestionType type, Long quizId) {
         this.id = id;
         this.time = time;
         this.text = text;
-        this.max_points = max_points;
+        this.maxPoints = maxPoints;
         this.image = image;
         this.type = type;
-        this.quiz_id = quiz_id;
+        this.quizId = quizId;
     }
 
     public Question() {
@@ -47,12 +47,12 @@ public class Question {
         this.text = text;
     }
 
-    public Integer getMax_points() {
-        return max_points;
+    public Integer getMaxPoints() {
+        return maxPoints;
     }
 
-    public void setMax_points(Integer max_points) {
-        this.max_points = max_points;
+    public void setMaxPoints(Integer maxPoints) {
+        this.maxPoints = maxPoints;
     }
 
     public byte[] getImage() {
@@ -71,12 +71,12 @@ public class Question {
         this.type = type;
     }
 
-    public Long getQuiz_id() {
-        return quiz_id;
+    public Long getQuizId() {
+        return quizId;
     }
 
-    public void setQuiz_id(Long quiz_id) {
-        this.quiz_id = quiz_id;
+    public void setQuizId(Long quizId) {
+        this.quizId = quizId;
     }
 
     public List<OptionObj> getOptions() {

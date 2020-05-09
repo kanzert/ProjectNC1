@@ -2,7 +2,7 @@ package com.team.app.backend.persistance.model;
 
 public class Option extends OptionObj {
 
-    private Boolean is_correct;
+    private Boolean isCorrect;
     private String text;
     private byte[] image;
 
@@ -10,9 +10,9 @@ public class Option extends OptionObj {
     public Option() {
     }
 
-    public Option( Boolean is_correct, String text, byte[] image) {
+    public Option(Boolean isCorrect, String text, byte[] image) {
         //this.id = id;
-        this.is_correct = is_correct;
+        this.isCorrect = isCorrect;
         this.text = text;
         this.image = image;
         //this.quest_id = quest_id;
@@ -22,12 +22,12 @@ public class Option extends OptionObj {
 //        return id;
 //    }
 
-    public Boolean getIs_correct() {
-        return is_correct;
+    public Boolean getIsCorrect() {
+        return isCorrect;
     }
 
-    public void setIs_correct(Boolean is_correct) {
-        this.is_correct = is_correct;
+    public void setIsCorrect(Boolean isCorrect) {
+        this.isCorrect = isCorrect;
     }
 
     public String getText() {

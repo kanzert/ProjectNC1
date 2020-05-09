@@ -1,10 +1,11 @@
 package com.team.app.backend.config;
 
 import com.team.app.backend.persistance.dao.UserDao;
-import com.team.app.backend.persistance.dao.UserDaoImpl;
+import com.team.app.backend.persistance.dao.impl.UserDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
@@ -21,11 +22,6 @@ public class SpringJdbcConfiguration {
         dataSource.setUsername("auewlydijtwktd");
         dataSource.setPassword("571df7407fd1073d91d2d43e3c085880564337693979e4e00e7bce1771228bf9");
         return dataSource;
-    }
-
-    @Bean
-    public UserDao getUserDao() {
-        return new UserDaoImpl(getDataSource());
     }
 }
 //import javax.sql.DataSource;

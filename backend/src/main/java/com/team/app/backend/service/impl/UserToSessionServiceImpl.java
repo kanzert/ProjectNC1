@@ -16,7 +16,7 @@ import java.util.List;
 public class UserToSessionServiceImpl implements UserToSessionService {
 
     @Autowired
-    UserToSessionDao userToSessionDao;
+    private UserToSessionDao userToSessionDao;
 
     @Override
     public UserToSession createNewUserToSession(User user, Session session) {
