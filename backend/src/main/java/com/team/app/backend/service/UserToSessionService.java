@@ -12,4 +12,8 @@ public interface UserToSessionService {
 
     List<UserToSession> getAllBySessionId(Long sessionId);
 
+    UserToSession get(Long userId, Long sessionId);
+
+    UserToSession update(UserToSession uts);
+
 }

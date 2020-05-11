@@ -1,9 +1,9 @@
 package com.team.app.backend.dto;
 
 public class FinishedQuizDto {
-    long userId;
-    long sessionId;
-    int score;
+    private long userId;
+    private long sessionId;
+    private int score;
 
     public FinishedQuizDto() {}
 

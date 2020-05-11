@@ -86,7 +86,11 @@ public class PlayQuizController {
 
     @RequestMapping("finish")
     public ResponseEntity finishQuiz(@RequestBody FinishedQuizDto finishedQuizDto) {
-        return null;
+        UserToSession uts = userToSessionService.get(
+                finishedQuizDto.getUserId(), finishedQuizDto.getSessionId());
+        uts.setScore(finishedQuizDto.getScore());
+        userToSessionService.update(uts);
+        return ResponseEntity.ok("");
     }
 
 }
