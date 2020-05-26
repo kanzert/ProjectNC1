@@ -1,6 +1,7 @@
 package com.team.app.backend.service.impl;
 
 import com.team.app.backend.dto.*;
+import com.team.app.backend.exception.QuizNotFoundException;
 import com.team.app.backend.persistance.dao.*;
 import com.team.app.backend.persistance.model.*;
 import com.team.app.backend.service.QuizService;
@@ -47,6 +48,18 @@ public class QuizServiceImpl implements QuizService {
 
     @Autowired
     UserService userService;
+
+    @Override
+    public void updateQuiz(QuizUpdateDto dto) throws QuizNotFoundException {
+        Quiz quiz = quizDao.get(dto.getId());
+        if (quiz == null) {
+            throw new QuizNotFoundException("Quiz with id " + dto.getId() + " not found in the DB.");
+        }
+        quiz.setTitle(dto.getTitle());
+        quiz.setDescription(dto.getDescription());
+        quiz.setImage(dto.getImage());
+        quizDao.update(quiz);
+    }
 
     @Override
     public Long addDefQuestion(QuestionDefAddDto questionDefAddDto) {
