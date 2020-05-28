@@ -12,11 +12,11 @@ declare var Stomp;
 })
 export class NotificationService {
 
-  private apiUrl = 'http://localhost:8080/api/notification';
+  // private apiUrl = 'http://localhost:8080/api/notification';
+  // private serverUrl = 'http://localhost:8080/ws';
+  private apiUrl = '/api/notification'
+  private serverUrl = '/ws';
 
-  // private apiUrl = '/api/notification'
-
-  private serverUrl = 'http://localhost:8080/ws';
   constructor(private http: HttpClient, private userService: UserService) {
     if (userService.authenticated && userService.user.role.name === 'user') {
       this.initializeWebSocketConnection();

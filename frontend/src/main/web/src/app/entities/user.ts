@@ -6,7 +6,11 @@ export interface User {
   password?: string;
   email: string;
   role: {id?: string, name: string};
+  status?: {
+    id: number,
+    name: string
+  };
   image?: string;
   token?: string;
-  joined?:boolean;
+  joined?: boolean;
 }

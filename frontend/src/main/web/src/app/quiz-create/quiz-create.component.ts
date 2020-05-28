@@ -19,6 +19,7 @@ export class QuizCreateComponent implements OnInit {
   quizForm = this.fb.group({
     'title': ['', [Validators.required, Validators.maxLength(20)]],
     'description': ['', [Validators.required, Validators.maxLength(30)]],
+    'image':['', Validators.required],
     'categories': [[], Validators.required]
   })
 
@@ -33,6 +34,12 @@ export class QuizCreateComponent implements OnInit {
     private userService: UserService,
     private categoryService: CategoryService
   ) { }
+
+  onChanged(url:string){
+    this.quizForm.patchValue({
+      image: url
+    });
+  }
 
   ngOnInit(): void {
     this.getCategories();
@@ -52,6 +59,7 @@ export class QuizCreateComponent implements OnInit {
     this.quizService.createQuiz({
       title: this.quizForm.get('title').value,
       description: this.quizForm.get('description').value,
+      image: this.quizForm.get('image').value,
       user_id: this.userService.user.id,
       categories: selectedCategoriesId
     } as Quiz)

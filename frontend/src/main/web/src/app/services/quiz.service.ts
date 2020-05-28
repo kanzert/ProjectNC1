@@ -13,8 +13,8 @@ import {User} from "../entities/user";
   providedIn: 'root'
 })
 export class QuizService {
-  private quizzesUrl = 'http://localhost:8080/api/quiz';  // URL to web api
-  // private quizzesUrl = '/api/quiz';  // URL to web api
+  // private quizzesUrl = 'http://localhost:8080/api/quiz';  // URL to web api
+  private quizzesUrl = '/api/quiz';  // URL to web api
   private userId;
   private readonly token: string;
   private httpHeader: HttpHeaders;
@@ -158,11 +158,8 @@ export class QuizService {
       .pipe(catchError(this.handleError<any>('deleteQuiz')));
   }
 
-  searchQuizzes(term: string, cat: string[], date: number, userName: string): Observable<Quiz[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.post<Quiz[]>(this.quizzesUrl + '/search', { title: term, categories: cat, dateOption: date, user: userName }, { headers: new HttpHeaders()
+  searchQuizzes(term: string, cat: string[], dateFrom: string, dateTo: string, userName: string): Observable<Quiz[]> {
+    return this.http.post<Quiz[]>(this.quizzesUrl + '/search', { title: term, categories: cat, dateFrom: dateFrom, dateTo: dateTo, user: userName }, { headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.userService.getToken()}`)}).pipe(
       catchError(this.handleError<Quiz[]>('searchQuizzes', []))
     );

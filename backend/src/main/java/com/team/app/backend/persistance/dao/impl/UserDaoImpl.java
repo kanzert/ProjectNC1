@@ -27,12 +27,7 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    @Override
-    public List<User> searchByString(String searchstring, int firstRole, int lastRole) {
-        String search="%"+searchstring+"%";
-        String sql=env.getProperty("search.user");
-        return jdbcTemplate.query(sql,new Object[]{search,search,search, firstRole, lastRole}, userRowMapper);
-    }
+
 
     @Override
     public void save(User user) {
@@ -107,12 +102,7 @@ public class UserDaoImpl implements UserDao {
                 new Object[]{username},String.class
         );
     }
-    @Override
-    public String getUserLanguage(Long id) {
-        return jdbcTemplate.queryForObject(env.getProperty("get.user.language"),
-                new Object[]{id},String.class
-        );
-    }
+
 
     @Override
     public User getUserByToken(String token) {
@@ -161,4 +151,24 @@ public class UserDaoImpl implements UserDao {
         );
     }
 
+    @Override
+    public String getUserLanguage(Long id) {
+        return jdbcTemplate.queryForObject(env.getProperty("get.user.language"),
+                new Object[]{id},String.class
+        );
+    }
+
+    @Override
+    public List<User> searchByString(String searchstring, int firstRole, int lastRole) {
+        String search="%"+searchstring+"%";
+        String sql=env.getProperty("search.user");
+        return jdbcTemplate.query(sql,new Object[]{search,search,search, firstRole, lastRole}, userRowMapper);
+    }
+
+    @Override
+    public void setStatus(Long statusId, Long userId) {
+        jdbcTemplate.update(env.getProperty("set.user.status"),
+                statusId, userId
+        );
+    }
 }

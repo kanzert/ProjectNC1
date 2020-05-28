@@ -3,7 +3,7 @@
     <div class="row mt-2">
       <nav class="col-md-3 col-lg-3 col-sm-2  d-none d-md-block sidebar navbar-expand-md">
         <div class="sidebar-sticky">
-          <img [src]="imageUrl" style="height: 100px; width: 100px" alt="avatar" class="img-thumbnail mt-3">
+          <img [src]="user.image || imageUrl" style="height: 100px; width: 100px" alt="avatar" class="img-thumbnail mt-3">
           <h5>
             <span class="badge bg-primary">{{getUserName()}} {{getUserLastName()}}</span>
           </h5>
@@ -34,13 +34,11 @@
                 <mat-icon inline=true>group</mat-icon><strong> {{'DASHBOARD.SIDEBAR.ADMINS_MODERATORS' | translate}}</strong>
               </a>
             </li>
-
             <li *ngIf="getUserRole()=='user'" class="nav-item border-bottom">
               <a class="nav-link btn" (click)="changeTab('Activity')">
                 <mat-icon inline=true>group</mat-icon><strong>{{'DASHBOARD.SIDEBAR.ACTIVITIES' | translate}}</strong>
               </a>
             </li>
-
             <li  class="nav-item border-bottom">
               <a class="nav-link btn" (click)="changeTab('Announcement')">
                 <mat-icon inline=true>event_note</mat-icon> <strong> {{'DASHBOARD.SIDEBAR.ANNOUNCEMENT' | translate}}</strong>
@@ -79,7 +77,7 @@
                     <h4 class="form-control-label" style="color: black">{{'DASHBOARD.JOIN FORM.LABEL' | translate}}</h4>
                     <input type="text" formControlName="accessCode"  class="form-control text-center"  placeholder="{{'DASHBOARD.JOIN FORM.PLACEHOLDER' | translate}}" required [minlength]="6" [maxlength]="6">
                     <div *ngIf="joinForm.get('accessCode').invalid && joinForm.get('accessCode').touched"
-                      class="validation">
+                         class="validation">
                       <small *ngIf="joinForm.get('accessCode').errors.required">
                         {{'DASHBOARD.JOIN FORM.VALIDATION' | translate}}
                       </small>
@@ -106,17 +104,36 @@
                 <mat-option *ngFor="let category of categoriesList" [value]="category.name">{{category.name}}</mat-option>
               </mat-select>
             </mat-form-field>
-            <input [(ngModel)]="quizUser" name="quizUser" id="search-quiz-by-user"  class="form-control my-2 mr-3" type="text" placeholder="User name" style="width: 70%">
-            <mat-form-field color="Warn" id="dropListCategory">
-              <mat-label class="text-center">Time period</mat-label>
-              <mat-select [(value)]="selectedDateOption">
-                <mat-option [value]="1">Today</mat-option>
-                <mat-option [value]="2">For week</mat-option>
-                <mat-option [value]="3">For month</mat-option>
-                <mat-option [value]="4">For all time</mat-option>
-              </mat-select>
-            </mat-form-field>
             <button for="search-box" class="btn btn-secondary my-2 mx-2 my-sm-0" (click)="search()" type="submit" style="width: auto">Search</button>
+            <div *ngIf="isMoreFiltersVisible" class="row ml-3">
+              <input [(ngModel)]="quizUser" name="quizUser" id="search-quiz-by-user"  class="form-control my-2 mr-3" type="text" placeholder="User name" style="width: 20%">
+              <!-- <mat-form-field color="Warn" id="dropListCategory">
+                <mat-label class="text-center">Time period</mat-label>
+                <mat-select [(value)]="selectedDateOption">
+                  <mat-option [value]="1">Today</mat-option>
+                  <mat-option [value]="2">For week</mat-option>
+                  <mat-option [value]="3">For month</mat-option>
+                  <mat-option [value]="4">For all time</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+              <!-- <label for="start">Date from:</label>
+              <input type="text" placeholder="Date from" onfocus="(this.type='date')" [ngModel] ="dateFrom | date:'yyyy-MM-dd'" (ngModelChange)="dateFrom = $event" id="start" name="quiz-start">
+              <label for="end">Date to:</label>
+              <input type="text" placeholder="Date to" onfocus="(this.type='date')" [ngModel] ="dateTo | date:'yyyy-MM-dd'" (ngModelChange)="dateTo = $event" id="end" name="quiz-end"> -->
+              <mat-form-field>
+                <mat-label>Choose a date from</mat-label>
+                <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="dateFrom" name="dateFrom">
+                <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFrom></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Choose a date to</mat-label>
+                <input matInput [matDatepicker]="pickerTo" [(ngModel)]="dateTo" name="dateFrom">
+                <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                <mat-datepicker #pickerTo></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <li><a (click)="showMoreFilters()">More Filters</a></li>
             <button *ngIf="getUserRole()==='admin' || getUserRole()==='super admin'" class="btn btn-success my-2 mx-2 my-sm-0"
                     (click)="profileSet(true)"  style="width: auto">{{'DASHBOARD.SEARCH.BUTTON.ADD' | translate}}</button>
           </form>

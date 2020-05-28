@@ -37,6 +37,14 @@ export class AnnouncementEditComponent implements OnInit {
       image: [this.announcement.image],
     });
   }
+
+  onChanged(url:string){
+    this.announcementForm.patchValue({
+      image: url
+    });
+    this.announcement.image = url;
+  }
+
   getUserRole(): string {
     return this.userService.user.role.name;
   }

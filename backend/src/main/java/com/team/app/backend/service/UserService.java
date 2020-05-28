@@ -50,4 +50,6 @@ public interface UserService {
     User findByUsername(String username);
 
     Locale getUserLanguage(Long id);
+
+    void setStatus(Long statusId, Long userId);
 }

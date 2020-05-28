@@ -103,12 +103,14 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
-    public List<Quiz> searchQuizes(String[] categories, String searchstring, int dateOption, String user) {
+    public List<Quiz> searchQuizes(String[] categories, String searchstring, String dateFrom, String dateTo, String user) {
 		String sqlQuizSearch = env.getProperty("search.quiz");
-		String search = "%"+searchstring+"%";
+		String search = "%%";
 		String[] searchCategories = {"geography", "programming", "math", "history", "modern"};
-		String searchDate = "10 YEAR";
 		String searchUsername = "%%";
+		if (searchstring != "") {
+			search = "%"+searchstring+"%";
+		}
         if (categories.length != 0) {
 			for (int i = 0; i < categories.length; i++) {
 				searchCategories[i] = categories[i];
@@ -117,24 +119,10 @@ public class QuizDaoImpl implements QuizDao {
 				searchCategories[j] = "";
 			}
 		}
-		switch (dateOption) {
-			case 1:
-				searchDate = "0 DAY";
-				break;
-			case 2:
-				searchDate = "7 DAY";
-				break;
-			case 3:
-				searchDate = "1 MONTH";
-				break;
-			default:
-				break;
-		}
 		if (user != "") {
-			searchUsername = user;
+			searchUsername = "%"+user+"%";
 		}
-        //System.out.println(cat+" "+search);
-        return jdbcTemplate.query(sqlQuizSearch, new Object[] {search, search, searchCategories[0], searchCategories[1], searchCategories[2], searchCategories[3], searchCategories[4], searchUsername},
+        return jdbcTemplate.query(sqlQuizSearch, new Object[] {search, search, searchCategories[0], searchCategories[1], searchCategories[2], searchCategories[3], searchCategories[4], dateFrom, dateTo, searchUsername, searchUsername, searchUsername},
                 quizRowMapper);
     }
 	

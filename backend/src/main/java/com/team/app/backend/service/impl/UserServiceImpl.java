@@ -153,8 +153,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-
     @Override
     public boolean checkRegistDate(User user) {
         System.out.println("time"+user.getRegistr_date().getTime() + "    " + new Date().getTime());
@@ -207,5 +205,10 @@ public class UserServiceImpl implements UserService {
         } else {
             return Locale.US;
         }
+    }
+
+    @Override
+    public void setStatus(Long statusId, Long userId) {
+        userDao.setStatus(statusId,userId);
     }
 }

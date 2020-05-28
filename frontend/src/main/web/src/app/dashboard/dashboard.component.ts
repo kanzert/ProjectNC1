@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, ViewChild, AfterViewChecked, AfterViewInit, ElementRef} from '@angular/core';
+import {FormControl} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import { QuizService } from '../services/quiz.service';
 import { User } from '../entities/user';
@@ -29,10 +30,13 @@ export class DashboardComponent implements OnInit {
   isVisible = true;
   term: string = "";
   selectedCategories: string[] = [];
-  selectedDateOption: number = 4;
+  //selectedDateOption: number = 4;
+  dateFrom: Date;
+  dateTo: Date;
   quizUser: string = "";
   joinForm: FormGroup;
   join_message=false;
+  isMoreFiltersVisible = false;
 
 
   private searchQuizTerms = new Subject<any>();
@@ -57,7 +61,7 @@ export class DashboardComponent implements OnInit {
       debounceTime(DEBOUNCE_TIME),
       distinctUntilChanged(),
       // switch to new search observable each time the term changes
-      switchMap((obj: any) => this.quizService.searchQuizzes(obj.title, obj.categories, obj.dateOption, obj.user)),
+      switchMap((obj: any) => this.quizService.searchQuizzes(obj.title, obj.categories, obj.dateFrom, obj.dateTo, obj.user)),
     );
     this.users$ = this.searchUserTerms.pipe(
       debounceTime(DEBOUNCE_TIME),
@@ -69,9 +73,24 @@ export class DashboardComponent implements OnInit {
   }
 
   search(): void {
+    let date_from;
+    let date_to;
+    if (this.dateFrom === undefined) {
+      date_from = "2020-01-01";
+    } else {
+      date_from = this.dateFrom.toJSON().slice(0, 8) + (this.dateFrom.getDate() < 10 ? "0" + this.dateFrom.getDate() : this.dateFrom.getDate());
+    }
+    if (this.dateTo === undefined) {
+      this.dateTo = new Date();
+      date_to = this.dateTo.toJSON().slice(0, 8) + (this.dateTo.getDate() < 10 ? "0" + this.dateTo.getDate() : this.dateTo.getDate());
+    } else {
+      date_to = this.dateTo.toJSON().slice(0, 8) + (this.dateTo.getDate() < 10 ? "0" + this.dateTo.getDate() : this.dateTo.getDate());
+    }
+    console.log(date_from);
+    console.log(date_to);
     this.isVisible = false;
     if (this.tab === 'Quizzes') {
-      this.searchQuizTerms.next({ title: this.term, categories: this.selectedCategories, dateOption: this.selectedDateOption, user: this.quizUser });
+      this.searchQuizTerms.next({ title: this.term, categories: this.selectedCategories, dateFrom: date_from, dateTo: date_to, user: this.quizUser });
     } else {
       this.searchUserTerms.next(this.term);
     }
@@ -85,6 +104,10 @@ export class DashboardComponent implements OnInit {
     this.tab = tab;
     this.router.navigateByUrl(`dashboard/${tab}`);
     this.isVisible = true;
+  }
+
+  showMoreFilters() {
+    this.isMoreFiltersVisible = !this.isMoreFiltersVisible;
   }
 
   getUser() {

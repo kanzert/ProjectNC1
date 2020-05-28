@@ -63,7 +63,7 @@ export class AchievementsComponent implements OnInit {
         this.linkToIconAchievement = 'https://cdn3.iconfinder.com/data/icons/project-management-49/50/48-128.png';
         break;
       default:
-        this.linkToIconAchievement = 'https://cdn3.iconfinder.com/data/icons/project-management-49/50/61-128.png';
+        this.linkToIconAchievement = this.achievement.icon;
         break;
     }
   }

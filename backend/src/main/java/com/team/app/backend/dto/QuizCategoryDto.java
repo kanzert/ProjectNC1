@@ -3,7 +3,8 @@ package com.team.app.backend.dto;
 public class QuizCategoryDto {
 	private String title;
 	private String[] categories;
-	private int dateOption;
+	private String dateFrom;
+	private String dateTo;
 	private String user;
 	
 	public String getTitle() {
@@ -18,12 +19,20 @@ public class QuizCategoryDto {
 		return this.categories;
 	}
 	
-	public int getDateOption() {
-		return this.dateOption;
+	public String getDateFrom() {
+		return this.dateFrom;
 	}
 	
-	public void setDateOption(int dateOption) {
-		this.dateOption = dateOption;
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+	
+	public String getDateTo() {
+		return this.dateTo;
+	}
+	
+	public void setDateTo(String dateTo) {
+		this.dateTo = dateTo;
 	}
 	
 	public String getUser() {

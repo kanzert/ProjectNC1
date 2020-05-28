@@ -137,7 +137,8 @@ public class QuizController {
 
     @PostMapping("/quiz/search")
     public List<Quiz> searchQuizes(@RequestBody QuizCategoryDto quizCategoryDto) {
-        return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateOption(),quizCategoryDto.getUser());
+        System.out.println(quizCategoryDto.getTitle());
+        return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateFrom(),quizCategoryDto.getDateTo(),quizCategoryDto.getUser());
     }
 
 	@GetMapping("/quiz/search/{searchstring}")

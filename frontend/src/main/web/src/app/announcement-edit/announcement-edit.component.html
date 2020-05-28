@@ -14,11 +14,12 @@
           <div class="col-4 col-sm-4 col-md-4">
             <div class="form-group align-items-center">
               <div class="text-center">
-                <img [src]="imageUrl" style="max-width: 250px; max-height: 250px"  class="mx-auto d-flex" alt="img">
+                <img [src]="announcement.image || imageUrl" style="max-width: 250px; max-height: 250px"  class="mx-auto d-flex" alt="img">
                 <h5 class="mt-2">{{'DASHBOARD.SIDEBAR.TABS.ANNOUNCEMENTS.TABS.CREATE_ANNOUNCEMENT.FORM.SELECT_IMAGE' | translate}}</h5>
                 <label class="custom-file">
-                  <input type="file" id="file" class="custom-file-input" style="height: 1px; width: 1px"  text="Choose file">
-                  <span class="btn text-white custom-file-control border">{{'DASHBOARD.SIDEBAR.TABS.ANNOUNCEMENTS.TABS.CREATE_ANNOUNCEMENT.FORM.CHOOSE_FILE' | translate}}</span>
+<!--                  <input type="file" id="file" class="custom-file-input" style="height: 1px; width: 1px"  text="Choose file">-->
+                  <app-upload-file (onChanged)="onChanged($event)"></app-upload-file>
+<!--                  <span class="btn text-white custom-file-control border">{{'DASHBOARD.SIDEBAR.TABS.ANNOUNCEMENTS.TABS.CREATE_ANNOUNCEMENT.FORM.CHOOSE_FILE' | translate}}</span>-->
                 </label>
               </div>
             </div>

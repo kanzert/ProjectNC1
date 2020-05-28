@@ -14,7 +14,6 @@
               <div class="quiz-name-input kr2-textfield">
                 <label>{{'CREATE_QUIZ.NAME'| translate}}</label>
                 <input class="form-control" name="title" formControlName="title" type="text" id="name-input" placeholder="{{'CREATE_QUIZ.NAME_PLACEHOLDER' | translate}}" data-qtest="quiz-name-input-field" maxlength="20">
-
                 <div class="quiz-name-validation"
                      *ngIf="quizForm.controls['title'].invalid && quizForm.controls['title'].touched">
                   {{'CREATE_QUIZ.NAME_VALIDATION' | translate}}
@@ -43,6 +42,12 @@
                      *ngIf="quizForm.controls['categories'].invalid && quizForm.controls['categories'].touched">
                   {{'CREATE_QUIZ.CATEGORIES_VALIDATION' | translate}}
                 </div>
+                <label class="mt-2">4. Choose picture*</label>
+                <app-upload-file (onChanged)="onChanged($event)"></app-upload-file>
+                <div class="quiz-name-validation"
+                     *ngIf="quizForm.controls['image'].invalid">
+                  You need to set up a picture
+                </div>
               </div>
             </div>
           </div>
@@ -53,9 +58,9 @@
             <button [disabled]="quizForm.invalid" class="save-btn" data-qtest="create-quiz-btn" (click)="createQuiz()"><i class="fas fa-spinner kr-anim-spin hidden"></i><span class="">{{'CREATE_QUIZ.BUTTON.NEXT' | translate}}</span></button>
           </div>
         </div>
+
       </form>
 
     </div>
-
   </div>
 </section>

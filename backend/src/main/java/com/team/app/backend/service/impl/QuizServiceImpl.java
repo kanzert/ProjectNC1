@@ -155,8 +155,8 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public List<Quiz> searchQuizes(String[] categories, String searchstring, int dateOption, String user) {
-        return quizDao.searchQuizes(categories,searchstring, dateOption, user);
+    public List<Quiz> searchQuizes(String[] categories, String searchstring, String dateFrom, String dateTo, String user) {
+        return quizDao.searchQuizes(categories,searchstring, dateFrom, dateTo, user);
     }
 
 	@Override

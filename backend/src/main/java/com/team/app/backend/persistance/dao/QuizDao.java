@@ -22,7 +22,7 @@ public interface QuizDao {
 
     List<Quiz> getCategoryQuizes(String category);
 
-    List<Quiz> searchQuizes(String[] categories, String searchstring, int dateOption, String user);
+    List<Quiz> searchQuizes(String[] categories, String searchstring, String dateFrom, String dateTo, String user);
 	
 	List<Quiz> searchQuizes(String searchstring);
 

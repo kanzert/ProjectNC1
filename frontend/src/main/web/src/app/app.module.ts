@@ -39,9 +39,13 @@ import { AchievementCreateComponent } from './achievement-create/achievement-cre
 import { PassRecoveryComponent } from './pass-recovery/pass-recovery.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FileValidator} from "./user-profile/_helpers/file-input.validator";
 import {FileValueAccessor} from "./user-profile/_helpers/file-control-value-accessor";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -76,7 +80,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AchievementCreateComponent,
     PassRecoveryComponent,
     FileValidator,
-    FileValueAccessor
+    FileValueAccessor,
+    UploadFileComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +94,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSelectModule,
     MatIconModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -99,8 +107,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       defaultLanguage: 'en'
     })
   ],
+  exports: [
+    MatDatepickerModule
+  ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
     LoaderService,
+    MatNativeDateModule,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

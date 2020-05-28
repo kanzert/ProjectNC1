@@ -15,11 +15,11 @@ export class UserService {
   authenticated = localStorage.getItem('user') ? true : false;
   user: User = JSON.parse(localStorage.getItem('user'));
 
-  private userUrl = 'http://localhost:8080/api/user';
-  private apiUrl = 'http://localhost:8080/api';
+  // private userUrl = 'http://localhost:8080/api/user';
+  // private apiUrl = 'http://localhost:8080/api';
 
-  // private userUrl = '/api/user';
-  // private apiUrl = '/api';
+  private userUrl = '/api/user';
+  private apiUrl = '/api';
 
   constructor(private http: HttpClient, private router: Router) {
 
@@ -34,9 +34,6 @@ export class UserService {
     );
   }
   updateUser(user: User) {
-    console.log("url: " + user.image);
-
-
     return this.http.put<User>(this.userUrl + '/update', user,{ headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.getToken()}`)}).pipe(
       catchError(this.handleError<any>('updateUser'))
@@ -83,7 +80,6 @@ export class UserService {
 
   private handleError<T>(operation= 'operation') {
     return (error: any): Observable<T> => {
-      console.log(operation + ' ' + error);
       return throwError(error);
     };
   }
@@ -130,7 +126,6 @@ export class UserService {
     return this.http.get<UserInvite[]>(this.userUrl + '/invite/' + this.user.id, { headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.getToken()}`)}).pipe(
       tap(response => {
-        console.log(response);
       }),
       catchError(this.handleError<any>('getUserInvite'))
     );
@@ -140,7 +135,6 @@ export class UserService {
     return this.http.put<UserInvite>(this.userUrl + '/invite/' + id, id, { headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.getToken()}`)}).pipe(
       tap(response => {
-        console.log(response);
       }),
       catchError(this.handleError<any>('acceptUserInvite')))
   }
@@ -149,7 +143,6 @@ export class UserService {
     return this.http.delete<UserInvite>(this.userUrl + '/invite/' + id, { headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.getToken()}`)}).pipe(
       tap(response => {
-        console.log(response);
       }),
       catchError(this.handleError<any>('declineUserInvite')))
   }
@@ -167,18 +160,25 @@ export class UserService {
     return this.http.delete<UserInvite>(this.userUrl + '/invite/friends/'+ this.user.id + '/' + id, { headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.getToken()}`)}).pipe(
       tap(response => {
-        console.log(response);
       }),
       catchError(this.handleError<any>('deleteFriendFromList')))
   }
 
   recoveryPassword(email:string){
-    console.log(email);
-    return this.http.post(this.apiUrl + '/recovery',JSON.stringify({email:email}) ,{
+    return this.http.post(this.apiUrl + '/recovery', JSON.stringify({email:email}) ,{
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
       responseType: 'json'
     }).pipe(
       catchError(this.handleError<any>('recoveryPassword'))
     );
+  }
+  setStatus(stausId, userId) {
+    return this.http.post(this.userUrl + `/status/${stausId}/${userId}`, undefined, { headers: new HttpHeaders()
+        .set('Authorization',  `Bearer_${this.getToken()}`)}).pipe(
+      tap(response => {
+      }),
+      catchError(this.handleError<any>('sendUserInvite'))
+    );
+
   }
 }

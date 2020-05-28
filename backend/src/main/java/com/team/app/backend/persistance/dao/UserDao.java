@@ -34,5 +34,6 @@ public interface UserDao {
 
     String getUserLanguage(Long id);
 
+    void setStatus(Long statusId, Long userId);
 
 }

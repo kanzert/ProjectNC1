@@ -15,4 +15,5 @@ export const QUIZ_CREATE_ACTIVITY = 2;
 export const ACHIEVEMENT_RECEIVE_ACTIVITY = 3;
 export const ANNOUNCEMENT_CREATE_ACTIVITY = 4;
 export const QUIZ_LIKE_ACTIVITY = 5;
-
+export const USER_STATUS_ACTIVE = 2;
+export const USER_STATUS_DEACTIVE = 3;
