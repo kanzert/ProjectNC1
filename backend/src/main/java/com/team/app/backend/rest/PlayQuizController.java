@@ -39,12 +39,6 @@ public class PlayQuizController {
     private UserToSessionService userToSessionService;
 
     @Autowired
-    private QuestionService questionService;
-
-    @Autowired
-    private UserAnswerService userAnswerService;
-
-    @Autowired
     MessageSource messageSource;
 
 
@@ -86,7 +80,6 @@ public class PlayQuizController {
     @GetMapping("access_code/{ses_id}")
     public ResponseEntity getAccessCode(
             @PathVariable("ses_id") long ses_id
-
     ) {
         Session session = sessionService.getSessionById(ses_id);
         return ResponseEntity.ok(session.getAccessCode());
@@ -99,9 +92,7 @@ public class PlayQuizController {
             @RequestParam("access_code") String accessCode
     ) {
         Session session = sessionService.getSessionByAccessCode(accessCode);
-        System.out.println(session);
         if(session != null){
-            System.out.println("not null ses");
             User user = userService.getUserById(user_id);
             userToSessionService.createNewUserToSession(user, session);
             return ResponseEntity.ok(session);
@@ -116,11 +107,8 @@ public class PlayQuizController {
     public ResponseEntity calculateResults(
             @PathVariable("ses_id") long ses_id
     ) {
-
         Map response = new HashMap();
-
         List<UserToSession> userToSessionList = new ArrayList<>(userToSessionService.getAllBySessionId(ses_id));
-
         userToSessionList.forEach(
                 uts -> {response.put("username",userService.getUserById(uts.getUser_id()).getUsername());
                     response.put("score",uts.getScore());
@@ -136,7 +124,6 @@ public class PlayQuizController {
 
     @PostMapping("finish")
     public ResponseEntity finishQuiz(@RequestBody FinishedQuizDto finishedQuizDto) {
-        System.out.println(finishedQuizDto.getUser_id()+" "+finishedQuizDto.getSes_id()+" "+finishedQuizDto.getTime()+" "+finishedQuizDto.getScore());
         sessionService.setSesionStatus(finishedQuizDto.getSes_id(),new SessionStatus(2L,"ended"));
         userToSessionService.insertScore(finishedQuizDto);
         return ResponseEntity.ok(messageSource.getMessage("result.ok", null, LocaleContextHolder.getLocale()));

@@ -20,14 +20,16 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    Environment env;
-
     private AnnouncementRowMapper announcementRowMapper = new AnnouncementRowMapper();
 
     public AnnouncementDaoImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+
+
+    @Autowired
+    Environment env;
 
 
     @Override

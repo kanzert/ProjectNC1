@@ -93,9 +93,11 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
                     getMessage("announcement.approved", params,
                             userService.getUserLanguage(announcement.getUserId())));
         } else {
-            notification.setText(messageSource.
+            notification.setText(
+                    messageSource.
                     getMessage("announcement.not.approved", params,
-                            userService.getUserLanguage(announcement.getUserId())));
+                            userService.getUserLanguage(announcement.getUserId()))
+            );
             announcementDao.delete(announcement.getId());
         }
         notificationService.create(notification);
