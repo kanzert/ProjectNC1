@@ -47,6 +47,8 @@ public class PlayQuizController {
     @Autowired
     MessageSource messageSource;
 
+    @Autowired
+    private SecurityService securityService;
 
     private final SimpMessagingTemplate template;
 
@@ -65,6 +67,7 @@ public class PlayQuizController {
     public ResponseEntity playQuiz(
             @PathVariable("user_id") long user_id,
             @PathVariable("quiz_id") long quiz_id) {
+
         Quiz quiz = quizService.getQuiz(quiz_id);
         Session session = sessionService.newSessionForQuiz(quiz);
 
@@ -86,18 +89,16 @@ public class PlayQuizController {
     @GetMapping("access_code/{ses_id}")
     public ResponseEntity getAccessCode(
             @PathVariable("ses_id") long ses_id
-
     ) {
         Session session = sessionService.getSessionById(ses_id);
         return ResponseEntity.ok(session.getAccessCode());
-
     }
 
     @GetMapping("join")
     public ResponseEntity getAccessCode(
-            @RequestParam("user_id") Long user_id,
             @RequestParam("access_code") String accessCode
     ) {
+        Long user_id = securityService.getCurrentUser().getId();
         Session session = sessionService.getSessionByAccessCode(accessCode);
         System.out.println(session);
         if(session != null){

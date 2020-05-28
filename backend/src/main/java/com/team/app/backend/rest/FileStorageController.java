@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/storage/")
 public class FileStorageController {
 
-    private AmazonClient amazonClient;
+    private final AmazonClient amazonClient;
 
     @Autowired
     FileStorageController(AmazonClient amazonClient) {

@@ -2,6 +2,7 @@ package com.team.app.backend.rest;
 
 import com.team.app.backend.persistance.model.Notification;
 import com.team.app.backend.service.NotificationService;
+import com.team.app.backend.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ public class NotificationController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    private SecurityService securityService;
 
     @MessageMapping("/delete/notifications")
     public void delete(List<Notification> notifications) {
@@ -30,7 +33,8 @@ public class NotificationController {
     }
 
     @MessageMapping("/get/notifications")
-    public void getAll(Long userId, StompHeaderAccessor stompHeaderAccessor){
+    public void getAll(StompHeaderAccessor stompHeaderAccessor){
+        Long userId = securityService.getCurrentUser().getId();
         notificationService.add(stompHeaderAccessor.getSessionId(), userId);
     }
 
@@ -61,8 +65,9 @@ public class NotificationController {
 
 
 
-    @GetMapping("/settings/get/{id}")
-    public  ResponseEntity getSetting(@PathVariable("id") Long userId) {
+    @GetMapping("/settings/get/")
+    public  ResponseEntity getSetting() {
+        Long userId = securityService.getCurrentUser().getId();
         List<Notification> notifications = null;
         try {
             notifications = this.notificationService.getSetting(userId);
@@ -73,6 +78,7 @@ public class NotificationController {
         }
         return ResponseEntity.ok(notifications);
     }
+
     @PostMapping("/settings")
     public ResponseEntity setSetting(@RequestBody Notification not) {
         try {

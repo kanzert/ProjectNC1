@@ -19,8 +19,6 @@ import java.util.*;
 @RequestMapping("api")
 public class RegistrationController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
     @Autowired
     private UserService userService;
 

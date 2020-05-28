@@ -6,6 +6,7 @@ import com.team.app.backend.exception.DisabledUserException;
 import com.team.app.backend.exception.NotActivatedUserException;
 import com.team.app.backend.persistance.model.User;
 import com.team.app.backend.security.jwt.JwtTokenProvider;
+import com.team.app.backend.service.SecurityService;
 import com.team.app.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -48,6 +49,8 @@ public class LoginController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private SecurityService securityService;
 
     @Autowired
     MessageSource messageSource;
@@ -57,7 +60,6 @@ public class LoginController {
         Map<String, String> model = new HashMap<String, String>();
         try {
             String username = requestDto.getUsername();
-            System.out.println(username +" "+ requestDto.getPassword());
 
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
             User user = userService.findByUsername(username);
@@ -102,12 +104,8 @@ public class LoginController {
         }
     }
 
-
-
-
     @PostMapping("/recovery")
     @ResponseBody
-
     public ResponseEntity recovery(@RequestBody RecoveryDto recoveryDto){
         String email = recoveryDto.getEmail();
         System.out.println(email);
@@ -119,7 +117,7 @@ public class LoginController {
                 .status(HttpStatus.FORBIDDEN)
                 .body("No such email");
     }
-    //TO DO
+
     @PostMapping("/logout")
     public Map<String, Object> logout() {
         Map<String, Object> model = new HashMap<String, Object>();
