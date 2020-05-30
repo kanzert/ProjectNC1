@@ -40,20 +40,17 @@ import java.util.logging.Logger;
 @RequestMapping("/api")
 public class LoginController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final AuthenticationManager authenticationManager;
+    private final MessageSource messageSource;
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private SecurityService securityService;
-
-    @Autowired
-    MessageSource messageSource;
+    public LoginController(UserService userService, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, MessageSource messageSource) {
+        this.userService = userService;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.authenticationManager = authenticationManager;
+        this.messageSource = messageSource;
+    }
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody UserLoginDto requestDto) {

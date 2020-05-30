@@ -21,11 +21,13 @@ import java.util.Map;
 @RequestMapping("api/notification")
 public class NotificationController {
 
-    @Autowired
-    NotificationService notificationService;
+    private final NotificationService notificationService;
+    private final SecurityService securityService;
 
-    @Autowired
-    private SecurityService securityService;
+    public NotificationController(NotificationService notificationService, SecurityService securityService) {
+        this.notificationService = notificationService;
+        this.securityService = securityService;
+    }
 
     @MessageMapping("/delete/notifications")
     public void delete(List<Notification> notifications) {
@@ -43,24 +45,21 @@ public class NotificationController {
         try {
             notificationService.create(not);
         }
-        catch (DataAccessException sqlEx)
-        {
+        catch (DataAccessException sqlEx) {
             ResponseEntity.badRequest();
         }
         return ResponseEntity.ok().build();
-
     }
+
     @PutMapping("/update")
     public ResponseEntity update(@RequestBody Notification not) {
         try {
             notificationService.update(not);
         }
-        catch (DataAccessException sqlEx)
-        {
+        catch (DataAccessException sqlEx) {
             ResponseEntity.badRequest();
         }
         return ResponseEntity.ok().build();
-
     }
 
 

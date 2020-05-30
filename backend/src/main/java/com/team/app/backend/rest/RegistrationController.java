@@ -19,14 +19,16 @@ import java.util.*;
 @RequestMapping("api")
 public class RegistrationController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final UserDao userDao;
+    private final MessageSource messageSource;
 
     @Autowired
-    UserDao userDao;
-
-    @Autowired
-    MessageSource messageSource;
+    public RegistrationController(UserService userService, UserDao userDao, MessageSource messageSource) {
+        this.userService = userService;
+        this.userDao = userDao;
+        this.messageSource = messageSource;
+    }
 
     @PostMapping("/sign-up")
     public ResponseEntity registerUserAccount(

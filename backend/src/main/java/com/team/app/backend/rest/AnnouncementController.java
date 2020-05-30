@@ -18,11 +18,14 @@ import java.util.Map;
 @RequestMapping("api/announcement")
 public class AnnouncementController {
 
-    @Autowired
-    AnnouncementService announcementService;
+    private final AnnouncementService announcementService;
 
-    @Autowired
-    MessageSource messageSource;
+    private final MessageSource messageSource;
+
+    public AnnouncementController(AnnouncementService announcementService, MessageSource messageSource) {
+        this.announcementService = announcementService;
+        this.messageSource = messageSource;
+    }
 
     @PostMapping("/create")
     public ResponseEntity createAnnouncement(@RequestBody Announcement announcement) {

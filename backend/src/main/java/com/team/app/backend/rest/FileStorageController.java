@@ -15,7 +15,6 @@ public class FileStorageController {
 
     private final AmazonClient amazonClient;
 
-    @Autowired
     FileStorageController(AmazonClient amazonClient) {
         this.amazonClient = amazonClient;
     }

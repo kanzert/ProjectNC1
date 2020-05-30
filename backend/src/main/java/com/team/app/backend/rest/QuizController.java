@@ -8,6 +8,7 @@ import com.team.app.backend.dto.QuestionSeqAddDto;
 import com.team.app.backend.persistance.model.Question;
 import com.team.app.backend.persistance.model.Quiz;
 import com.team.app.backend.service.QuizService;
+import com.team.app.backend.service.SecurityService;
 import com.team.app.backend.service.UserQuizFavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -23,14 +24,18 @@ import java.util.List;
 @RequestMapping("api")
 public class QuizController {
 
-    @Autowired
-    QuizService quizService;
+    private final QuizService quizService;
+    private final UserQuizFavoriteService userQuizFavoriteService;
+    private final SecurityService securityService;
 
-    @Autowired
-    UserQuizFavoriteService userQuizFavoriteService;
+    public QuizController(QuizService quizService, UserQuizFavoriteService userQuizFavoriteService, SecurityService securityService) {
+        this.quizService = quizService;
+        this.userQuizFavoriteService = userQuizFavoriteService;
+        this.securityService = securityService;
+    }
 
     @PostMapping("/quiz")
-    public HashMap<String,Long> createMewQuiz(
+    public HashMap<String,Long> createNewQuiz(
             @RequestBody QuizAddDto quizDto) {
         System.out.println(quizDto.getUser_id());
         HashMap<String,Long>result = new HashMap<String,Long>();
@@ -52,7 +57,6 @@ public class QuizController {
  //   @PostMapping("/question/1")
     @RequestMapping(value={ "/question/1", "/question/2" },method = { RequestMethod.POST })
     public HashMap<String,Long>  createNewQuestion(@RequestBody QuestionDefAddDto questionDefAddDto) {
-        System.out.println("add question1");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addDefQuestion(questionDefAddDto));
         return result;
@@ -60,7 +64,6 @@ public class QuizController {
 
     @PostMapping("/question/3")
     public HashMap<String,Long> createNewQuestion(@RequestBody QuestionOptAddDto questionOptAddDto) {
-        System.out.println("add question3");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addOptQuestion(questionOptAddDto));
         return result;
@@ -68,7 +71,6 @@ public class QuizController {
 
     @PostMapping("/question/4")
     public HashMap<String,Long> createNewQuestion(@RequestBody QuestionSeqAddDto questionSeqAddDto) {
-        System.out.println("add question4");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addSeqOptQuestion(questionSeqAddDto));
         return result;
@@ -84,39 +86,41 @@ public class QuizController {
         return quizService.getQuizQuestion(id);
     }
 
-
     @GetMapping("/quiz/{id}")
     public Quiz quiz(@PathVariable("id") long id) {
         return quizService.getQuiz(id);
     }
 
     @GetMapping("/quiz")
-    public List<Quiz> quizes() {
+    public List<Quiz> quizzes() {
         return quizService.getAllQuizes();
     }
 
-    //
     @GetMapping("quiz/approved")
-    public List<Quiz> approvedQuizes() {
+    public List<Quiz> approvedQuizzes() {
         return quizService.getApprovedQuizes();
     }
 
-    @GetMapping("quiz/approved/{user_id}")
-    public List<Quiz> getApprovedUserQuizes(@PathVariable("user_id") long user_id) {
+    @GetMapping("quiz/approved/")
+    public List<Quiz> getApprovedUserQuizzes() {
+        Long user_id = securityService.getCurrentUser().getId();
         return quizService.getApprovedUserQuizes(user_id);
     }
     
-    @GetMapping("quiz/favorite/{user_id}")
-    public List<Quiz> getFavoriteQuizes(@PathVariable("user_id") long user_id) {
+    @GetMapping("quiz/favorite/")
+    public List<Quiz> getFavoriteQuizzes() {
+        Long user_id = securityService.getCurrentUser().getId();
         return quizService.getUserFavoritesQuizes(user_id);
     }
-    @GetMapping("quiz/completed/{user_id}")
-    public List<Quiz> getCompleted(@PathVariable("user_id") long user_id) {
+    @GetMapping("quiz/completed/")
+    public List<Quiz> getCompleted() {
+        Long user_id = securityService.getCurrentUser().getId();
         return quizService.getCompletedQuizes(user_id);
     }
 
-    @GetMapping("quiz/suggestion/{user_id}")
-    public List<Quiz> getSuggestionQuizes(@PathVariable("user_id") long user_id) {
+    @GetMapping("quiz/suggestion/")
+    public List<Quiz> getSuggestionQuizes() {
+        Long user_id = securityService.getCurrentUser().getId();
         return quizService.getSuggestion(user_id);
     }
 
@@ -126,30 +130,31 @@ public class QuizController {
     }
 
 
-    @PostMapping("quiz/favorite/{quiz_id}/{user_id}")
-    public void addFavorite(@PathVariable("quiz_id") long quiz_id,@PathVariable("user_id") long user_id){
+    @PostMapping("quiz/favorite/{quiz_id}")
+    public void addFavorite(@PathVariable("quiz_id") long quiz_id){
+        Long user_id = securityService.getCurrentUser().getId();
         userQuizFavoriteService.addFavorite(user_id,quiz_id);
     }
 
-    @DeleteMapping("quiz/favorite/{quiz_id}/{user_id}")
-    public void deleteFavorite(@PathVariable("quiz_id") long quiz_id,@PathVariable("user_id") long user_id){
+    @DeleteMapping("quiz/favorite/{quiz_id}")
+    public void deleteFavorite(@PathVariable("quiz_id") long quiz_id){
+        Long user_id = securityService.getCurrentUser().getId();
         userQuizFavoriteService.deleteFavorite(user_id,quiz_id);
     }
 
     @GetMapping("/quiz/user/{id}")
-    public List<Quiz> userQuizes(@PathVariable("id") long id) {
+    public List<Quiz> userQuizzes() {
+        Long id = securityService.getCurrentUser().getId();
         return quizService.getUserQuizes(id);
     }
 
     @PostMapping("/quiz/search")
-    public List<Quiz> searchQuizes(@RequestBody QuizCategoryDto quizCategoryDto) {
-        System.out.println(quizCategoryDto.getTitle());
+    public List<Quiz> searchQuizzes(@RequestBody QuizCategoryDto quizCategoryDto) {
         return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateFrom(),quizCategoryDto.getDateTo(),quizCategoryDto.getUser());
     }
 
 	@GetMapping("/quiz/search/{searchstring}")
     public List<Quiz> searchQuizes(@PathVariable("searchstring") String searchstring) {
-        System.out.println(searchstring);
         return quizService.searchQuizes(searchstring);
     }
 

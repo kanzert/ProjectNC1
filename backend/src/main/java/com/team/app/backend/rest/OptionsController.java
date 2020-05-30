@@ -16,8 +16,11 @@ import java.util.List;
 @RequestMapping("api")
 public class OptionsController {
 
-    @Autowired
-    OptionService optionService;
+    private final OptionService optionService;
+
+    public OptionsController(OptionService optionService) {
+        this.optionService = optionService;
+    }
 
     @GetMapping("/options/{id}")
     public List<Option> getOptions(@PathVariable("id") long id) {
@@ -33,5 +36,4 @@ public class OptionsController {
     public List<SeqOption> getSeqOptions(@PathVariable("id") long id) {
         return optionService.getSeqOption(id);
     }
-
 }
