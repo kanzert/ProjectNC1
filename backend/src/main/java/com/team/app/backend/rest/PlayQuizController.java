@@ -26,27 +26,26 @@ import java.util.Map;
 @RequestMapping("api/quiz/")
 public class PlayQuizController {
 
-    @Autowired
-    SessionService sessionService;
+    private final SessionService sessionService;
 
-    @Autowired
-    private QuizService quizService;
+    private final QuizService quizService;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private UserToSessionService userToSessionService;
+    private final UserToSessionService userToSessionService;
 
-    @Autowired
-    MessageSource messageSource;
-
+    private final MessageSource messageSource;
 
     private final SimpMessagingTemplate template;
 
     @Autowired
-    PlayQuizController(SimpMessagingTemplate template){
+    PlayQuizController(SimpMessagingTemplate template, SessionService sessionService, QuizService quizService, UserService userService, UserToSessionService userToSessionService, MessageSource messageSource){
         this.template = template;
+        this.sessionService = sessionService;
+        this.quizService = quizService;
+        this.userService = userService;
+        this.userToSessionService = userToSessionService;
+        this.messageSource = messageSource;
     }
 
     @MessageMapping("/start/game")
@@ -59,28 +58,25 @@ public class PlayQuizController {
     public ResponseEntity playQuiz(
             @PathVariable("user_id") long user_id,
             @PathVariable("quiz_id") long quiz_id) {
-        Quiz quiz = quizService.getQuiz(quiz_id);
-        Session session = sessionService.newSessionForQuiz(quiz);
+        Long ses_id = sessionService.newSessionForQuiz(quiz_id);
 
-        sessionService.updateSession(session);
-        User user = userService.getUserById(user_id);
-        userToSessionService.createNewUserToSession(user, session);
+        userService.getUserById(user_id);
+        userToSessionService.createNewUserToSession(user_id, ses_id);
 
-        return ResponseEntity.ok(session);
+        return ResponseEntity.ok(sessionService.getSessionById(ses_id));
     }
 
 
     @PostMapping("start/{ses_id}")
-    public ResponseEntity startSession(@PathVariable("ses_id") long ses_id){
-        sessionService.setSesionStatus(ses_id,new SessionStatus(3L,"started"));
+    public ResponseEntity startSession(
+            @PathVariable("ses_id") long ses_id){
+        sessionService.setSessionStatus(ses_id,new SessionStatus(3L,"started"));
         return ResponseEntity.ok("");
     }
 
 
     @GetMapping("access_code/{ses_id}")
-    public ResponseEntity getAccessCode(
-            @PathVariable("ses_id") long ses_id
-    ) {
+    public ResponseEntity getAccessCode(@PathVariable("ses_id") long ses_id) {
         Session session = sessionService.getSessionById(ses_id);
         return ResponseEntity.ok(session.getAccessCode());
 
@@ -93,11 +89,10 @@ public class PlayQuizController {
     ) {
         Session session = sessionService.getSessionByAccessCode(accessCode);
         if(session != null){
-            User user = userService.getUserById(user_id);
-            userToSessionService.createNewUserToSession(user, session);
+            userToSessionService.createNewUserToSession(user_id, session.getId());
             return ResponseEntity.ok(session);
         }else{
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(messageSource.getMessage("session.start", null, LocaleContextHolder.getLocale()));
         }
 
@@ -124,7 +119,7 @@ public class PlayQuizController {
 
     @PostMapping("finish")
     public ResponseEntity finishQuiz(@RequestBody FinishedQuizDto finishedQuizDto) {
-        sessionService.setSesionStatus(finishedQuizDto.getSes_id(),new SessionStatus(2L,"ended"));
+        sessionService.setSessionStatus(finishedQuizDto.getSes_id(),new SessionStatus(2L,"ended"));
         userToSessionService.insertScore(finishedQuizDto);
         return ResponseEntity.ok(messageSource.getMessage("result.ok", null, LocaleContextHolder.getLocale()));
     }

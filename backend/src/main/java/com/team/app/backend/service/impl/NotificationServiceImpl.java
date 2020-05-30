@@ -18,16 +18,15 @@ import java.util.*;
 @Service
 public class NotificationServiceImpl implements NotificationService {
 
-    @Autowired
-    private NotificationDao notificationDao;
-    @Autowired
+    private final NotificationDao notificationDao;
     private final SimpMessagingTemplate template;
 
     private Map<String,Long> listeners = new HashMap<>();
 
     @Autowired
-    public NotificationServiceImpl(SimpMessagingTemplate template) {
+    public NotificationServiceImpl(NotificationDao notificationDao, SimpMessagingTemplate template) {
         this.template = template;
+        this.notificationDao = notificationDao;
     }
 
     public void add(String sessionId, Long userId) {

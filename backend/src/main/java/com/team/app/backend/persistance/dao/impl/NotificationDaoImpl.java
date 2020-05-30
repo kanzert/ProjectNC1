@@ -14,16 +14,17 @@ import java.util.List;
 @Repository
 public class NotificationDaoImpl implements NotificationDao {
 
-    @Autowired
+
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    Environment env;
+    private final Environment env;
 
     private NotificationRowMapper notificationRowMapper = new NotificationRowMapper();
 
-    public NotificationDaoImpl(DataSource dataSource) {
+    @Autowired
+    public NotificationDaoImpl(DataSource dataSource, Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
     }
 
     @Override

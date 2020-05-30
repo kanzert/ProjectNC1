@@ -22,17 +22,17 @@ import java.util.List;
 @Repository
 public class QuizDaoImpl implements QuizDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 	
-	@Autowired
-    private Environment env;
+	private final Environment env;
+
+    private final QuizRowMapper quizRowMapper;
 
     @Autowired
-    private QuizRowMapper quizRowMapper;
-
-    public QuizDaoImpl(DataSource dataSource) {
+    public QuizDaoImpl(DataSource dataSource, Environment env, QuizRowMapper quizRowMapper) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
+        this.quizRowMapper = quizRowMapper;
     }
 
 

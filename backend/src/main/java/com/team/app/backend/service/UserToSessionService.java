@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserToSessionService {
 
-    UserToSession createNewUserToSession(User user, Session session);
+    void createNewUserToSession(Long user_id, Long session_id);
 
     List<UserToSession> getAllBySessionId(Long sessionId);
 

@@ -21,11 +21,17 @@ import java.util.Map;
 @RequestMapping("api")
 public class UserController {
 
-    @Autowired
+    private final
     UserService userService;
 
-    @Autowired
+    private final
     MessageSource messageSource;
+
+    @Autowired
+    public UserController(UserService userService, MessageSource messageSource) {
+        this.userService = userService;
+        this.messageSource = messageSource;
+    }
 
     @GetMapping("/user/search/{name}/{first}/{last}")
     public List<User> searchUser(

@@ -21,32 +21,36 @@ public class QuizServiceImpl implements QuizService {
 
     private final long NOTIFICATION_APPROVED = 2L;
 
-    @Autowired
-    private QuizDao quizDao;
+    private final QuizDao quizDao;
+
+    private final NotificationDao notificationDao;
+
+    private final UserActivityDao userActivityDao;
+
+    private final UserDao userDao;
+
+    private final QuestionDao questionDao;
+
+    private final OptionDao optionDao;
+
+    private final QuizCategoryDao quizCategoryDao;
+
+    private final MessageSource messageSource;
+
+    private final UserService userService;
 
     @Autowired
-    private NotificationDao notificationDao;
-
-    @Autowired
-    private UserActivityDao userActivityDao;
-
-    @Autowired
-    private UserDao userDao;
-
-    @Autowired
-    private QuestionDao questionDao;
-
-    @Autowired
-    private OptionDao optionDao;
-
-    @Autowired
-    private QuizCategoryDao quizCategoryDao;
-
-    @Autowired
-    MessageSource messageSource;
-
-    @Autowired
-    UserService userService;
+    public QuizServiceImpl(QuizDao quizDao, NotificationDao notificationDao, UserActivityDao userActivityDao, UserDao userDao, QuestionDao questionDao, OptionDao optionDao, QuizCategoryDao quizCategoryDao, MessageSource messageSource, UserService userService) {
+        this.quizDao = quizDao;
+        this.notificationDao = notificationDao;
+        this.userActivityDao = userActivityDao;
+        this.userDao = userDao;
+        this.questionDao = questionDao;
+        this.optionDao = optionDao;
+        this.quizCategoryDao = quizCategoryDao;
+        this.messageSource = messageSource;
+        this.userService = userService;
+    }
 
     @Override
     public Long addDefQuestion(QuestionDefAddDto questionDefAddDto) {

@@ -23,11 +23,15 @@ import java.util.List;
 @RequestMapping("api")
 public class QuizController {
 
-    @Autowired
-    QuizService quizService;
+    private final QuizService quizService;
+
+    private final UserQuizFavoriteService userQuizFavoriteService;
 
     @Autowired
-    UserQuizFavoriteService userQuizFavoriteService;
+    public QuizController(QuizService quizService, UserQuizFavoriteService userQuizFavoriteService) {
+        this.quizService = quizService;
+        this.userQuizFavoriteService = userQuizFavoriteService;
+    }
 
     @PostMapping("/quiz")
     public HashMap<String,Long> createMewQuiz(

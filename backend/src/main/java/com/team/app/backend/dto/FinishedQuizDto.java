@@ -14,5 +14,4 @@ public class FinishedQuizDto {
     long ses_id;
     int score;
     int time;
-
 }

@@ -5,22 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 
-@Component
+@Repository
 public class UserQuizFavDaoImpl implements UserQuizFavDao {
 
-
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private final Environment env;
+
+
     @Autowired
-    Environment env;
-
-
-    public UserQuizFavDaoImpl(DataSource dataSource) {
+    public UserQuizFavDaoImpl(DataSource dataSource, Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
     }
 
 

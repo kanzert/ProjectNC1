@@ -17,19 +17,18 @@ import java.util.List;
 @Repository
 public class AnnouncementDaoImpl implements AnnouncementDao {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+
+    private final Environment env;
 
     private AnnouncementRowMapper announcementRowMapper = new AnnouncementRowMapper();
 
-    public AnnouncementDaoImpl(DataSource dataSource) {
+    @Autowired
+    public AnnouncementDaoImpl(DataSource dataSource,  Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
     }
 
-
-
-    @Autowired
-    Environment env;
 
 
     @Override

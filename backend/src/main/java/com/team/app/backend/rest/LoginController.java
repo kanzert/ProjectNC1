@@ -39,18 +39,21 @@ import java.util.logging.Logger;
 @RequestMapping("/api")
 public class LoginController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+
+    private final JwtTokenProvider jwtTokenProvider;
+
+    private final AuthenticationManager authenticationManager;
+
+    private final MessageSource messageSource;
 
     @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-
-    @Autowired
-    MessageSource messageSource;
+    public LoginController(MessageSource messageSource, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
+        this.messageSource = messageSource;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.userService = userService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody UserLoginDto requestDto) {
@@ -119,7 +122,7 @@ public class LoginController {
                 .status(HttpStatus.FORBIDDEN)
                 .body("No such email");
     }
-    //TO DO
+
     @PostMapping("/logout")
     public Map<String, Object> logout() {
         Map<String, Object> model = new HashMap<String, Object>();

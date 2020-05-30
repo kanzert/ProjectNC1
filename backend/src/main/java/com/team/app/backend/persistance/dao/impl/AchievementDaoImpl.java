@@ -18,13 +18,14 @@ import java.util.List;
 @Repository
 public class AchievementDaoImpl implements AchievementDao {
     private final JdbcTemplate jdbcTemplate;
-    @Autowired
-    private Environment env;
+    private final Environment env;
 
     private AchievementRowMapper achievementRowMapper = new AchievementRowMapper();
 
-    public AchievementDaoImpl(DataSource dataSource) {
+    @Autowired
+    public AchievementDaoImpl(DataSource dataSource, Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
     }
 
     @Override

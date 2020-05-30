@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface UserToSessionDao {
 
-    UserToSession save(UserToSession session);
+    void save(UserToSession session);
 
     UserToSession getById(Long id);
 
-    UserToSession deleteById(Long id);
+    void deleteById(Long id);
 
-    UserToSession update(UserToSession session);
+    void update(UserToSession session);
 
     List<UserToSession>  getAllBySes(Long ses_id);
 

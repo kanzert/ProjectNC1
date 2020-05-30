@@ -27,17 +27,21 @@ import java.util.UUID;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserDao userDao;
+    private final UserDao userDao;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final JavaMailSender mailSender;
+
+    private final EmailsService emailsService;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JavaMailSender mailSender;
-
-    @Autowired
-    private EmailsService emailsService;
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder, JavaMailSender mailSender, EmailsService emailsService) {
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
+        this.mailSender = mailSender;
+        this.emailsService = emailsService;
+    }
 
 
     @Override
@@ -103,7 +107,6 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userCreateDto.getEmail());
         user.setUsername(userCreateDto.getUsername());
         user.setPassword(userCreateDto.getPassword());
-        //user.setImage(userDto.getImage());
         user.setActivate_link("ttest");
         user.setRegistr_date(new Date());
         user.setRole(new Role(userCreateDto.getRole().getName().equals("admin") ? 3L : 2L ,userCreateDto.getRole().getName()));

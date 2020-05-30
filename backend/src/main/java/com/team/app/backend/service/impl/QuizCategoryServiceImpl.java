@@ -14,8 +14,13 @@ import java.util.List;
 @Transactional
 public class QuizCategoryServiceImpl implements QuizCategoryService {
 
+    private final QuizCategoryDao quizCategoryDao;
+
     @Autowired
-    private QuizCategoryDao quizCategoryDao;
+    public QuizCategoryServiceImpl(QuizCategoryDao quizCategoryDao) {
+        this.quizCategoryDao = quizCategoryDao;
+    }
+
     @Override
     public void createQuizCategory(QuizCategory quizCategory) {
 

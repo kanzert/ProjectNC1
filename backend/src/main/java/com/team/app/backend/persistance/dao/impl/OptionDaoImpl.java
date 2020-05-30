@@ -12,29 +12,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-@Component
+@Repository
 public class OptionDaoImpl implements OptionDao {
 
     private JdbcTemplate jdbcTemplate;
-    public OptionDaoImpl(DataSource dataSource) {
+    @Autowired
+    public OptionDaoImpl(DataSource dataSource, OptionRowMapper optionRowMapper, SeqOptionRowMapper seqoptionRowMapper, DefOptionRowMapper defoptionRowMapper, Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.optionRowMapper = optionRowMapper;
+        this.seqoptionRowMapper = seqoptionRowMapper;
+        this.defoptionRowMapper = defoptionRowMapper;
+        this.env = env;
     }
 
-    @Autowired
-    private OptionRowMapper optionRowMapper;
+    private final OptionRowMapper optionRowMapper;
 
-    @Autowired
-    private SeqOptionRowMapper seqoptionRowMapper;
+    private final SeqOptionRowMapper seqoptionRowMapper;
 
-    @Autowired
-    private DefOptionRowMapper defoptionRowMapper;
+    private final DefOptionRowMapper defoptionRowMapper;
 
-    @Autowired
-    Environment env;
+    private final Environment env;
 
     @Override
     public List<Option> getOptionQuest(Long id) {

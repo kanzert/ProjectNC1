@@ -6,21 +6,22 @@ import com.team.app.backend.persistance.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.util.List;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private UserRowMapper userRowMapper;
 
     @Autowired
-    Environment env;
+    private Environment env;
 
     public UserDaoImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
