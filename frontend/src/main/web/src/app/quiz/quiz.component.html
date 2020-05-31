@@ -164,15 +164,16 @@
           </div>
           <div class="col-5 align-self-center">
             <div *ngIf="optionType === 4" class="mb-3">
-              <ul class="list-unstyled">
-                <div cdkDropList (cdkDropListDropped)="drop($event)">
-                  <button *ngFor="let option of optionsSequence;" class="col btn mx-1 btn-success mb-2">
-                    <li cdkDrag>
-                      {{option.text}}
-                    </li>
-                  </button>
+              <div class="drop_area" (cdkDropListDropped)="drop($event)" cdkDropList #cdkDropList>
+                <div *ngFor="let option of optionsSequence; let i = index"
+                     (cdkDragStarted)="dragStart($event)"
+                     (cdkDragMoved)="dragMoved($event, option, i)"
+                     cdkDrag>
+                  <mat-card class="my_action">
+                    {{ option.text }}
+                  </mat-card>
                 </div>
-              </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Question} from "../entities/question";
 import {QuizService} from "../services/quiz.service";
@@ -49,12 +49,21 @@ export class QuizComponent implements OnInit, OnDestroy {
       text: ''
     }));
 
+  @ViewChild('cdkDropList') _dropList:any;
+  startX;
+  startY;
+  currentX;
+  currentY;
+  sourceElement;
+
+
   constructor(private quizService: QuizService,
               private optionService: OptionService,
               private route: ActivatedRoute,
               private questionService: QuestionService,
               private achievementService: AchievementService,
               private userService: UserService,
+              private _renderer : Renderer2,
               private notficationService:NotificationService) { }
 
   ngOnInit(): void {
@@ -188,9 +197,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     return score < 0 ? 0 : score;
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.optionsSequence, event.previousIndex, event.currentIndex);
-  }
+
 
   getUserRole() {
     return this.userService.user.role.name;
@@ -265,6 +272,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   setSequenceQuestion() {
     this.optionType = SEQUENCE_QUESTION;
     this.optionsSequence = this.questionOptions.get(this.questions[this.indexQuestion].id);
+    this.shuffle(this.optionsSequence);
   }
 
  setOptionalQuestion() {
@@ -272,6 +280,55 @@ export class QuizComponent implements OnInit, OnDestroy {
    this.optionalAnswers = this.questionOptions
      .get(this.questions[this.indexQuestion].id);
    this.coefOptional = 1 / this.optionalAnswers.filter(x => x.is_correct).length;
+  }
+
+
+  dragStart(e) {
+    this.sourceElement = e.source.element.nativeElement;
+    const rect = e.source.element.nativeElement.getBoundingClientRect();
+
+    // initialize start X coord
+    this.startX = rect.x;
+    // initialize start Y coord
+    this.startY = rect.y;
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.optionsSequence, event.previousIndex, event.currentIndex);
+  }
+
+  dragMoved(e, action, i) {
+    // record new position
+    this.currentX = e.event.clientX;
+    this.currentY = e.event.clientY;
+    // logic to set startX and startY
+    // TRYING TO CHANGE CARD BORDER COLOR IF this.endX - this.startX > some number
+    if(this.startX < this.currentX){
+      this._renderer.setStyle(this._dropList.nativeElement.children[i], 'border-style', 'solid');
+      this._renderer.setStyle(this._dropList.nativeElement.children[i], 'border-color', 'green');
+    }
+    else if (this.startX > this.currentX){
+      this._renderer.setStyle(this._dropList.nativeElement.children[i], 'border-style', 'solid');
+      this._renderer.setStyle(this._dropList.nativeElement.children[i], 'border-color', 'blue');
+    }
+  }
+
+   shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
   }
 
 }

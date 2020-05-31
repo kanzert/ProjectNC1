@@ -45,6 +45,7 @@ import {FileValueAccessor} from "./user-profile/_helpers/file-control-value-acce
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { FriendProfileCardComponent } from './friends/friend-profile-card/friend-profile-card.component';
 
@@ -99,6 +100,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatCardModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -110,7 +112,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   exports: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatCardModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
     LoaderService,
