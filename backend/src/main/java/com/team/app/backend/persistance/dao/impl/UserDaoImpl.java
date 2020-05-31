@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void save(User user) {
         jdbcTemplate.update(
-                "INSERT INTO users(firstname, lastname, username, password, email, image, registr_date, activate_link, status_id, role_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                env.getProperty("save.user"),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void update(User user) {
         jdbcTemplate.update(
-                "UPDATE USERS set firstname = ? , lastname = ? , username = ? , password = ? , email = ? , image = ? , registr_date = ? , activate_link = ? , status_id = ? , role_id = ? where id = ?",
+                env.getProperty("update.user"),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void delete(Long id) {
         jdbcTemplate.update(
-                "DELETE from USERS where id = ?",
+                env.getProperty("delete.user.by.id"),
                 id
         );
     }
@@ -77,15 +77,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User get(Long id) {
         return jdbcTemplate.queryForObject(
-                "select U.id,U.firstname,U.lastname,U.username,U.image,U.password,U.email,U.registr_date,U.activate_link,U.status_id,US.name as status_name,U.role_id,R.name as role_name from users U INNER JOIN user_status US ON U.status_id = US.id INNER JOIN role R ON R.id = U.role_id where U.id = ? ",
+                env.getProperty("get.user.by.id"),
                 new Object[]{id},
                 userRowMapper);
     }
 
     @Override
     public User findByUsername(String username) {
-        String sql="select U.id,U.firstname,U.lastname,U.username,U.image,U.password,U.email,U.registr_date,U.activate_link,U.status_id,US.name as status_name,U.role_id,R.name as role_name from users U INNER JOIN user_status US ON U.status_id = US.id INNER JOIN role R ON R.id = U.role_id where U.username = ? ";
-        List<User> userslist=jdbcTemplate.query(sql,
+        List<User> userslist=jdbcTemplate.query(
+                env.getProperty("get.user.by.username"),
                 new Object[]{username},
                 userRowMapper);
         if(userslist.size()==0){
@@ -99,7 +99,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String getUserPasswordByUsername(String username) {
         return jdbcTemplate.queryForObject(
-                "SELECT PASSWORD FROM users WHERE USERNAME = ? ",
+                env.getProperty("get.pass.by.username"),
                 new Object[]{username},String.class
         );
     }
@@ -108,7 +108,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByToken(String token) {
         return jdbcTemplate.queryForObject(
-                "select U.id,U.firstname,U.lastname,U.username,U.image,U.password,U.email,U.registr_date,U.activate_link,U.status_id,US.name as status_name,U.role_id,R.name as role_name from users U INNER JOIN user_status US ON U.status_id = US.id INNER JOIN role R ON R.id = U.role_id where U.activate_link = ? ",
+                env.getProperty("get.user.by.token"),
                 new Object[]{token},
                 userRowMapper);    }
 
@@ -117,7 +117,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void activateByToken(String token) {
         jdbcTemplate.update(
-                "UPDATE users set status_id = 2 WHERE activate_link = ?",
+                env.getProperty("activate.token"),
                 token
         );
     }
@@ -125,7 +125,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean checkTokenAvailability(String token) {
         return jdbcTemplate.queryForObject(
-                "SELECT ? IN (SELECT activate_link FROM users)",
+                env.getProperty("check.token"),
                 new Object[]{token},Boolean.class
         );
     }
@@ -133,7 +133,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean checkEmail(String email) {
         return jdbcTemplate.queryForObject(
-                "SELECT ? IN (SELECT email FROM users)",
+                env.getProperty("check.email"),
                 new Object[]{email},Boolean.class
         );
     }
