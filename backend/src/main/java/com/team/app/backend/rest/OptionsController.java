@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping("api")
 public class OptionsController {
 
+    private final OptionService optionService;
+
     @Autowired
-    OptionService optionService;
+    public OptionsController(OptionService optionService) {
+        this.optionService = optionService;
+    }
 
     @GetMapping("/options/{id}")
     public List<Option> getOptions(@PathVariable("id") long id) {

@@ -19,11 +19,17 @@ import java.util.Map;
 @RequestMapping("api/user/invite")
 public class UserInviteController {
 
-    @Autowired
+    private final
     UserInviteService userInviteService;
 
-    @Autowired
+    private final
     MessageSource messageSource;
+
+    @Autowired
+    public UserInviteController(UserInviteService userInviteService, MessageSource messageSource) {
+        this.userInviteService = userInviteService;
+        this.messageSource = messageSource;
+    }
 
     @PostMapping("/send")
     public ResponseEntity sendUserInvite(@RequestBody UserInvite userInvite) {

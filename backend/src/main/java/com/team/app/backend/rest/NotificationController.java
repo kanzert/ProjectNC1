@@ -20,8 +20,12 @@ import java.util.Map;
 @RequestMapping("api/notification")
 public class NotificationController {
 
+    private final NotificationService notificationService;
+
     @Autowired
-    NotificationService notificationService;
+    public NotificationController(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 
 
     @MessageMapping("/delete/notifications")

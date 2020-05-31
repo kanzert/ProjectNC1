@@ -6,23 +6,22 @@ import com.team.app.backend.persistance.model.QuizCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-@Component
+@Repository
 public class QuizCategoryDaoImpl implements QuizCategoryDao {
 
-
-
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private QuizCategoryRowMapper quizCategoryRowMapper;
+    private final QuizCategoryRowMapper quizCategoryRowMapper;
 
-    public QuizCategoryDaoImpl(DataSource dataSource) {
+    @Autowired
+    public QuizCategoryDaoImpl(DataSource dataSource, QuizCategoryRowMapper quizCategoryRowMapper) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.quizCategoryRowMapper = quizCategoryRowMapper;
     }
 
     @Override

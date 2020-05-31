@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Question} from "../entities/question";
 import {QuizService} from "../services/quiz.service";
@@ -10,10 +10,10 @@ import {OptionService} from "../services/option.service";
 import {Answer} from "../entities/answer";
 import {Option} from "../entities/option";
 import {UserService} from "../services/user.service";
-import {UserSessionResult} from "../entities/UserSessionResult";
 import {AchievementService} from "../services/achievement.service";
 import {SessionStats} from "../entities/session-stats";
 import {NotificationService} from "../services/notification.service";
+
 import {INPUT_QUESTION, OPTIONAL_QUESTION, SEQUENCE_QUESTION, TRUE_FALSE_QUESTION, USER_POINTS} from "../parameters";
 
 
@@ -27,9 +27,9 @@ export class QuizComponent implements OnInit, OnDestroy {
   questionOptionPoints = 0;
   quizId;
   sessionId;
-  access_code = '';
-  finish = false;
-  timeSpent = 0;
+  access_code='';
+  finish=false;
+  timeSpent=0;
   questions: Question[] = [];
   stats: SessionStats[] = [];
   userAnswers: Answer[] = [];
@@ -61,12 +61,12 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       this.quizId = params['id'];
       this.sessionId = params['sessionId'];
-      if(this.userService.user.role.name === "user"){ this.getAccessCode();}
-      this.initializeWebSocketConnection();
+      if(this.userService.user.role.name === "user"){
+        this.getAccessCode();
+        this.initializeWebSocketConnection();
+      }
     });
     this.getQuestions();
-    console.log("join"+this.getUserJoin());
-
   }
 
   nextQuestion(): void {
@@ -75,9 +75,13 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.startQuestionTimer();
     } else {
       this.interval = null;
-      this.finishSession();
+      if (this.getUserRole() === 'user')this.finishSession()
+      else this.finish = true;
+
+
     }
     this.optionSwitcher();
+
   }
 
   optionSwitcher() {
@@ -221,26 +225,33 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   finishSession() {
     this.userService.user.joined=null;
-    this.quizService.sendSessionStats({
-      ses_id : this.sessionId,
-      user_id : +this.userService.user.id,
-      score : this.getScore(),
-      time: this.timeSpent
-    } as UserSessionResult).subscribe(data => {
-      console.log(data);
+    this.notficationService.stompClient.subscribe('/finish/'+this.sessionId, (message) => {
+      this.stats =JSON.parse(message.body);
+      console.table(this.stats);
       this.getTopStats();
-      this.finish=true;
-      this.achievementService.setUserAchievement().subscribe(data => {
-        this.finish=true;
-      });
-
     });
+    console.log("finish");
+    this.notficationService.stompClient.send('/app/finish/game' , {},
+      JSON.stringify({ses_id : this.sessionId,
+        user_id : +this.userService.user.id,
+        score : this.getScore(),
+        time: this.timeSpent}));
+          console.log('Session finished, check achievements');
+          this.achievementService.setUserAchievement().subscribe(data => {
+            console.log(data);
+            console.log('set achiv');
+            this.finish=true;
+
+        });
+
+
   }
 
   initializeWebSocketConnection() {
     this.notficationService.stompClient.subscribe('/start/'+this.sessionId, (message) => {
       if (message.body) {this.startQuestionTimer();}
     });
+
   }
 
 

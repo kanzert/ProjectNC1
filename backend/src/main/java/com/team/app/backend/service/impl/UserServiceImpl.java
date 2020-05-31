@@ -27,21 +27,25 @@ import java.util.UUID;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+    private final UserDao userDao;
 
     private final long ENGLISH_ID = 1L;
     private final long UKRAINE_ID = 1L;
 
-    @Autowired
-    private UserDao userDao;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final JavaMailSender mailSender;
+
+    private final EmailsService emailsService;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JavaMailSender mailSender;
-
-    @Autowired
-    private EmailsService emailsService;
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder, JavaMailSender mailSender, EmailsService emailsService) {
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
+        this.mailSender = mailSender;
+        this.emailsService = emailsService;
+    }
 
 
     @Override

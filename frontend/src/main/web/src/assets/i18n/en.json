@@ -402,6 +402,14 @@
       }
     },
     "RESULT": {
+      "COLLAPSE":{
+        "STATS":"Show session stats",
+        "BEST":"Show top results"
+      },
+      "STATS":{
+        "TITLE":"Session stats",
+        "NOT_FINISHED":"not finished yet"
+      },
       "TABLE":{
         "TITLE":"Best results",
         "USERNAME":"Username",

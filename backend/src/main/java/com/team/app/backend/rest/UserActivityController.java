@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/activity")
 public class UserActivityController {
 
-    @Autowired
+    private final
     UserActivityService userActivityService;
+
+    @Autowired
+    public UserActivityController(UserActivityService userActivityService) {
+        this.userActivityService = userActivityService;
+    }
 
 
     @GetMapping("/all/{user_id}")

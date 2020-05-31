@@ -22,14 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ResetPasswordController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final MessageSource messageSource;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    MessageSource messageSource;
+    public ResetPasswordController(UserService userService, PasswordEncoder passwordEncoder, MessageSource messageSource) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.messageSource = messageSource;
+    }
 
     @PostMapping("/reset-password")
     public ResponseEntity resetPassword(@RequestBody ResetPasswordDto resetPasswordDto)

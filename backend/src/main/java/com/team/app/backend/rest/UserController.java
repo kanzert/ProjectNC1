@@ -21,11 +21,17 @@ import java.util.Map;
 @RequestMapping("api")
 public class UserController {
 
-    @Autowired
+    private final
     UserService userService;
 
-    @Autowired
+    private final
     MessageSource messageSource;
+
+    @Autowired
+    public UserController(UserService userService, MessageSource messageSource) {
+        this.userService = userService;
+        this.messageSource = messageSource;
+    }
 
     @GetMapping("/user/search/{name}/{first}/{last}")
     public List<User> searchUser(
@@ -55,7 +61,6 @@ public class UserController {
     public ModelAndView activateUser(@RequestParam("token") String token){
         if(userService.activateUserAccount(token)) return new ModelAndView("redirect:" + "https://brainduel.herokuapp.com/#/login" );
         return new ModelAndView("redirect:" + "https://brainduel.herokuapp.com/#/signup" );
-        //else return ResponseEntity.ok(messageSource.getMessage("registry.bad", null, LocaleContextHolder.getLocale()));
     }
 
 

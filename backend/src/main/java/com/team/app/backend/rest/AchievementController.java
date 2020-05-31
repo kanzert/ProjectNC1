@@ -20,10 +20,15 @@ import java.util.Map;
 @RequestMapping("api/achievement")
 public class AchievementController {
 
+    private final AchievementService achievementService;
+
+    private final MessageSource messageSource;
+
     @Autowired
-    AchievementService achievementService;
-    @Autowired
-    MessageSource messageSource;
+    public AchievementController(AchievementService achievementService, MessageSource messageSource) {
+        this.achievementService = achievementService;
+        this.messageSource = messageSource;
+    }
 
 
     @GetMapping("/all")

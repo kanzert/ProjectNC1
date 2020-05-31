@@ -32,7 +32,7 @@
           <div class="container-fluid" id="scroll" >
             <div *ngFor="let not of getNewNotifications().slice(0,5)" class="alert alert-dismissible alert-secondary">
               <button type="button" (click)="not.seen = true; deleteNotification(not)" class="close" data-dismiss="alert">&times;</button>
-              <strong>{{not.text}}</strong> <p> {{not.date}}
+              <strong>{{not.text}}</strong> <p> {{not.date| date:'short'}}
             </div>
           </div>
         </div>

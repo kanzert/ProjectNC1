@@ -35,23 +35,25 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
 
     private final long USER_ANNOUNCEMENT_ACTIVITY = 4L;
 
-    @Autowired
-    private AnnouncementDao announcementDao;
+
+    private final AnnouncementDao announcementDao;
+
+    private final UserActivityDao userActivityDao;
+
+    private final NotificationService notificationService;
+
+    private final UserService userService;
+
+    private final MessageSource messageSource;
 
     @Autowired
-    private UserActivityDao userActivityDao;
-
-    @Autowired
-    private UserDao userDao;
-
-    @Autowired
-    private NotificationService notificationService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    MessageSource messageSource;
+    public AnnouncemrntServiceImpl(AnnouncementDao announcementDao, UserActivityDao userActivityDao, UserDao userDao, NotificationService notificationService, UserService userService, MessageSource messageSource) {
+        this.announcementDao = announcementDao;
+        this.userActivityDao = userActivityDao;
+        this.notificationService = notificationService;
+        this.userService = userService;
+        this.messageSource = messageSource;
+    }
 
     @Transactional
     public void createAnnouncement(Announcement announcement) {
@@ -94,9 +96,11 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
                     getMessage("announcement.approved", params,
                             userService.getUserLanguage(announcement.getUserId())));
         } else {
-            notification.setText(messageSource.
+            notification.setText(
+                    messageSource.
                     getMessage("announcement.not.approved", params,
-                            userService.getUserLanguage(announcement.getUserId())));
+                            userService.getUserLanguage(announcement.getUserId()))
+            );
             announcementDao.delete(announcement.getId());
         }
         notificationService.create(notification);

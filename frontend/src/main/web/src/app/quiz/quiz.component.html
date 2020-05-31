@@ -22,44 +22,73 @@
   </div>
   <div *ngIf="interval===null && finish" class="container text-white p-2 align-items-center w-50" [hidden]="interval" >
     <div *ngIf="getUserRole() === 'user'">
-      <div *ngIf="topStats.length > 0;" class="raw">
-        <div class="card card-cascade narrower" style="background-color: transparent; border:1px solid">
-          <div class="align-items-center">
-            <h3>{{'PLAY_QUIZ.RESULT.TABLE.TITLE' | translate}}</h3>
+      <div class="row  justify-content-center align-items-center">
+        <button  type="button" data-toggle="collapse"  data-target="#topStatsCollapse" aria-expanded="false" aria-controls="topStatsCollapse" class="btn btn-primary mt-2 w-50 col-4 mr-3 collapsed">{{'PLAY_QUIZ.RESULT.COLLAPSE.BEST' | translate}}</button>
+        <button  type="button" data-toggle="collapse"  data-target="#sesStatsCollapse" aria-expanded="false" aria-controls="sesStatsCollapse" class="btn btn-primary mt-2 w-50 col-4 mr-3 collapsed">{{'PLAY_QUIZ.RESULT.COLLAPSE.STATS' | translate}}</button>
+      </div>
+
+      <div class="accordion" id="accordion">
+        <div class="collapse" id="topStatsCollapse" style="margin: 15px;" data-parent="#accordion">
+          <div class="card card-cascade narrower" style="background-color: transparent; border:1px solid">
+            <div class="align-items-center">
+              <h3>{{'PLAY_QUIZ.RESULT.TABLE.TITLE' | translate}}</h3>
+            </div>
+            <div class="table-wrapper">
+              <table class="table table-hover mb-0 text-white">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.USERNAME' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.SCORE' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.TIME' | translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  *ngFor="let sessionStat of topStats">
+                  <td>{{sessionStat.place}}</td>
+                  <td>{{sessionStat.username}}</td>
+                  <td>{{sessionStat.score}}</td>
+                  <td>{{sessionStat.time}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="table-wrapper">
-            <table class="table table-hover mb-0 text-white">
-              <thead>
-              <tr>
-                <th>#</th>
-                <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.USERNAME' | translate}}</th>
-                <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.SCORE' | translate}}</th>
-                <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.TIME' | translate}}</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr  *ngFor="let sessionStat of topStats">
-                <td>{{sessionStat.place}}</td>
-                <td>{{sessionStat.username}}</td>
-                <td>{{sessionStat.score}}</td>
-                <td>{{sessionStat.time}}</td>
-              </tr>
-              </tbody>
-            </table>
+        </div>
+        <div class="collapse" id="sesStatsCollapse" style="margin: 15px;" data-parent="#accordion">
+          <div class="card card-cascade narrower" style="background-color: transparent; border:1px solid">
+            <div class="align-items-center">
+              <h3>{{'PLAY_QUIZ.RESULT.STATS.TITLE' | translate}}</h3>
+            </div>
+            <div class="table-wrapper">
+              <table class="table table-hover mb-0 text-white">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.USERNAME' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.SCORE' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.TIME' | translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  *ngFor="let sessionStat1 of stats">
+                  <td>{{sessionStat1.place}}</td>
+                  <td>{{sessionStat1.username}}</td>
+                  <td *ngIf="sessionStat1.score !== null">{{sessionStat1.score}}</td>
+                  <td *ngIf="sessionStat1.time !== null">{{sessionStat1.time}}</td>
+                  <td [hidden]="sessionStat1.score !== null || sessionStat1.time !== null" colspan="2" > {{'PLAY_QUIZ.RESULT.STATS.NOT_FINISHED' | translate}} </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-
 
       <h2 class="mt-2" >{{'PLAY_QUIZ.RESULT.TEXT' | translate}} {{getScore()}}</h2>
       <h2 class="mt-2">{{'PLAY_QUIZ.RESULT.TIME' | translate}} {{timeSpent}} {{'PLAY_QUIZ.RESULT.SECONDS' | translate}}</h2>
     </div>
 
-    <ng-template #elseBlock>
-      <h2>{{'PLAY_QUIZ.RESULT.TABLE.NO_RES' | translate}}</h2>
-    </ng-template>
-    <h2 class="mt-2">{{'PLAY_QUIZ.RESULT.TEXT' | translate}} {{getScore()}}</h2>
-    <h2 class="mt-2">{{'PLAY_QUIZ.RESULT.TIME' | translate}} {{timeSpent}} {{'PLAY_QUIZ.RESULT.SECONDS' | translate}}</h2>
     <app-quiz-aprove-form *ngIf="getUserRole() !== 'user'" [quizId]="quizId">
     </app-quiz-aprove-form>
     <a routerLink="/dashboard"><h3>{{'PLAY_QUIZ.RESULT.BUTTON' | translate}}</h3></a>

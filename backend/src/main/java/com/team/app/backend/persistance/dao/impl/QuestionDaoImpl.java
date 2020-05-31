@@ -9,25 +9,27 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-@Component
+@Repository
 public class QuestionDaoImpl implements QuestionDao {
 
+    private final QuestionRowMapper questionRowMapper;
+
+    private final Environment env;
+
     private JdbcTemplate jdbcTemplate;
-    public QuestionDaoImpl(DataSource dataSource) {
+
+    @Autowired
+    public QuestionDaoImpl(DataSource dataSource, QuestionRowMapper questionRowMapper, Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.questionRowMapper = questionRowMapper;
+        this.env = env;
     }
-
-    @Autowired
-    private QuestionRowMapper questionRowMapper;
-
-    @Autowired
-    Environment env;
-
 
     @Override
     public List<Question> getQuizQusetions(Long id) {

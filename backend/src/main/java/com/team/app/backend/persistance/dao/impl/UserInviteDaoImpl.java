@@ -17,13 +17,12 @@ import java.util.List;
 @Repository
 public class UserInviteDaoImpl implements UserInviteDao {
     private final JdbcTemplate jdbcTemplate;
+    private final Environment env;
+
     @Autowired
-    private Environment env;
-
-    private UserInviteRowMapper userInviteRowMapper = new UserInviteRowMapper();
-
-    public UserInviteDaoImpl(DataSource dataSource) {
+    public UserInviteDaoImpl(DataSource dataSource, Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
     }
 
     @Override
