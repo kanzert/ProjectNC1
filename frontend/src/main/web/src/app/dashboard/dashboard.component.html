@@ -58,7 +58,6 @@
           </ul>
         </div>
       </nav>
-
       <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-1 align-self-start" >
         <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -91,49 +90,38 @@
         </div>
         <div *ngIf="tab === 'Users' || tab === 'Friends' || tab === 'Admins-Moderators' || tab==='Moderators' || tab === 'Quizzes' " class=" main-frame container-fluid my-5 ">
           <form *ngIf="tab !== 'Quizzes'" class="form-inline ml-3 my-2 my-lg-0" >
-            <input [(ngModel)]="term" name="term" id="search-box"  class="form-control my-2 mx-auto" type="text" placeholder="Search" style="width: 70%">
-            <button for="search-box" class="btn btn-secondary my-2 my-sm-0" (click)="search()" type="submit" style="width: auto">Search</button>
+            <input [(ngModel)]="term" name="term" id="search-box"  class="form-control my-2 mx-auto" type="text" placeholder="{{'DASHBOARD.SEARCH.PLACEHOLDER' | translate}}" style="width: 70%">
+            <button for="search-box" class="btn btn-secondary my-2 my-sm-0" (click)="search()" type="submit" style="width: auto">{{'DASHBOARD.SEARCH.BUTTON.SEARCH' | translate}}</button>
             <button *ngIf="getUserRole()==='admin' || getUserRole()==='super admin'" class="btn btn-success my-2 mx-auto my-sm-0"
                     (click)="profileSet(true)"  style="width: auto">{{'DASHBOARD.SEARCH.BUTTON.ADD' | translate}}</button>
           </form>
           <form *ngIf="tab === 'Quizzes'" class="form-inline ml-3 my-2 my-lg-0" >
-            <input [(ngModel)]="term" name="term" id="search-quiz"  class="form-control my-2 mr-3" type="text" placeholder="Search" style="width: 70%">
+            <input [(ngModel)]="term" name="term" id="search-quiz"  class="form-control my-2 mr-3" type="text" placeholder="{{'DASHBOARD.SEARCH.PLACEHOLDER' | translate}}" style="width: 70%">
             <mat-form-field color="Warn" id="dropListCategory">
-              <mat-label class="text-center">Categories</mat-label>
+              <mat-label class="text-center" style="color: white">{{'DASHBOARD.SEARCH.CATEGORIES' | translate}}</mat-label>
               <mat-select [(value)]="selectedCategories" multiple>
                 <mat-option *ngFor="let category of categoriesList" [value]="category.name">{{category.name}}</mat-option>
               </mat-select>
             </mat-form-field>
-            <button for="search-box" class="btn btn-secondary my-2 mx-2 my-sm-0" (click)="search()" type="submit" style="width: auto">Search</button>
+            <button for="search-box" class="btn btn-secondary my-2 mx-2 my-sm-0" (click)="search()" type="submit" style="width: auto">{{'DASHBOARD.SEARCH.BUTTON.SEARCH' | translate}}</button>
             <div *ngIf="isMoreFiltersVisible" class="row ml-3">
-              <input [(ngModel)]="quizUser" name="quizUser" id="search-quiz-by-user"  class="form-control my-2 mr-3" type="text" placeholder="User name" style="width: 20%">
-              <!-- <mat-form-field color="Warn" id="dropListCategory">
-                <mat-label class="text-center">Time period</mat-label>
-                <mat-select [(value)]="selectedDateOption">
-                  <mat-option [value]="1">Today</mat-option>
-                  <mat-option [value]="2">For week</mat-option>
-                  <mat-option [value]="3">For month</mat-option>
-                  <mat-option [value]="4">For all time</mat-option>
-                </mat-select>
-              </mat-form-field> -->
-              <!-- <label for="start">Date from:</label>
-              <input type="text" placeholder="Date from" onfocus="(this.type='date')" [ngModel] ="dateFrom | date:'yyyy-MM-dd'" (ngModelChange)="dateFrom = $event" id="start" name="quiz-start">
-              <label for="end">Date to:</label>
-              <input type="text" placeholder="Date to" onfocus="(this.type='date')" [ngModel] ="dateTo | date:'yyyy-MM-dd'" (ngModelChange)="dateTo = $event" id="end" name="quiz-end"> -->
+              <input [(ngModel)]="quizUser" name="quizUser" id="search-quiz-by-user"  class="form-control my-2 mr-3" type="text" placeholder="{{'DASHBOARD.SEARCH.FILTERS.USERNAME' | translate}}" style="width: 20%">
               <mat-form-field>
-                <mat-label>Choose a date from</mat-label>
+                <mat-label style="color: white">{{'DASHBOARD.SEARCH.FILTERS.DATEFROM' | translate}}</mat-label>
                 <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="dateFrom" name="dateFrom">
-                <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                <mat-datepicker-toggle matSuffix [for]="pickerFrom" style="color: white"></mat-datepicker-toggle>
                 <mat-datepicker #pickerFrom></mat-datepicker>
               </mat-form-field>
+              <div style="visibility: hidden">---------</div>
               <mat-form-field>
-                <mat-label>Choose a date to</mat-label>
+                <mat-label style="color: white">{{'DASHBOARD.SEARCH.FILTERS.DATETO' | translate}}</mat-label>
                 <input matInput [matDatepicker]="pickerTo" [(ngModel)]="dateTo" name="dateFrom">
-                <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                <mat-datepicker-toggle matSuffix [for]="pickerTo" style="color: white"></mat-datepicker-toggle>
                 <mat-datepicker #pickerTo></mat-datepicker>
               </mat-form-field>
             </div>
-            <li><a (click)="showMoreFilters()">More Filters</a></li>
+            <li *ngIf="!isMoreFiltersVisible"><a (click)="showMoreFilters()" style="cursor: pointer;">{{'DASHBOARD.SEARCH.FILTERS.MOREFILTERS' | translate}}</a></li>
+            <li *ngIf="isMoreFiltersVisible"><a (click)="showMoreFilters()" style="cursor: pointer;">{{'DASHBOARD.SEARCH.FILTERS.LESSFILTERS' | translate}}</a></li>
             <button *ngIf="getUserRole()==='admin' || getUserRole()==='super admin'" class="btn btn-success my-2 mx-2 my-sm-0"
                     (click)="profileSet(true)"  style="width: auto">{{'DASHBOARD.SEARCH.BUTTON.ADD' | translate}}</button>
           </form>
@@ -155,7 +143,6 @@
         </div>
         <!--Profile-->
         <div *ngIf="tab === 'Achievements'">
-
           <app-achievement-dashboard></app-achievement-dashboard>
         </div>
         <app-user-profile *ngIf="tab === 'Profile' || tab === 'AddProfile'" [user]="user" [editOnly]="tab!=='Profile'"></app-user-profile>

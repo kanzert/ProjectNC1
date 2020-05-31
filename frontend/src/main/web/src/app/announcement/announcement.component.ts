@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Announcement} from '../entities/announcement';
 import {AnnouncementService} from '../services/announcement.service';
 import {UserService} from '../services/user.service';
-import {ANNOUNCEMENT_APPROVED, ANNOUNCEMENT_CREATED} from '../parameters';
+import {ANNOUNCEMENT_APPROVED, ANNOUNCEMENT_CREATED, ANNOUNCEMENT_DEFAULT_IMAGE} from '../parameters';
 
 @Component({
   selector: 'app-announcement',
@@ -13,12 +13,12 @@ export class AnnouncementComponent implements OnInit {
 
   announcementCreated = ANNOUNCEMENT_CREATED;
   @Input()
-  announcement: Announcement ;
+  announcement: Announcement;
   @Output()
   onChanged = new EventEmitter<Announcement>();
   error = '';
   message = '';
-  imageUrl = 'https://cdn.pixabay.com/photo/2020/04/09/12/28/dog-5021242_1280.jpg';
+  imageUrl = ANNOUNCEMENT_DEFAULT_IMAGE;
 
 
   constructor(private announcementService: AnnouncementService, private userService: UserService) { }

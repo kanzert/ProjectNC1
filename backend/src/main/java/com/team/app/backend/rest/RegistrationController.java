@@ -45,15 +45,6 @@ public class RegistrationController {
 
         }
         return ResponseEntity.ok().body(new HashMap<String,String>());
-
-
     }
-
-
-
-//    @GetMapping(value = "/{path:[^\\.]*}")
-//    public String redirect() {
-//        return "forward:/";
-//    }
 
 }

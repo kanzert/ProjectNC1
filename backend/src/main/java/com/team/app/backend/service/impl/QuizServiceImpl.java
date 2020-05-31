@@ -1,8 +1,10 @@
 package com.team.app.backend.service.impl;
 
 import com.team.app.backend.dto.*;
+import com.team.app.backend.exception.QuizNotFoundException;
 import com.team.app.backend.persistance.dao.*;
 import com.team.app.backend.persistance.model.*;
+import com.team.app.backend.service.NotificationService;
 import com.team.app.backend.service.QuizService;
 import com.team.app.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,11 @@ public class QuizServiceImpl implements QuizService {
     private final long NOTIFICATION_APPROVED = 2L;
 
     private final QuizDao quizDao;
-
     private final NotificationDao notificationDao;
+
+    @Autowired
+    private NotificationService notificationService;
+
 
     private final UserActivityDao userActivityDao;
 
@@ -50,6 +55,18 @@ public class QuizServiceImpl implements QuizService {
         this.quizCategoryDao = quizCategoryDao;
         this.messageSource = messageSource;
         this.userService = userService;
+    }
+
+    @Override
+    public void updateQuiz(QuizUpdateDto dto) throws QuizNotFoundException {
+        Quiz quiz = quizDao.get(dto.getId());
+        if (quiz == null) {
+            throw new QuizNotFoundException("Quiz with id " + dto.getId() + " not found in the DB.");
+        }
+        quiz.setTitle(dto.getTitle());
+        quiz.setDescription(dto.getDescription());
+        quiz.setImage(dto.getImage());
+        quizDao.update(quiz);
     }
 
     @Override
@@ -217,6 +234,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Quiz getQuiz(Long id) {
+
         return quizDao.get(id);
     }
 
@@ -224,7 +242,7 @@ public class QuizServiceImpl implements QuizService {
     public void approveQuiz(Quiz quiz) {
         Notification notification = new Notification();
         notification.setCategoryId(NOTIFICATION_APPROVED);
-        notification.setUserId(quiz.getUser_id());
+        notification.setUserId(getUserIdByQuiz(quiz.getId()));
         String[] params = new String[]{getTitle(quiz.getId())};
         if(quiz.getStatus().getName().equals("approved")) {
             quizDao.approve(quiz.getId());
@@ -235,10 +253,10 @@ public class QuizServiceImpl implements QuizService {
             notification.setText(quiz.getDescription());
             quizDao.delete(quiz.getId());
         }
-        notificationDao.create(notification);
+        notificationService.create(notification);
     }
 
-    @Transactional(propagation= Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<Quiz> getCreated() {
         return this.quizDao.getCreated();
@@ -249,13 +267,13 @@ public class QuizServiceImpl implements QuizService {
         return quizDao.getTopStats(quizId);
     }
 
-    @Transactional(propagation= Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public Long getUserIdByQuiz(Long quizId) {
         return quizDao.getUserIdByQuiz(quizId);
     }
 
-    @Transactional(propagation= Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public String getTitle(Long quizId) {
         return quizDao.getTitle(quizId);

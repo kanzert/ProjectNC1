@@ -48,7 +48,6 @@ public class QuizDaoImpl implements QuizDao {
     }
 
 
-
     @Override
     public List<Quiz> getByUserId(Long id) {
         return jdbcTemplate.query(
@@ -107,12 +106,9 @@ public class QuizDaoImpl implements QuizDao {
     @Override
     public List<Quiz> searchQuizes(String[] categories, String searchstring, String dateFrom, String dateTo, String user) {
 		String sqlQuizSearch = env.getProperty("search.quiz");
-		String search = "%%";
+		String search = "%"+searchstring+"%";
 		String[] searchCategories = {"geography", "programming", "math", "history", "modern"};
-		String searchUsername = "%%";
-		if (searchstring != "") {
-			search = "%"+searchstring+"%";
-		}
+		String searchUsername = "%"+user+"%";
         if (categories.length != 0) {
 			for (int i = 0; i < categories.length; i++) {
 				searchCategories[i] = categories[i];
@@ -120,9 +116,6 @@ public class QuizDaoImpl implements QuizDao {
 			for (int j = categories.length; j < 5; j++) {
 				searchCategories[j] = "";
 			}
-		}
-		if (user != "") {
-			searchUsername = "%"+user+"%";
 		}
         return jdbcTemplate.query(sqlQuizSearch, new Object[] {search, search, searchCategories[0], searchCategories[1], searchCategories[2], searchCategories[3], searchCategories[4], dateFrom, dateTo, searchUsername, searchUsername, searchUsername},
                 quizRowMapper);
@@ -175,23 +168,27 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public void delete(Long id) {
+
         jdbcTemplate.update(env.getProperty("delete.quiz"),id);
     }
     @Override
     public void approve(Long id) {
+
         jdbcTemplate.update(env.getProperty("approve.quiz"),id);
     }
 
     @Override
     public Long getUserIdByQuiz(Long quizId) {
         return jdbcTemplate.queryForObject(
-                env.getProperty("get.userId.by.quiz"),new Object[]{quizId},
+                env.getProperty("get.userId.by.quiz"),
+                new Object[]{quizId},
                 Long.class);
     }
     @Override
     public String getTitle(Long quizId) {
         return jdbcTemplate.queryForObject(
-                env.getProperty("get.title.by.quiz"),new Object[]{quizId},
+                env.getProperty("get.title.by.quiz"),
+                new Object[]{quizId},
                 String.class);
     }
     @Override
@@ -207,7 +204,6 @@ public class QuizDaoImpl implements QuizDao {
                 env.getProperty("get.top.stats"),
                 new Object[]{quizId},
                 sessionStatsRowMapper);
-
     }
 
 

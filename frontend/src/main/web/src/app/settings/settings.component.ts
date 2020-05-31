@@ -13,7 +13,6 @@ export class SettingsComponent implements OnInit {
   announcementCategoryId = ANNOUNCEMENT_NOTIFICATION;
   quizCategoryId = QUIZ_NOTIFICATION;
   systemCategoryId = SYSTEM_NOTIFICATION;
-
   quizPlayCatId=QUIZ_PLAY_ACTIVITY;
   quizCreateCatId=QUIZ_CREATE_ACTIVITY;
   annCreateCatId=ANNOUNCEMENT_CREATE_ACTIVITY;

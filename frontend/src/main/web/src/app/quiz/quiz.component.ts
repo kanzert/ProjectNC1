@@ -156,7 +156,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       }
     }
     this.userAnswers.push({questionId: this.questions[this.indexQuestion].id,
-       points: questionPoints*10
+       points: questionPoints*USER_POINTS
     });
     this.timeSpent+=this.questions[this.indexQuestion].time-this.timer;
     this.clearTimer()
@@ -261,10 +261,6 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   }
 
-
-  startGame() {
-    this.notficationService.stompClient.send('/app/start/game' , {}, this.sessionId);
-  }
   clearTimer() {
     clearInterval(this.interval);
     clearTimeout(this.timeout);

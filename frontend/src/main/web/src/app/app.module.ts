@@ -47,6 +47,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { DatePipe } from '@angular/common';
 import { FriendProfileCardComponent } from './friends/friend-profile-card/friend-profile-card.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -118,6 +119,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
     LoaderService,
     MatNativeDateModule,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

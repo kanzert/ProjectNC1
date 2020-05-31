@@ -82,13 +82,7 @@ public class UserController {
     @PostMapping("/user/status/{id}/{user}")
     public ResponseEntity setStatus(@PathVariable("id") Long statusId,
                                     @PathVariable("user") Long userId) {
-        try{
-            userService.setStatus(statusId,userId);
-        }
-        catch (DataAccessException sqlEx) {
-           return ResponseEntity.badRequest().body(messageSource
-                   .getMessage("set.status.user.bad", null, LocaleContextHolder.getLocale()));
-        }
+        userService.setStatus(statusId,userId);
         return ResponseEntity.ok().build();
     }
 

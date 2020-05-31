@@ -1,4 +1,4 @@
-<section class="min-vh-100" id="cover">
+<section class="accordion min-vh-100" id="cover">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
   <div>
     <h2>{{'QUIZ_EDIT.TITLE' | translate}}</h2>
@@ -15,12 +15,12 @@
     </h5>
     <div class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-secondary mr-3" routerLink="/dashboard">{{'QUIZ_EDIT.BUTTON.DONE' | translate}}</button>
-      <button type="button" class="btn btn-link"  data-toggle="collapse" data-target="#collapseOne"><i class="fas fa-spinner kr-anim-spin hidden"></i><span class="">{{'QUIZ_EDIT.BUTTON.ADD_QUESTION' | translate}}</span></button>
+      <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" area-expanded="false" area-controls="collapseOne"><i class="fas fa-spinner kr-anim-spin hidden"></i><span class="">{{'QUIZ_EDIT.BUTTON.ADD_QUESTION' | translate}}</span></button>
     </div>
   </div>
 
-  <div class="container collapse" id="collapseOne">
-    <div class="kr-modal-body">
+  <div class="container">
+    <div class="kr-modal-body collapse" id="collapseOne" data-parent="#cover">
       <div class="banner">
         <div class="title">
           <h2>{{titleEditor}}</h2>
@@ -121,11 +121,62 @@
         </div>
       </div>
       <div class="action-btns-wrapper">
-        <button class="cancel-btn" data-qtest="cancel-create-quiz-btn" data-toggle="collapse" data-target="#collapseOne">
+        <button class="cancel-btn" data-qtest="cancel-create-quiz-btn" data-toggle="collapse" data-target="#collapseTwo">
           {{'QUIZ_EDIT.QUESTION_FORM.BUTTON.CANCEL' | translate}}</button>
         <button [disabled]="questionForm.invalid || questionForm.controls['questionType'].value === 'not selected' ||
         questionForm.controls['questionTime'].value === 'not selected'" class="save-btn" data-qtest="create-quiz-btn" (click)="createQuestion()"><i class="fas fa-spinner kr-anim-spin hidden"></i><span class="">{{'QUIZ_EDIT.QUESTION_FORM.BUTTON.NEXT' | translate}}</span></button>
       </div>
     </div>
+    <div class="kr-modal-body collapse show" id="collapseTwo" data-parent="#cover">
+      <div class="banner">
+        <div class="title">
+          {{'QUIZ_EDIT.QUIZ_EDIT_TITLE' | translate}}
+        </div>
+      </div>
+      <form [formGroup]="quizForm" novalidate>
+        <div class="form" *ngIf="isQuizLoaded">
+          <div class="form-group text-left">
+            <div class="quiz-name-wrapper">
+              <div class="quiz-name-input kr2-textfield">
+                <label>{{'CREATE_QUIZ.NAME'| translate}}</label>
+                <input class="form-control" name="title" formControlName="title" type="text" id="name-input-1" placeholder="{{'CREATE_QUIZ.NAME_PLACEHOLDER' | translate}}" data-qtest="quiz-name-input-field" maxlength="20">
+                <div class="quiz-name-validation"
+                     *ngIf="quizForm.controls['title'].invalid && quizForm.controls['title'].touched">
+                  {{'CREATE_QUIZ.NAME_VALIDATION' | translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group text-left">
+            <div class="quiz-name-wrapper">
+              <div class="quiz-name-input kr2-textfield">
+                <label>{{'CREATE_QUIZ.DESCRIPTION' | translate}}</label>
+                <input class="form-control" name="description" formControlName="description" type="text" id="name-input-2" placeholder="{{'CREATE_QUIZ.DESCRIPTION_PLACEHOLDER' | translate}}" data-qtest="quiz-name-input-field" maxlength="20">
+
+                <div class="quiz-description-validation"
+                     *ngIf="quizForm.controls['description'].invalid && quizForm.controls['description'].touched">
+                  {{'CREATE_QUIZ.DESCRIPTION_VALIDATION' | translate}}
+                </div>
+                <label class="mt-2">{{'QUIZ_EDIT.CHOOSEPICTURE' | translate}}</label>
+                <app-upload-file (onChanged)="onChanged($event)"></app-upload-file>
+                <div class="quiz-name-validation"
+                     *ngIf="quizForm.controls['image'].invalid">
+                  {{'QUIZ_EDIT.PICTUREVALIDATION' | translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="action-btns-wrapper">
+            <button class="cancel-btn" data-qtest="cancel-create-quiz-btn" (click)="goBack()">{{'CREATE_QUIZ.BUTTON.CANCEL' | translate}}</button>
+            <button [disabled]="quizForm.invalid" class="save-btn" data-qtest="create-quiz-btn" (click)="editQuiz()"><i class="fas fa-spinner kr-anim-spin hidden"></i><span class="">{{'QUIZ_EDIT.BUTTON.EDITQUIZ' | translate}}</span></button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
   </div>
+
 </section>

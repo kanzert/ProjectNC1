@@ -34,16 +34,8 @@ public class UserInviteController {
     @PostMapping("/send")
     public ResponseEntity sendUserInvite(@RequestBody UserInvite userInvite) {
         Map<String, String> response = new HashMap<>();
-
-        try {
-            userInviteService.sendUserInvite(userInvite);
-        } catch (DataAccessException sqlEx){
-            System.out.println(sqlEx);
-            response.put("message", messageSource.getMessage("invite.fail.create", null, LocaleContextHolder.getLocale()));
-            ResponseEntity.badRequest().body(response);
-        }
+        userInviteService.sendUserInvite(userInvite);
         response.put("message", messageSource.getMessage("invite.create", null, LocaleContextHolder.getLocale()));
-
         return ResponseEntity.ok(response);
     }
 
@@ -55,14 +47,7 @@ public class UserInviteController {
     @PutMapping("/{id}")
     public ResponseEntity acceptUserInvite(@PathVariable("id") long id) {
         Map<String, String> model = new HashMap<>();
-        try {
-            userInviteService.acceptUserInvite(id);
-        }
-        catch (DataAccessException sqlEx){
-            System.out.println(sqlEx);
-            model.put("message", messageSource.getMessage("invite.update.fail", null, LocaleContextHolder.getLocale()));
-            return ResponseEntity.badRequest().body(model);
-        }
+        userInviteService.acceptUserInvite(id);
         model.put("message", messageSource.getMessage("invite.updated", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(model);
     }
@@ -70,14 +55,7 @@ public class UserInviteController {
     @DeleteMapping("/{id}")
     public ResponseEntity declineUserInvite(@PathVariable("id") long id) {
         Map<String, String> model = new HashMap<>();
-        try {
-            userInviteService.declineUserInvite(id);
-        }
-        catch (DataAccessException sqlEx) {
-            System.out.println(sqlEx);
-            model.put("message", messageSource.getMessage("invite.decline.fail", null, LocaleContextHolder.getLocale()));
-            return ResponseEntity.badRequest().body(model);
-        }
+        userInviteService.declineUserInvite(id);
         model.put("message", messageSource.getMessage("invite.decline", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(model);
     }
@@ -91,14 +69,7 @@ public class UserInviteController {
     public ResponseEntity deleteUserFromList(@PathVariable("user_id") long id,
                                              @PathVariable("delete_id") long deleteId) {
         Map<String, String> model = new HashMap<>();
-        try {
-            userInviteService.deleteUserFromList(id, deleteId);
-        }
-        catch (DataAccessException sqlEx) {
-            System.out.println(sqlEx);
-            model.put("message", messageSource.getMessage("friends.fail.delete", null, LocaleContextHolder.getLocale()));
-            return ResponseEntity.badRequest().body(model);
-        }
+        userInviteService.deleteUserFromList(id, deleteId);
         model.put("message", messageSource.getMessage("announcement.deleted", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(model);
     }

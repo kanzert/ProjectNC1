@@ -1,10 +1,7 @@
 package com.team.app.backend.rest;
 
-import com.team.app.backend.dto.QuizAddDto;
-import com.team.app.backend.dto.QuizCategoryDto;
-import com.team.app.backend.dto.QuestionDefAddDto;
-import com.team.app.backend.dto.QuestionOptAddDto;
-import com.team.app.backend.dto.QuestionSeqAddDto;
+import com.team.app.backend.dto.*;
+import com.team.app.backend.exception.QuizNotFoundException;
 import com.team.app.backend.persistance.model.Question;
 import com.team.app.backend.persistance.model.Quiz;
 import com.team.app.backend.service.QuizService;
@@ -16,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 @RestController
@@ -39,6 +36,20 @@ public class QuizController {
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addQuiz(quizDto));
         return result;
+    }
+
+    @PostMapping("/quiz/update")
+    public ResponseEntity updateQuiz(
+            @RequestBody QuizUpdateDto quizUpdateDto) {
+        Map response = new HashMap<>();
+        try {
+            quizService.updateQuiz(quizUpdateDto);
+            response.put("message", "Quiz update successful");
+            return ResponseEntity.ok(response);
+        } catch (QuizNotFoundException e) {
+            response.put("message", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 
     @DeleteMapping("/quiz/{id}")
@@ -141,21 +152,13 @@ public class QuizController {
 
     @PostMapping("/quiz/search")
     public List<Quiz> searchQuizes(@RequestBody QuizCategoryDto quizCategoryDto) {
-        System.out.println(quizCategoryDto.getTitle());
         return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateFrom(),quizCategoryDto.getDateTo(),quizCategoryDto.getUser());
     }
 
 
     @PostMapping("/quiz/approve")
     public ResponseEntity approveQuiz(@RequestBody Quiz quiz) {
-        System.out.println("approve");
-        try {
             quizService.approveQuiz(quiz);
-        }
-        catch (DataAccessException sqlEx) {
-            System.out.println(sqlEx.toString());
-            return ResponseEntity.badRequest().body(sqlEx.toString());
-        }
             return ResponseEntity.ok().build();
     }
 

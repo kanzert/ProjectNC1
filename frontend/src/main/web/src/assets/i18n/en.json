@@ -91,6 +91,13 @@
         "SEARCH": "SEARCH",
         "ADD": "Add"
       },
+      "FILTERS": {
+        "MOREFILTERS": "More filters",
+        "LESSFILTERS": "Less filters",
+        "USERNAME": "Author",
+        "DATEFROM": "Choose date from",
+        "DATETO": "Choose date to"
+      },
       "USER_CARD": {
         "INVITE_MESSAGE": "Invite message*",
         "BUTTON": {
@@ -332,7 +339,7 @@
 
   "QUIZ_EDIT": {
     "TITLE": "My Questions",
-
+    "QUIZ_EDIT_TITLE": "Edit Quiz",
     "QUESTION_FORM": {
       "NAME": {
         "LABEL": "Question: ",
@@ -385,8 +392,11 @@
 
     "BUTTON": {
       "ADD_QUESTION": "Add question",
-      "DONE": "Done"
-    }
+      "DONE": "Done",
+      "EDITQUIZ": "Edit"
+    },
+    "CHOOSEPICTURE": "3. Choose picture",
+    "PICTUREVALIDATION": "You need to set up a picture"
   },
 
   "PLAY_QUIZ": {

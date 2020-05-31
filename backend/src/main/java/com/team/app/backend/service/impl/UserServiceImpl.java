@@ -137,7 +137,6 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
-        //user.setImage(userDto.getImage());
         String token =UUID.randomUUID().toString();
         while(checkTokenAvailability(token)){
             token =UUID.randomUUID().toString();

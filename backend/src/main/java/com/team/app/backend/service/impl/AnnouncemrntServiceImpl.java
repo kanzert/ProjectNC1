@@ -1,7 +1,6 @@
 package com.team.app.backend.service.impl;
 
 import com.team.app.backend.persistance.dao.AnnouncementDao;
-import com.team.app.backend.persistance.dao.NotificationDao;
 import com.team.app.backend.persistance.dao.UserActivityDao;
 import com.team.app.backend.persistance.dao.UserDao;
 import com.team.app.backend.persistance.model.Announcement;
@@ -12,19 +11,13 @@ import com.team.app.backend.service.NotificationService;
 import com.team.app.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
-import java.util.Date;
 import java.util.List;
 
 
 @Service
-
 public class AnnouncemrntServiceImpl implements AnnouncementService {
 
     private final long ANNOUNCEMENT_CREATE = 1L;
@@ -40,7 +33,8 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
 
     private final UserActivityDao userActivityDao;
 
-    private final NotificationService notificationService;
+    private NotificationService notificationService;
+
 
     private final UserService userService;
 
@@ -62,7 +56,7 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
         long millis=System.currentTimeMillis();
         java.sql.Timestamp date = new java.sql.Timestamp(millis);
         announcement.setDate(date);
-
+        //NIKITA`s CODE PART
         UserActivity userActivity=new UserActivity();
         userActivity.setCategoryId(USER_ANNOUNCEMENT_ACTIVITY);
         userActivity.setDate(date);
@@ -75,15 +69,17 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
 
     @Override
     public List<Announcement> getCreated() {
+
         return announcementDao.getCreated();
     }
 
-
     @Override
     public List<Announcement> getAll(Long userId) {
+
         return announcementDao.getAll(userId);
     }
 
+    @Transactional
     @Override
     public void approve(Announcement announcement) {
         Notification notification = new Notification();
@@ -106,15 +102,15 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
         notificationService.create(notification);
     }
 
-    public Announcement  getAnnouncement(Long id) {
-       return new Announcement();
-    }
+
     @Transactional
     public void updateAnnouncement(Announcement announcement) {
+
         announcementDao.update(announcement);
     }
     @Transactional
     public void deleteAnnouncement(Long id) {
+
         announcementDao.delete(id);
     }
 

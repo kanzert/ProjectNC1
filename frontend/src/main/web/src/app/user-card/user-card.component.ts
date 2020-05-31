@@ -16,6 +16,7 @@ export class UserCardComponent implements OnInit {
   user: User;
   @Output()
   onChanged = new EventEmitter<User>();
+
   inviteForm = new FormGroup({
     'inviteText' : new FormControl(null, [
       Validators.required,

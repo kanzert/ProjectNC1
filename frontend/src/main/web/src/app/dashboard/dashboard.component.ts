@@ -8,29 +8,56 @@ import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
+import { DatePipe } from '@angular/common';
 import {CategoryService} from '../services/category.service';
 import {Category} from '../entities/category';
 import {AchievementService} from "../services/achievement.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DEBOUNCE_TIME} from "../parameters";
+import {DEBOUNCE_TIME, USER_DEFAULT_IMAGE} from "../parameters";
+import { NativeDateAdapter, DateAdapter,
+  MAT_DATE_FORMATS } from '@angular/material/core';
+import { formatDate } from '@angular/common';
+
+export const PICK_FORMATS = {
+  parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
+  display: {
+    dateInput: 'input',
+    monthYearLabel: {year: 'numeric', month: 'short'},
+    dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
+    monthYearA11yLabel: {year: 'numeric', month: 'long'}
+  }
+};
+
+class PickDateAdapter extends NativeDateAdapter {
+  format(date: Date, displayFormat: Object): string {
+    if (displayFormat === 'input') {
+      return formatDate(date,'dd-MM-yyyy', this.locale);
+    } else {
+      return date.toDateString();
+    }
+  }
+}
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [
+    {provide: DateAdapter, useClass: PickDateAdapter},
+    {provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS}
+  ]
 })
 export class DashboardComponent implements OnInit {
   @ViewChild('closeModal') closeModal: ElementRef;
   tab = '';
   user: User;
-  imageUrl: string = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';
+  imageUrl: string = USER_DEFAULT_IMAGE;
   users$: Observable<User[]>;
   quizes$: Observable<Quiz[]>;
   categoriesList: Category[] = [];
   isVisible = true;
   term: string = "";
   selectedCategories: string[] = [];
-  //selectedDateOption: number = 4;
   dateFrom: Date;
   dateTo: Date;
   quizUser: string = "";
@@ -42,11 +69,15 @@ export class DashboardComponent implements OnInit {
   private searchQuizTerms = new Subject<any>();
   private searchUserTerms = new Subject<string>();
 
-  constructor(private userService: UserService, private quizService: QuizService, private achievementService: AchievementService,
+  constructor(private userService: UserService,
+              private quizService: QuizService,
+              private achievementService: AchievementService,
               private categoryService: CategoryService,
-              private location: Location, private route: ActivatedRoute,
+              private location: Location,
+              private route: ActivatedRoute,
               private router: Router,
               private fb: FormBuilder,
+              private datePipe: DatePipe
     ) { }
 
   ngOnInit(): void {
@@ -54,13 +85,10 @@ export class DashboardComponent implements OnInit {
     this.tab = this.route.snapshot.paramMap.get('tab');
     this.user = this.tab === 'Profile' ? this.userService.user : {role: {}} as User;
     this.user.image = this.getUserImage();
-    if (this.user.image != null) {
-      this.imageUrl = this.user.image;
-    }
+    this.checkImage();
     this.quizes$ = this.searchQuizTerms.pipe(
       debounceTime(DEBOUNCE_TIME),
       distinctUntilChanged(),
-      // switch to new search observable each time the term changes
       switchMap((obj: any) => this.quizService.searchQuizzes(obj.title, obj.categories, obj.dateFrom, obj.dateTo, obj.user)),
     );
     this.users$ = this.searchUserTerms.pipe(
@@ -78,16 +106,14 @@ export class DashboardComponent implements OnInit {
     if (this.dateFrom === undefined) {
       date_from = "2020-01-01";
     } else {
-      date_from = this.dateFrom.toJSON().slice(0, 8) + (this.dateFrom.getDate() < 10 ? "0" + this.dateFrom.getDate() : this.dateFrom.getDate());
+      date_from = this.datePipe.transform(this.dateFrom, "yyyy-MM-dd");
     }
     if (this.dateTo === undefined) {
       this.dateTo = new Date();
-      date_to = this.dateTo.toJSON().slice(0, 8) + (this.dateTo.getDate() < 10 ? "0" + this.dateTo.getDate() : this.dateTo.getDate());
+      date_to = this.datePipe.transform(this.dateTo, "yyyy-MM-dd");
     } else {
-      date_to = this.dateTo.toJSON().slice(0, 8) + (this.dateTo.getDate() < 10 ? "0" + this.dateTo.getDate() : this.dateTo.getDate());
+      date_to = this.datePipe.transform(this.dateTo, "yyyy-MM-dd");
     }
-    console.log(date_from);
-    console.log(date_to);
     this.isVisible = false;
     if (this.tab === 'Quizzes') {
       this.searchQuizTerms.next({ title: this.term, categories: this.selectedCategories, dateFrom: date_from, dateTo: date_to, user: this.quizUser });
@@ -150,6 +176,10 @@ export class DashboardComponent implements OnInit {
   submit() {
     this.connectToSession(this.joinForm.get('accessCode').value);
   }
-
+  checkImage() {
+    if (this.user.image != null) {
+      this.imageUrl = this.user.image;
+    }
+  }
 
 }

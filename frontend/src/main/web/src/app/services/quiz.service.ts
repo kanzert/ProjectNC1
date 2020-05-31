@@ -135,13 +135,22 @@ export class QuizService {
 
   approveQuiz(quiz: Quiz): Observable<any> {
     return  this.http.post<Quiz>(this.quizzesUrl + '/approve', quiz,
-      { headers: this.httpHeader})
+      { headers: new HttpHeaders()
+          .set('Authorization',  `Bearer_${this.userService.getToken()}`)})
 
   }
 
   createQuiz(quiz: Quiz): Observable<Quiz> {
     return this.http.post<Quiz>(this.quizzesUrl, quiz, { headers: this.httpHeader})
       .pipe(catchError(this.handleError<Quiz>('createQuiz')));
+  }
+
+  updateQuiz(quiz: Quiz): Observable<Quiz> {
+    console.log("Hello from updateQuiz");
+    return this.http.post<Quiz>(this.quizzesUrl + "/update/",
+      { id: quiz.id, title: quiz.title, description: quiz.description, image: quiz.image },
+      { headers: this.httpHeader})
+      .pipe(catchError(this.handleError<Quiz>('updateQuiz')));
   }
 
   deleteQuiz(quiz: Quiz): Observable<Quiz> {
