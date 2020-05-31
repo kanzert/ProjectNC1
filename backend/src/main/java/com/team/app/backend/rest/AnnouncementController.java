@@ -28,6 +28,7 @@ public class AnnouncementController {
         this.announcementService = announcementService;
         this.messageSource = messageSource;
         this.securityService = securityService;
+    }
 
     @PostMapping("/create")
     public ResponseEntity createAnnouncement(@RequestBody Announcement announcement) {

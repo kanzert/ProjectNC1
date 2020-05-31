@@ -18,7 +18,6 @@ public class LanguageController {
     private final LocaleResolver localeResolver;
     private final UserService userService;
 
-
     @Autowired
     public LanguageController(LocaleResolver localeResolver, UserService userService) {
         this.localeResolver = localeResolver;

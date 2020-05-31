@@ -32,7 +32,7 @@ public class PlayQuizController {
     private final UserToSessionService userToSessionService;
     private final QuestionService questionService;
     private final UserAnswerService userAnswerService;
-    private final MessageSource messageSource;
+    private MessageSource messageSource;
     private final SecurityService securityService;
     private final SimpMessagingTemplate template;
 
@@ -70,11 +70,11 @@ public class PlayQuizController {
             @PathVariable("quiz_id") long quiz_id) {
         Long user_id = securityService.getCurrentUser().getId();
         Quiz quiz = quizService.getQuiz(quiz_id);
-        Session session = sessionService.newSessionForQuiz(quiz);
+        Session session = sessionService.newSessionForQuiz(quiz.getId());
 
         sessionService.updateSession(session);
         User user = userService.getUserById(user_id);
-        userToSessionService.createNewUserToSession(user, session);
+        userToSessionService.createNewUserToSession(user.getId(), session.getId());
 
         return ResponseEntity.ok(session);
     }

@@ -21,15 +21,7 @@ public class AchievementController {
     private final AchievementService achievementService;
     private final MessageSource messageSource;
     private final SecurityService securityService;
-
-
-    @Autowired
-    public AchievementController(AchievementService achievementService, MessageSource messageSource) {
-        this.achievementService = achievementService;
-        this.messageSource = messageSource;
-    }
-
-
+    
     public AchievementController(AchievementService achievementService, MessageSource messageSource, SecurityService securityService) {
         this.achievementService = achievementService;
         this.messageSource = messageSource;
