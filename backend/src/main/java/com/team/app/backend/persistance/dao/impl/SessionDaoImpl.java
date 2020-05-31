@@ -31,7 +31,7 @@ public class SessionDaoImpl implements SessionDao {
     }
 
     @Override
-    public Long save(Session session) {
+    public Session save(Session session) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
                 connection -> {
@@ -47,7 +47,7 @@ public class SessionDaoImpl implements SessionDao {
                 },
                 keyHolder
         );
-        return keyHolder.getKey().longValue();
+        return getById(keyHolder.getKey().longValue());
     }
 
     @Override

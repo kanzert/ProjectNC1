@@ -153,7 +153,7 @@ public class QuizController {
     }
 
 
-	  @GetMapping("/quiz/search/{searchstring}")
+    @GetMapping("/quiz/search/{searchstring}")
     public List<Quiz> searchQuizes(@PathVariable("searchstring") String searchstring) {
         return quizService.searchQuizes(searchstring);
     }

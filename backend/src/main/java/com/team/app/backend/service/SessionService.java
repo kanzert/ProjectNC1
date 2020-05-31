@@ -4,7 +4,7 @@ import com.team.app.backend.persistance.model.*;
 
 public interface SessionService {
 
-    Long newSessionForQuiz(Long quiz_id);
+    Session newSessionForQuiz(Long quiz_id);
 
     void updateSession(Session session);
 

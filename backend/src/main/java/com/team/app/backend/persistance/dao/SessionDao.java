@@ -4,7 +4,7 @@ import com.team.app.backend.persistance.model.Session;
 
 public interface SessionDao {
 
-    Long save(Session session);
+    Session save(Session session);
 
     Session getById(Long id);
 

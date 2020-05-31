@@ -36,7 +36,7 @@ public class SessionServiceImpl implements SessionService {
 
 
     @Override
-    public Long newSessionForQuiz(Long quiz_id) {
+    public Session newSessionForQuiz(Long quiz_id) {
         long millis=System.currentTimeMillis();
         java.sql.Timestamp date=new java.sql.Timestamp(millis);
 
