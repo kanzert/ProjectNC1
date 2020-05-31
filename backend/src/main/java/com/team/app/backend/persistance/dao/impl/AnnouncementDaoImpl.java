@@ -86,9 +86,9 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 
     @Override
     public Announcement get(Long id) {
-        return new Announcement();
+        return jdbcTemplate.queryForObject(env.getProperty("get.announcement"),
+                new Object[]{id},
+                announcementRowMapper);
     }
-
-
 
 }

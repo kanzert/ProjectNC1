@@ -148,10 +148,12 @@ public class QuizController {
 
     @PostMapping("/quiz/approve")
     public ResponseEntity approveQuiz(@RequestBody Quiz quiz) {
+        System.out.println("approve");
         try {
-            quizService.aproveQuiz(quiz);
+            quizService.approveQuiz(quiz);
         }
         catch (DataAccessException sqlEx) {
+            System.out.println(sqlEx.toString());
             return ResponseEntity.badRequest().body(sqlEx.toString());
         }
             return ResponseEntity.ok().build();

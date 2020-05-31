@@ -221,16 +221,16 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public void aproveQuiz(Quiz quiz) {
+    public void approveQuiz(Quiz quiz) {
         Notification notification = new Notification();
         notification.setCategoryId(NOTIFICATION_APPROVED);
         notification.setUserId(quiz.getUser_id());
-        String[] params = new String[]{quiz.getTitle()};
+        String[] params = new String[]{getTitle(quiz.getId())};
         if(quiz.getStatus().getName().equals("approved")) {
             quizDao.approve(quiz.getId());
             notification.setText(messageSource.
                     getMessage("quiz.approved", params,
-                            userService.getUserLanguage(quiz.getUser_id())));
+                            userService.getUserLanguage(getUserIdByQuiz(quiz.getId()))));
         } else {
             notification.setText(quiz.getDescription());
             quizDao.delete(quiz.getId());
@@ -248,4 +248,18 @@ public class QuizServiceImpl implements QuizService {
     public List<SessionStatsDto> getTopStats(Long quizId) {
         return quizDao.getTopStats(quizId);
     }
+
+    @Transactional(propagation= Propagation.SUPPORTS)
+    @Override
+    public Long getUserIdByQuiz(Long quizId) {
+        return quizDao.getUserIdByQuiz(quizId);
+    }
+
+    @Transactional(propagation= Propagation.SUPPORTS)
+    @Override
+    public String getTitle(Long quizId) {
+        return quizDao.getTitle(quizId);
+    }
+
+
 }

@@ -36,6 +36,10 @@ public interface QuizDao {
 
     List<Quiz> getCreated();
 
+    Long getUserIdByQuiz(Long quizId);
+
+    String getTitle(Long quizId);
+
     List<SessionStatsDto>getTopStats(Long quizId);
 
 }

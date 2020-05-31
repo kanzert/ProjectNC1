@@ -29,6 +29,10 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
 
+    private final long ENGLISH_ID = 1L;
+    private final long UKRAINE_ID = 1L;
+
+
     private final PasswordEncoder passwordEncoder;
 
     private final JavaMailSender mailSender;
@@ -196,9 +200,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changeLanguage(String lang , Long userId) {
         if(lang.equals("en"))
-            userDao.changeLanguage(1L,userId);
+            userDao.changeLanguage(ENGLISH_ID,userId);
         else
-            userDao.changeLanguage(2L,userId);
+            userDao.changeLanguage(UKRAINE_ID,userId);
     }
     @Override
     public Locale getUserLanguage(Long id) {

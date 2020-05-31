@@ -37,18 +37,17 @@ public class NotificationServiceImpl implements NotificationService {
         listeners.remove(sessionId);
     }
 
-    @Scheduled(fixedDelay = 2000)
-    public void dispatch() {
-        for (Map.Entry<String,Long> listener : listeners.entrySet()) {
-            SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
-            headerAccessor.setSessionId(listener.getKey());
-            headerAccessor.setLeaveMutable(true);
-            template.convertAndSendToUser(
-                    listener.getKey(),
-                    "/notification",
-                    getAll(listener.getValue()),
-                    headerAccessor.getMessageHeaders());
-        }
+    @Override
+    public void dispatch(String sessionId) {
+
+        SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
+        headerAccessor.setSessionId(sessionId);
+        headerAccessor.setLeaveMutable(true);
+        template.convertAndSendToUser(
+                sessionId,
+                "/notification",
+                getAll(listeners.get(sessionId)),
+                headerAccessor.getMessageHeaders());
     }
 
     @EventListener
@@ -59,7 +58,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Transactional
     @Override
     public void create(Notification not) {
-
+        dispatch(getKey(not.getUserId()));
         notificationDao.create(not);
     }
     @Transactional
@@ -78,12 +77,13 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<Notification> getAll (Long user_id) {
+
         return notificationDao.getAll(user_id);
     }
 
-
     @Override
     public List<Notification> getSetting(Long userId) {
+
         return notificationDao.getSetting(userId);
     }
 
@@ -91,5 +91,15 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void setSetting(Notification not) {
         this.notificationDao.setSetting(not);
+        dispatch(getKey(not.getUserId()));
+    }
+
+    private String getKey(Long value) {
+        for (Map.Entry<String, Long> entry : listeners.entrySet()) {
+            if (entry.getValue().equals(value)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 }

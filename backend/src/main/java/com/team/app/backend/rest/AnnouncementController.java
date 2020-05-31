@@ -43,6 +43,7 @@ public class AnnouncementController {
                 .getMessage("announcement.success", null, LocaleContextHolder.getLocale()));
         return  ResponseEntity.ok(response);
     }
+
     @GetMapping("/created")
     public ResponseEntity getCreated() {
         List<Announcement> announcementList;
@@ -54,8 +55,8 @@ public class AnnouncementController {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(announcementList);
-
     }
+
     @GetMapping("/all/{id}")
     public ResponseEntity getAll(@PathVariable("id") Long userId) {
         List<Announcement> announcementList;
@@ -69,6 +70,7 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcementList);
 
     }
+
     @PostMapping("/approve")
     public ResponseEntity approve(@RequestBody Announcement announcement) {
         try {
@@ -101,7 +103,6 @@ public class AnnouncementController {
         Map<String, String> model = new HashMap<String, String>();
         try {
             announcementService.deleteAnnouncement(id);
-
         }
         catch(DataAccessException sqlEx){
            model.put("message",messageSource

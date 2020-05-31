@@ -6,7 +6,6 @@
         <button class="btn btn-primary my-2 w-50" (click)="startNewGame();" >{{'PLAY_QUIZ.START_MENU.BUTTON.START' | translate}}</button>
       </div>
     </div>
-
     <div #elseBlock class="row" [hidden]="!getUserJoin()">
       <div class="col">
         <h4>{{'PLAY_QUIZ.START_MENU.JOIN' | translate}}</h4>
@@ -90,7 +89,7 @@
       <h2 class="mt-2">{{'PLAY_QUIZ.RESULT.TIME' | translate}} {{timeSpent}} {{'PLAY_QUIZ.RESULT.SECONDS' | translate}}</h2>
     </div>
 
-    <app-quiz-aprove-form *ngIf="getUserRole() !== 'user'" [userId]="72" [quizId]="quizId">
+    <app-quiz-aprove-form *ngIf="getUserRole() !== 'user'" [quizId]="quizId">
     </app-quiz-aprove-form>
     <a routerLink="/dashboard"><h3>{{'PLAY_QUIZ.RESULT.BUTTON' | translate}}</h3></a>
   </div>
@@ -113,7 +112,7 @@
         <div class="container " id="bod2">
           <div id="questions" class="row mt-2">
             <div class="col text-right">
-              <button (click)="nextQuestion(true)" class="btn text-right my-1 btn-primary">{{'PLAY_QUIZ.GAME.BUTTON.SKIP' | translate}}</button>
+              <button (click)="clearTimer(); nextQuestion();" class="btn text-right my-1 btn-primary">{{'PLAY_QUIZ.GAME.BUTTON.SKIP' | translate}}</button>
             </div>
           </div>
 
@@ -127,7 +126,6 @@
           </div>
           <div class="row mt-1 justify-content-center">
             <div class="col-12 text-center" >
-              <!--              <img src="https://cdn.pixabay.com/photo/2020/04/09/12/28/dog-5021242_1280.jpg" style="max-height: 200px;max-width: 100px" class="my-2 img-fluid rounded" alt="news">-->
               <h3 style="color:black">{{questions[indexQuestion].text}}</h3>
             </div>
           </div>

@@ -6,7 +6,6 @@ export const DEBOUNCE_TIME = 300;
 export const USER_ROLE_ID = 1;
 export const MODER_ROLE_ID = 2;
 export const ADMIN_ROLE_ID = 3;
-export const SUPER_ROLE_ID = 4;
 export const ANNOUNCEMENT_CREATED = 1;
 export const ANNOUNCEMENT_IMPORTANT = 3;
 export const ANNOUNCEMENT_APPROVED = 2;
@@ -17,3 +16,9 @@ export const ANNOUNCEMENT_CREATE_ACTIVITY = 4;
 export const QUIZ_LIKE_ACTIVITY = 5;
 export const USER_STATUS_ACTIVE = 2;
 export const USER_STATUS_DEACTIVE = 3;
+export const USER_POINTS = 10;
+export const OPTIONAL_QUESTION = 3;
+export const SEQUENCE_QUESTION = 4;
+export const TRUE_FALSE_QUESTION = 1;
+export const INPUT_QUESTION =2;
+

@@ -36,6 +36,7 @@ public class NotificationController {
     @MessageMapping("/get/notifications")
     public void getAll(Long userId, StompHeaderAccessor stompHeaderAccessor){
         notificationService.add(stompHeaderAccessor.getSessionId(), userId);
+        notificationService.dispatch(stompHeaderAccessor.getSessionId());
     }
 
     @PostMapping("/create")

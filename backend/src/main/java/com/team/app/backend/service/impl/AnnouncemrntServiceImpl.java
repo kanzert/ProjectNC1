@@ -35,6 +35,7 @@ public class AnnouncemrntServiceImpl implements AnnouncementService {
 
     private final long USER_ANNOUNCEMENT_ACTIVITY = 4L;
 
+
     private final AnnouncementDao announcementDao;
 
     private final UserActivityDao userActivityDao;

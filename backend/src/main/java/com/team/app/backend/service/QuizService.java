@@ -45,7 +45,11 @@ public interface QuizService {
 
     Quiz getQuiz(Long id);
 
-    void aproveQuiz(Quiz quiz);
+    void approveQuiz(Quiz quiz);
+
+    Long getUserIdByQuiz(Long quizId);
+
+    String getTitle(Long quizId);
 
     List<Quiz> getCreated();
 
