@@ -12,8 +12,8 @@
       </div>
       <div class="col-12 col-sm-6 col-md-7 col-lg-5 align-self-center" style="color: #2d2d2d;height: 55%">
         <div class="btn-group text-right">
-            <button class="btn btn-outline-success"  [disabled]="clicked" (click)="acceptUserInvite();">{{nameButtonAccept}}</button>
-            <button class="btn btn-outline-danger" [disabled]="clicked" (click)="declineUserInvite();">{{nameButtonDecline}}</button>
+            <button class="btn btn-outline-success" (click)="acceptUserInvite();" onclick="this.parentElement.parentElement.parentElement.parentElement.style.display='none';">{{'DASHBOARD.SIDEBAR.TABS.FRIENDS.USER_INVITE.ACCEPT' | translate}}</button>
+            <button class="btn btn-outline-danger" (click)="declineUserInvite();" onclick="this.parentElement.parentElement.parentElement.parentElement.style.display='none';">{{'DASHBOARD.SIDEBAR.TABS.FRIENDS.USER_INVITE.DECLINE' | translate}}</button>
         </div>
       </div>
     </div>
