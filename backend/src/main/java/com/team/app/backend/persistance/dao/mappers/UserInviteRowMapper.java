@@ -18,6 +18,7 @@ public class UserInviteRowMapper implements RowMapper<UserInvite> {
                 resultSet.getDate("invite_date"),
                 resultSet.getLong("user_id_from"),
                 resultSet.getLong("user_id_to"),
-                resultSet.getString("username"));
+                resultSet.getString("username"),
+                resultSet.getString("image"));
     }
 }

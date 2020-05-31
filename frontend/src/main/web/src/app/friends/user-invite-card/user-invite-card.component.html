@@ -1,8 +1,8 @@
-<div *ngIf="!isFriendList; else elseBlock" class="container-fluid my-1">
+<div class="container-fluid my-1">
   <div  class="card flex-fill"  style="color: #2d2d2d;height: 55%">
     <div class="row flex-fill h-auto no-gutters align-items-center">
       <div class="col-4 col-sm-1 col-md-2 col-lg-1 ">
-        <img src="https://img.icons8.com/plasticine/100/000000/user-male-circle.png" class="card-img rounded-circle">
+        <img [src]="userInvite.image || imageUrl" class="card-img">
         <h5>
           <span class="badge bg-primary">{{userInvite.usernameFrom}}</span>
         </h5>
@@ -19,10 +19,4 @@
     </div>
   </div>
 </div>
-<ng-template #elseBlock>
-  <div class="chip mr-2 mt-2 ml-3">
-    <img src="https://img.icons8.com/plasticine/100/000000/user-male-circle.png" alt="Person" width="96" height="96">
-    {{userInvite.usernameFrom}}
-    <span class="closebtn"  (click)="deleteFriend()" onclick="this.parentElement.style.display='none';">&times;</span>
-  </div>
-</ng-template>
+

@@ -59,6 +59,7 @@ public class UserInviteDaoImpl implements UserInviteDao {
                     userInvite.setId(resultSet.getLong("id"));
                     userInvite.setInviteText(resultSet.getString("invite_text"));
                     userInvite.setUsernameFrom(resultSet.getString("username"));
+                    userInvite.setImage(resultSet.getString("image"));
                 return userInvite;
         });
     }
@@ -72,6 +73,7 @@ public class UserInviteDaoImpl implements UserInviteDao {
                     UserInvite userInvite = new UserInvite();
                     userInvite.setUserIdFrom(resultSet.getLong("id"));
                     userInvite.setUsernameFrom(resultSet.getString("username"));
+                    userInvite.setImage(resultSet.getString("image"));
                     return userInvite;
                 });
     }

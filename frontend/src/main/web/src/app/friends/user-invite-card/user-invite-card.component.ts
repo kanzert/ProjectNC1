@@ -9,9 +9,9 @@ import {UserService} from "../../services/user.service";
 })
 export class UserInviteCardComponent implements OnInit {
   @Input() userInvite: UserInvite;
-  @Input() isFriendList: boolean;
   @Output() onChanged = new EventEmitter<Boolean>();
 
+  imageUrl = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';
   nameButtonAccept = 'Accept';
   nameButtonDecline = 'Decline';
   clicked = false;
@@ -42,11 +42,5 @@ export class UserInviteCardComponent implements OnInit {
     } else {
       this.nameButtonDecline = action;
     }
-  }
-
-  deleteFriend(): void {
-    this.userService.deleteFriendFromList(this.userInvite.userIdFrom).subscribe(response => {
-      console.log(response);
-    })
   }
 }
