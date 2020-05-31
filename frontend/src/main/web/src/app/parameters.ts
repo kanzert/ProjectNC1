@@ -20,5 +20,6 @@ export const USER_POINTS = 10;
 export const OPTIONAL_QUESTION = 3;
 export const SEQUENCE_QUESTION = 4;
 export const TRUE_FALSE_QUESTION = 1;
-export const INPUT_QUESTION =2;
-
+export const INPUT_QUESTION = 2;
+export const ANNOUNCEMENT_DEFAULT_IMAGE = 'https://cdn.pixabay.com/photo/2020/04/09/12/28/dog-5021242_1280.jpg';
+export const USER_DEFAULT_IMAGE = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';

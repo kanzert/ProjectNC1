@@ -31,14 +31,7 @@ public class AnnouncementController {
     @PostMapping("/create")
     public ResponseEntity createAnnouncement(@RequestBody Announcement announcement) {
         Map<String, String> response = new HashMap<>();
-        try {
-            announcementService.createAnnouncement(announcement);
-        }
-        catch(DataAccessException sqlEx){
-            response.put("message",messageSource
-                    .getMessage("announcement.fail", null, LocaleContextHolder.getLocale()));
-            ResponseEntity.badRequest().body(response);
-        }
+        announcementService.createAnnouncement(announcement);
         response.put("message",messageSource
                 .getMessage("announcement.success", null, LocaleContextHolder.getLocale()));
         return  ResponseEntity.ok(response);
@@ -47,68 +40,36 @@ public class AnnouncementController {
     @GetMapping("/created")
     public ResponseEntity getCreated() {
         List<Announcement> announcementList;
-        try {
-            announcementList = announcementService.getCreated();
-        }
-        catch(DataAccessException sqlEx){
-
-            return ResponseEntity.badRequest().build();
-        }
+        announcementList = announcementService.getCreated();
         return ResponseEntity.ok(announcementList);
     }
 
     @GetMapping("/all/{id}")
     public ResponseEntity getAll(@PathVariable("id") Long userId) {
         List<Announcement> announcementList;
-        try {
             announcementList = announcementService.getAll(userId);
-        }
-        catch(DataAccessException sqlEx){
-
-            return ResponseEntity.badRequest().build();
-        }
         return ResponseEntity.ok(announcementList);
 
     }
 
     @PostMapping("/approve")
     public ResponseEntity approve(@RequestBody Announcement announcement) {
-        try {
             announcementService.approve(announcement);
-        }
-        catch(DataAccessException sqlEx){
-
-            return ResponseEntity.badRequest().body(sqlEx.toString());
-        }
         return ResponseEntity.ok().build();
     }
     @PutMapping("/update")
     public ResponseEntity updateAnnouncement(@RequestBody Announcement announcement) {
         Map<String, String> model = new HashMap<String, String>();
-        try {
-            announcementService.updateAnnouncement(announcement);
-        }
-        catch(DataAccessException sqlEx){
-            model.put("message",messageSource
-                    .getMessage("announcement.fail.upd", null, LocaleContextHolder.getLocale()));
-            return ResponseEntity.badRequest().body(model);
-        }
+        announcementService.updateAnnouncement(announcement);
         model.put("message",messageSource
                 .getMessage("announcement.updated", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(model);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity updateAnnouncement(@PathVariable("id") long id) {
+    public ResponseEntity deleteAnnouncement(@PathVariable("id") long id) {
         Map<String, String> model = new HashMap<String, String>();
-        try {
-            announcementService.deleteAnnouncement(id);
-        }
-        catch(DataAccessException sqlEx){
-           model.put("message",messageSource
-                   .getMessage("announcement.fail.delete", null, LocaleContextHolder.getLocale()));
-            return ResponseEntity.badRequest().body(model);
-        }
+        announcementService.deleteAnnouncement(id);
         model.put("message",messageSource
                 .getMessage("announcement.deleted", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(model);

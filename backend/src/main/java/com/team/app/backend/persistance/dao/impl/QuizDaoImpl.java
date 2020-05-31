@@ -48,7 +48,6 @@ public class QuizDaoImpl implements QuizDao {
     }
 
 
-
     @Override
     public List<Quiz> getByUserId(Long id) {
         return jdbcTemplate.query(
@@ -175,23 +174,27 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public void delete(Long id) {
+
         jdbcTemplate.update(env.getProperty("delete.quiz"),id);
     }
     @Override
     public void approve(Long id) {
+
         jdbcTemplate.update(env.getProperty("approve.quiz"),id);
     }
 
     @Override
     public Long getUserIdByQuiz(Long quizId) {
         return jdbcTemplate.queryForObject(
-                env.getProperty("get.userId.by.quiz"),new Object[]{quizId},
+                env.getProperty("get.userId.by.quiz"),
+                new Object[]{quizId},
                 Long.class);
     }
     @Override
     public String getTitle(Long quizId) {
         return jdbcTemplate.queryForObject(
-                env.getProperty("get.title.by.quiz"),new Object[]{quizId},
+                env.getProperty("get.title.by.quiz"),
+                new Object[]{quizId},
                 String.class);
     }
     @Override
@@ -206,8 +209,14 @@ public class QuizDaoImpl implements QuizDao {
         return jdbcTemplate.query(
                 env.getProperty("get.top.stats"),
                 new Object[]{quizId},
-                sessionStatsRowMapper);
-
+                (resultSet, i) -> {
+                    SessionStatsDto sessionStatsDto = new SessionStatsDto();
+                    sessionStatsDto.setPlace(resultSet.getInt("place"));
+                    sessionStatsDto.setScore(resultSet.getInt("score"));
+                    sessionStatsDto.setTime(resultSet.getInt("time"));
+                    sessionStatsDto.setUsername(resultSet.getString("username"));
+                    return sessionStatsDto;
+                });
     }
 
 

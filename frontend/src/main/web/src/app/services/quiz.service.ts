@@ -135,7 +135,8 @@ export class QuizService {
 
   approveQuiz(quiz: Quiz): Observable<any> {
     return  this.http.post<Quiz>(this.quizzesUrl + '/approve', quiz,
-      { headers: this.httpHeader})
+      { headers: new HttpHeaders()
+          .set('Authorization',  `Bearer_${this.userService.getToken()}`)})
 
   }
 
