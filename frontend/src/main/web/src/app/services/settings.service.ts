@@ -13,7 +13,7 @@ import {User} from "../entities/user";
 export class SettingsService {
 
   notificationSettings: Notification[];
-  activitySettings:Setting[];
+  activitySettings: Setting[];
 
 
   private apiURL = 'http://localhost:8080/api';
@@ -25,13 +25,13 @@ export class SettingsService {
 
 
   getNotificationSettings(userId: number) {
-    return  this.http.get<Notification[]>(this.apiURL + `/notification/settings/get/${userId}`,
+    return  this.http.get<Notification[]>(this.apiURL + '/notification/settings/get/',
       { headers: new HttpHeaders()
           .set('Authorization',  `Bearer_${this.userService.getToken()}`)}).pipe(
       tap(response => {this.notificationSettings = response;}))
   }
   getActivitiesSettings(userId: number) {
-    return  this.http.get<Setting[]>(this.apiURL + `/activity/settings/${userId}`,
+    return  this.http.get<Setting[]>(this.apiURL + '/activity/settings/',
       { headers: new HttpHeaders()
           .set('Authorization',  `Bearer_${this.userService.getToken()}`)}).pipe(
       tap(response => {this.activitySettings = response;}))
@@ -41,7 +41,7 @@ export class SettingsService {
       { headers: new HttpHeaders()
           .set('Authorization',  `Bearer_${this.userService.getToken()}`)})
   }
-  setActivitySetting(setting){
+  setActivitySetting(setting) {
     return  this.http.post<Setting>(this.apiURL + '/activity/settings', setting,
       { headers: new HttpHeaders()
           .set('Authorization',  `Bearer_${this.userService.getToken()}`)})

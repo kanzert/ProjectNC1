@@ -4,6 +4,7 @@ package com.team.app.backend.rest;
 import com.team.app.backend.dto.UserCreateDto;
 import com.team.app.backend.dto.UserUpdateDto;
 import com.team.app.backend.persistance.model.User;
+import com.team.app.backend.service.SecurityService;
 import com.team.app.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -20,12 +21,16 @@ import java.util.Map;
 @RestController
 @RequestMapping("api")
 public class UserController {
+    private final UserService userService;
+    private final MessageSource messageSource;
+    private final SecurityService securityService;
 
-    private final
-    UserService userService;
-
-    private final
-    MessageSource messageSource;
+    @Autowired
+    public UserController(UserService userService, MessageSource messageSource, SecurityService securityService) {
+        this.userService = userService;
+        this.messageSource = messageSource;
+        this.securityService = securityService;
+    }
 
     @Autowired
     public UserController(UserService userService, MessageSource messageSource) {
@@ -38,18 +43,14 @@ public class UserController {
             @PathVariable("name") String name,
             @PathVariable("first") int firstRole,
             @PathVariable("last") int lastRole) {
-        System.out.println(firstRole);
         return userService.searchUsers(name, firstRole, lastRole);
     }
-
 
     @PutMapping("/user/update")
     public User updateUser(
                            @RequestBody UserUpdateDto userUpdateDto) {
-        System.out.println(userUpdateDto.getFirstName()+"   "+userUpdateDto.getLastName());
         return userService.updateUser(userUpdateDto);
-    };
-
+    }
 
     @PostMapping("user/create")
     public User createUser(
@@ -63,9 +64,9 @@ public class UserController {
         return new ModelAndView("redirect:" + "https://brainduel.herokuapp.com/#/signup" );
     }
 
-
-    @DeleteMapping("user/delete/{id}")
-    public Map<String,Object> deleteUser( @PathVariable("id") long id){
+    @DeleteMapping("user/delete/")
+    public Map<String,Object> deleteUser(){
+        Long id = securityService.getCurrentUser().getId();
         Map<String, Object> model = new HashMap<String, Object>();
         if(userService.deleteUser(id)){
 
@@ -79,11 +80,15 @@ public class UserController {
         return model;
     }
 
-    @PostMapping("/user/status/{id}/{user}")
-    public ResponseEntity setStatus(@PathVariable("id") Long statusId,
-                                    @PathVariable("user") Long userId) {
+    @PostMapping("/user/status/{id}")
+    public ResponseEntity setStatus(@PathVariable("id") Long statusId) {
+        Long userId = securityService.getCurrentUser().getId();
         userService.setStatus(statusId,userId);
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("user/current")
+    public User getCurrentUser() {
+        return securityService.getCurrentUser();
+    }
 }

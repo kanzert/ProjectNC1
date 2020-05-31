@@ -6,6 +6,7 @@ import com.team.app.backend.exception.DisabledUserException;
 import com.team.app.backend.exception.NotActivatedUserException;
 import com.team.app.backend.persistance.model.User;
 import com.team.app.backend.security.jwt.JwtTokenProvider;
+import com.team.app.backend.service.SecurityService;
 import com.team.app.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -40,11 +41,8 @@ import java.util.logging.Logger;
 public class LoginController {
 
     private final UserService userService;
-
     private final JwtTokenProvider jwtTokenProvider;
-
     private final AuthenticationManager authenticationManager;
-
     private final MessageSource messageSource;
 
     @Autowired
@@ -60,7 +58,6 @@ public class LoginController {
         Map<String, String> model = new HashMap<String, String>();
         try {
             String username = requestDto.getUsername();
-            System.out.println(username +" "+ requestDto.getPassword());
 
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
             User user = userService.findByUsername(username);
@@ -105,12 +102,8 @@ public class LoginController {
         }
     }
 
-
-
-
     @PostMapping("/recovery")
     @ResponseBody
-
     public ResponseEntity recovery(@RequestBody RecoveryDto recoveryDto){
         String email = recoveryDto.getEmail();
         System.out.println(email);

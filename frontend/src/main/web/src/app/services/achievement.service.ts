@@ -31,7 +31,7 @@ export class AchievementService {
   }
 
   getUserAchievements(): Observable<UserAchievement[]> {
-    return this.http.get<UserAchievement[]>(this.achievementUrl + `/${this.userService.user.id}`,
+    return this.http.get<UserAchievement[]>(this.achievementUrl + '/get',
       { headers: this.httpHeader}).pipe(
       catchError(this.handleError<any>('getUserAchievements'))
     );
@@ -44,7 +44,7 @@ export class AchievementService {
   }
 
   setUserAchievement() {
-    return this.http.post(this.achievementUrl + '/set' + `/${this.userService.user.id}`, '',
+    return this.http.post(this.achievementUrl + '/set', '',
       { headers: this.httpHeader})
       .pipe(catchError(this.handleError('setUserAchievement')));
   }

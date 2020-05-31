@@ -27,31 +27,34 @@ import java.util.Map;
 public class PlayQuizController {
 
     private final SessionService sessionService;
-
     private final QuizService quizService;
-
     private final UserService userService;
-
     private final UserToSessionService userToSessionService;
-
+    private final QuestionService questionService;
+    private final UserAnswerService userAnswerService;
     private final MessageSource messageSource;
-
+    private final SecurityService securityService;
     private final SimpMessagingTemplate template;
 
     @Autowired
-    PlayQuizController(SimpMessagingTemplate template, SessionService sessionService, QuizService quizService, UserService userService, UserToSessionService userToSessionService, MessageSource messageSource){
+    PlayQuizController(SimpMessagingTemplate template, SessionService sessionService, QuizService quizService, UserService userService, UserToSessionService userToSessionService, QuestionService questionService, UserAnswerService userAnswerService, MessageSource messageSource, SecurityService securityService){
+
         this.template = template;
         this.sessionService = sessionService;
         this.quizService = quizService;
         this.userService = userService;
         this.userToSessionService = userToSessionService;
+        this.questionService = questionService;
+        this.userAnswerService = userAnswerService;
+        this.messageSource = messageSource;
+        this.securityService = securityService;
+    }
+
+    @MessageMapping("/start/game/{session_id}")
+    public void sendMessage(@PathVariable("session_id") Long sesId){
         this.messageSource = messageSource;
     }
 
-    @MessageMapping("/start/game")
-    public void sendStart(Long sesId){
-        this.template.convertAndSend("/start/"+sesId,  "true");
-    }
 
     @MessageMapping("/finish/game")
     public void sendStats(FinishedQuizDto finishedQuizDto){
@@ -62,13 +65,18 @@ public class PlayQuizController {
     }
 
 
-    @GetMapping("play/{user_id}/{quiz_id}")
+    @GetMapping("play/{quiz_id}")
     public ResponseEntity playQuiz(
-            @PathVariable("user_id") long user_id,
             @PathVariable("quiz_id") long quiz_id) {
-        Long ses_id = sessionService.newSessionForQuiz(quiz_id);
-        userToSessionService.createNewUserToSession(user_id, ses_id);
-        return ResponseEntity.ok(sessionService.getSessionById(ses_id));
+        Long user_id = securityService.getCurrentUser().getId();
+        Quiz quiz = quizService.getQuiz(quiz_id);
+        Session session = sessionService.newSessionForQuiz(quiz);
+
+        sessionService.updateSession(session);
+        User user = userService.getUserById(user_id);
+        userToSessionService.createNewUserToSession(user, session);
+
+        return ResponseEntity.ok(session);
     }
 
 
@@ -81,17 +89,18 @@ public class PlayQuizController {
 
 
     @GetMapping("access_code/{ses_id}")
-    public ResponseEntity getAccessCode(@PathVariable("ses_id") long ses_id) {
+    public ResponseEntity getAccessCode(
+            @PathVariable("ses_id") long ses_id
+    ) {
         Session session = sessionService.getSessionById(ses_id);
         return ResponseEntity.ok(session.getAccessCode());
-
     }
 
     @GetMapping("join")
     public ResponseEntity getAccessCode(
-            @RequestParam("user_id") Long user_id,
             @RequestParam("access_code") String accessCode
     ) {
+        Long user_id = securityService.getCurrentUser().getId();
         Session session = sessionService.getSessionByAccessCode(accessCode);
         if(session != null){
             userToSessionService.createNewUserToSession(user_id, session.getId());

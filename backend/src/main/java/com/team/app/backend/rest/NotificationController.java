@@ -2,6 +2,7 @@ package com.team.app.backend.rest;
 
 import com.team.app.backend.persistance.model.Notification;
 import com.team.app.backend.service.NotificationService;
+import com.team.app.backend.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +20,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/notification")
 public class NotificationController {
-
     private final NotificationService notificationService;
+    private final SecurityService securityService;
 
     @Autowired
-    public NotificationController(NotificationService notificationService) {
+    public NotificationController(NotificationService notificationService, SecurityService securityService) {
         this.notificationService = notificationService;
+        this.securityService = securityService;
     }
-
 
     @MessageMapping("/delete/notifications")
     public void delete(List<Notification> notifications) {
@@ -34,7 +35,8 @@ public class NotificationController {
     }
 
     @MessageMapping("/get/notifications")
-    public void getAll(Long userId, StompHeaderAccessor stompHeaderAccessor){
+    public void getAll(StompHeaderAccessor stompHeaderAccessor){
+        Long userId = securityService.getCurrentUser().getId();
         notificationService.add(stompHeaderAccessor.getSessionId(), userId);
         notificationService.dispatch(stompHeaderAccessor.getSessionId());
     }
@@ -44,26 +46,25 @@ public class NotificationController {
         notificationService.create(not);
         return ResponseEntity.ok().build();
     }
+
     @PutMapping("/update")
     public ResponseEntity update(@RequestBody Notification not) {
         notificationService.update(not);
         return ResponseEntity.ok().build();
-
     }
 
-
-    @GetMapping("/settings/get/{id}")
-    public  ResponseEntity getSetting(@PathVariable("id") Long userId) {
+    @GetMapping("/settings/get/")
+    public  ResponseEntity getSetting() {
+        Long userId = securityService.getCurrentUser().getId();
         List<Notification> notifications = null;
         notifications = this.notificationService.getSetting(userId);
         return ResponseEntity.ok(notifications);
     }
+
     @PostMapping("/settings")
     public ResponseEntity setSetting(@RequestBody Notification not) {
         this.notificationService.setSetting(not);
         return ResponseEntity.ok().build();
 
     }
-
-
 }

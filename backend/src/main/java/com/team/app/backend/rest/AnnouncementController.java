@@ -2,6 +2,7 @@ package com.team.app.backend.rest;
 
 import com.team.app.backend.persistance.model.Announcement;
 import com.team.app.backend.service.AnnouncementService;
+import com.team.app.backend.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -19,14 +20,14 @@ import java.util.Map;
 public class AnnouncementController {
 
     private final AnnouncementService announcementService;
-
     private final MessageSource messageSource;
+    private final SecurityService securityService;
 
     @Autowired
-    public AnnouncementController(AnnouncementService announcementService, MessageSource messageSource) {
+    public AnnouncementController(AnnouncementService announcementService, MessageSource messageSource, SecurityService securityService) {
         this.announcementService = announcementService;
         this.messageSource = messageSource;
-    }
+        this.securityService = securityService;
 
     @PostMapping("/create")
     public ResponseEntity createAnnouncement(@RequestBody Announcement announcement) {
@@ -44,8 +45,10 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcementList);
     }
 
-    @GetMapping("/all/{id}")
-    public ResponseEntity getAll(@PathVariable("id") Long userId) {
+
+    @GetMapping("/all")
+    public ResponseEntity getAll() {
+        Long userId = securityService.getCurrentUser().getId();
         List<Announcement> announcementList;
             announcementList = announcementService.getAll(userId);
         return ResponseEntity.ok(announcementList);
@@ -57,6 +60,7 @@ public class AnnouncementController {
             announcementService.approve(announcement);
         return ResponseEntity.ok().build();
     }
+
     @PutMapping("/update")
     public ResponseEntity updateAnnouncement(@RequestBody Announcement announcement) {
         Map<String, String> model = new HashMap<String, String>();

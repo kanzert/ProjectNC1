@@ -47,7 +47,7 @@ export class NotificationService {
   }
 
   getNotifications() {
-    this.stompClient.send('/app/get/notifications' , {}, this.userService.user.id);
+    this.stompClient.send('/app/get/notifications');
   }
 
   delete(notification: Notification[]) {

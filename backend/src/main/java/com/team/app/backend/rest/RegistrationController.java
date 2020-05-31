@@ -19,16 +19,15 @@ import java.util.*;
 @RequestMapping("api")
 public class RegistrationController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
     private final UserService userService;
-
-
+    private final UserDao userDao;
     private final MessageSource messageSource;
 
+
     @Autowired
-    public RegistrationController(UserService userService, MessageSource messageSource) {
+    public RegistrationController(UserService userService, UserDao userDao, MessageSource messageSource) {
         this.userService = userService;
+        this.userDao = userDao;
         this.messageSource = messageSource;
     }
 

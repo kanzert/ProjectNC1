@@ -41,7 +41,7 @@ export class QuizService {
   }
 
   getSession(quizId: number): Observable<Session> {
-    return this.http.get<Session>(this.quizzesUrl + `/play/${this.userId}/${quizId}`,
+    return this.http.get<Session>(this.quizzesUrl + `/play/${quizId}`,
       { headers: this.httpHeader })
       .pipe(catchError(this.handleError<Session>('getSession')));
   }
@@ -54,7 +54,7 @@ export class QuizService {
 
 
   joinSession(accessCode): Observable<Session> {
-    return this.http.get<Session>(this.quizzesUrl + `/join/?user_id=${this.userId}&access_code=` + accessCode,
+    return this.http.get<Session>(this.quizzesUrl + `/join/?access_code=` + accessCode,
       { headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.userService.getToken()}`)})
       .pipe(
@@ -86,45 +86,45 @@ export class QuizService {
 
 
   getQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.quizzesUrl + "/approved/" + this.userId,
+    return this.http.get<Quiz[]>(this.quizzesUrl + '/approved',
       { headers: this.httpHeader})
       .pipe(catchError(this.handleError<Quiz[]>('getQuizzes', [])));
   }
 
   getUserQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.quizzesUrl + "/user/" + this.userId,
+    return this.http.get<Quiz[]>(this.quizzesUrl + '/user/',
       { headers: this.httpHeader})
       .pipe(catchError(this.handleError<Quiz[]>('getUserQuizzes', [])));
   }
 
   getFavoriteQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.quizzesUrl + '/favorite/' + this.userId,
+    return this.http.get<Quiz[]>(this.quizzesUrl + '/favorite/',
       { headers: this.httpHeader})
       .pipe(catchError(this.handleError<Quiz[]>('getFavoriteQuizzes', [])));
   }
 
 
   addFavoriteQuiz(quizId) {
-    return this.http.post(this.quizzesUrl + '/favorite/' + quizId + '/' + this.userId,'Add favorite quiz',
+    return this.http.post(this.quizzesUrl + '/favorite/' + quizId, 'Add favorite quiz',
       { headers: this.httpHeader})
       .pipe(catchError(this.handleError<Quiz>('addFavoriteQuiz')));
   }
 
   deleteFavoriteQuiz(quizId) {
-    return this.http.delete(this.quizzesUrl + '/favorite/' + quizId + '/' + this.userId,
+    return this.http.delete(this.quizzesUrl + '/favorite/' + quizId,
       { headers: this.httpHeader })
       .pipe(catchError(this.handleError<Quiz>('deleteFavoriteQuiz')));
   }
 
   getSuggestionsQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.quizzesUrl + '/suggestion/' + this.userId,
+    return this.http.get<Quiz[]>(this.quizzesUrl + '/suggestion',
       { headers: this.httpHeader })
       .pipe(
         catchError(this.handleError<Quiz[]>('getSuggestionsQuizzes', []))
       );
   }
-  getCompletedQuizes():Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.quizzesUrl + '/completed/' + this.userId,
+  getCompletedQuizes(): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(this.quizzesUrl + '/completed',
       { headers: this.httpHeader })
       .pipe(
         catchError(this.handleError<Quiz[]>('getCompletedQuizes', []))

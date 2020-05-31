@@ -2,6 +2,7 @@ package com.team.app.backend.rest;
 
 import com.team.app.backend.persistance.model.Announcement;
 import com.team.app.backend.persistance.model.UserInvite;
+import com.team.app.backend.service.SecurityService;
 import com.team.app.backend.service.UserInviteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -18,17 +19,15 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/user/invite")
 public class UserInviteController {
-
-    private final
-    UserInviteService userInviteService;
-
-    private final
-    MessageSource messageSource;
+    private final UserInviteService userInviteService;
+    private final MessageSource messageSource;
+    private final SecurityService securityService;
 
     @Autowired
-    public UserInviteController(UserInviteService userInviteService, MessageSource messageSource) {
+    public UserInviteController(UserInviteService userInviteService, MessageSource messageSource, SecurityService securityService) {
         this.userInviteService = userInviteService;
         this.messageSource = messageSource;
+        this.securityService = securityService;
     }
 
     @PostMapping("/send")
@@ -39,35 +38,40 @@ public class UserInviteController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{user_id}")
-    public ResponseEntity<List<UserInvite>> getUserInvite(@PathVariable("user_id") long id) {
+    @GetMapping("/get")
+    public ResponseEntity<List<UserInvite>> getUserInvite() {
+        Long id = securityService.getCurrentUser().getId();
         return ResponseEntity.ok().body(userInviteService.getUserInvite(id));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity acceptUserInvite(@PathVariable("id") long id) {
+    @PutMapping("/accept")
+    public ResponseEntity acceptUserInvite() {
+        Long id = securityService.getCurrentUser().getId();
         Map<String, String> model = new HashMap<>();
         userInviteService.acceptUserInvite(id);
         model.put("message", messageSource.getMessage("invite.updated", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(model);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity declineUserInvite(@PathVariable("id") long id) {
+    @DeleteMapping("/decline")
+    public ResponseEntity declineUserInvite() {
+        Long id = securityService.getCurrentUser().getId();
         Map<String, String> model = new HashMap<>();
         userInviteService.declineUserInvite(id);
         model.put("message", messageSource.getMessage("invite.decline", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(model);
     }
 
-    @GetMapping("/friends/{user_id}")
-    public ResponseEntity<List<UserInvite>> getFriends(@PathVariable("user_id") long id) {
+    @GetMapping("/friends/")
+    public ResponseEntity<List<UserInvite>> getFriends() {
+        Long id = securityService.getCurrentUser().getId();
         return ResponseEntity.ok().body(userInviteService.getFriendsList(id));
     }
 
-    @DeleteMapping("/friends/{user_id}/{delete_id}")
-    public ResponseEntity deleteUserFromList(@PathVariable("user_id") long id,
-                                             @PathVariable("delete_id") long deleteId) {
+    // TODO: refactor this
+    @DeleteMapping("/friends/{delete_id}")
+    public ResponseEntity deleteUserFromList(@PathVariable("delete_id") Long deleteId) {
+        Long id = securityService.getCurrentUser().getId();
         Map<String, String> model = new HashMap<>();
         userInviteService.deleteUserFromList(id, deleteId);
         model.put("message", messageSource.getMessage("announcement.deleted", null, LocaleContextHolder.getLocale()));

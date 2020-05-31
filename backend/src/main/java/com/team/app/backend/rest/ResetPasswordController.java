@@ -23,9 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ResetPasswordController {
 
     private final UserService userService;
-
     private final PasswordEncoder passwordEncoder;
-
     private final MessageSource messageSource;
 
     @Autowired
