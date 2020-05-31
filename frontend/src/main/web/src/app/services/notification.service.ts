@@ -10,18 +10,16 @@ declare var Stomp;
   providedIn: 'root'
 })
 export class NotificationService {
-
-
   private serverUrl = 'http://localhost:8080/ws';
   notifications: Notification[] = [];
- public stompClient;
-  
+  public stompClient;
+
   constructor(private http: HttpClient, private userService: UserService) {
     if (userService.authenticated && userService.user.role.name === 'user') {
       this.initializeWebSocketConnection();
     }
   }
- 
+
   initializeWebSocketConnection() {
     if (this.userService.user.role.name === 'user') {
       const ws = new SockJS(this.serverUrl);
@@ -39,7 +37,7 @@ export class NotificationService {
       });
     }
   }
-  
+
   disconnect() {
     if(this.stompClient) {
       this.stompClient.disconnect();

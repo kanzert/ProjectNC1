@@ -10,8 +10,8 @@ import {UserService} from "../../services/user.service";
 export class UserInviteCardComponent implements OnInit {
   @Input() userInvite: UserInvite;
   @Input() isFriendList: boolean;
-  @Output()
-  onChanged = new EventEmitter<UserInvite>();
+  @Output() onChanged = new EventEmitter<Boolean>();
+
   nameButtonAccept = 'Accept';
   nameButtonDecline = 'Decline';
   clicked = false;
@@ -23,6 +23,7 @@ export class UserInviteCardComponent implements OnInit {
   acceptUserInvite(): void {
     this.userService.acceptUserInvite(this.userInvite.id).subscribe(userInvites => {
       console.log(userInvites);
+      this.onChanged.emit(true);
       this.onInviteAction('Accepted');
     });
   }

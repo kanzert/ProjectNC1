@@ -30,4 +30,10 @@ export class FriendsComponent implements OnInit {
       this.friendsList = friendsList;
     })
   }
+
+  onChanged($event: Boolean) {
+    if ($event) {
+      this.getFriends();
+    }
+  }
 }

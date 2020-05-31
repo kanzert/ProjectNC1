@@ -10,11 +10,10 @@ import {UserService} from "./user.service";
   providedIn: 'root'
 })
 export class CategoryService {
-
-  // private categoriesUrl = 'http://localhost:8080/api/category';
-  // private apiUrl = 'http://localhost:8080/api';
-  private categoriesUrl = '/api/category';
-  private apiUrl = '/api';
+  private categoriesUrl = 'http://localhost:8080/api/category';
+  private apiUrl = 'http://localhost:8080/api';
+  // private categoriesUrl = '/api/category';
+  // private apiUrl = '/api';
   private readonly token: string;
   private httpHeader: HttpHeaders;
 

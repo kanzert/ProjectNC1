@@ -36,6 +36,7 @@ public class AchievementDaoImpl implements AchievementDao {
                     UserAchievement userAchievement = new UserAchievement();
                     userAchievement.setTitle(resultSet.getString("title"));
                     userAchievement.setQuizAmount(resultSet.getLong("quiz_amount"));
+                    userAchievement.setImage(resultSet.getString("image"));
                     userAchievement.setPlayed(resultSet.getLong("played"));
                     return userAchievement;
                 });
