@@ -26,11 +26,13 @@ public class UserActivityController {
         Long user_id = securityService.getCurrentUser().getId();
         return ResponseEntity.ok(userActivityService.getFriendsActivities(user_id));
     }
+
     @GetMapping("/get-settings")
     public ResponseEntity getFriendsActivitiesSetting() {
         Long user_id = securityService.getCurrentUser().getId();
         return ResponseEntity.ok(userActivityService.getActivitiesSettings(user_id));
     }
+
     @PostMapping("/set-settings")
     public ResponseEntity setFriendActivitiesSetting(@RequestBody Setting setting){
         userActivityService.setFriendActivitiesSetting(setting);

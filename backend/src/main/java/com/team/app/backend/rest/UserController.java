@@ -88,4 +88,9 @@ public class UserController {
         }
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("user/current")
+    public User getCurrentUser() {
+        return securityService.getCurrentUser();
+    }
 }

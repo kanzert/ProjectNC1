@@ -26,48 +26,40 @@ import java.util.Map;
 @RequestMapping("api/quiz/")
 public class PlayQuizController {
 
-    @Autowired
-    SessionService sessionService;
-
-    @Autowired
-    private QuizService quizService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserToSessionService userToSessionService;
-
-    @Autowired
-    private QuestionService questionService;
-
-    @Autowired
-    private UserAnswerService userAnswerService;
-
-    @Autowired
-    MessageSource messageSource;
-
-    @Autowired
-    private SecurityService securityService;
-
+    private final SessionService sessionService;
+    private final QuizService quizService;
+    private final UserService userService;
+    private final UserToSessionService userToSessionService;
+    private final QuestionService questionService;
+    private final UserAnswerService userAnswerService;
+    private final MessageSource messageSource;
+    private final SecurityService securityService;
     private final SimpMessagingTemplate template;
 
     @Autowired
-    PlayQuizController(SimpMessagingTemplate template){
+    PlayQuizController(SimpMessagingTemplate template, SessionService sessionService, QuizService quizService, UserService userService, UserToSessionService userToSessionService, QuestionService questionService, UserAnswerService userAnswerService, MessageSource messageSource, SecurityService securityService){
         this.template = template;
+        this.sessionService = sessionService;
+        this.quizService = quizService;
+        this.userService = userService;
+        this.userToSessionService = userToSessionService;
+        this.questionService = questionService;
+        this.userAnswerService = userAnswerService;
+        this.messageSource = messageSource;
+        this.securityService = securityService;
     }
 
-    @MessageMapping("/start/game")
-    public void sendMessage(Long sesId){
+    @MessageMapping("/start/game/{session_id}")
+    public void sendMessage(@PathVariable("session_id") Long sesId){
         this.template.convertAndSend("/start/"+sesId,  "true");
     }
 
 
-    @GetMapping("play/{user_id}/{quiz_id}")
+    @GetMapping("play/{quiz_id}")
     public ResponseEntity playQuiz(
-            @PathVariable("user_id") long user_id,
             @PathVariable("quiz_id") long quiz_id) {
 
+        Long user_id = securityService.getCurrentUser().getId();
         Quiz quiz = quizService.getQuiz(quiz_id);
         Session session = sessionService.newSessionForQuiz(quiz);
 

@@ -103,9 +103,8 @@ public class AnnouncementController {
         return ResponseEntity.ok(model);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity updateAnnouncement() {
-        Long id = securityService.getCurrentUser().getId();
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity updateAnnouncement(@PathVariable Long id) {
         Map<String, String> model = new HashMap<String, String>();
         try {
             announcementService.deleteAnnouncement(id);

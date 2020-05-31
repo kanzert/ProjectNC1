@@ -92,9 +92,9 @@ public class UserInviteController {
     }
 
     // TODO: refactor this
-    @DeleteMapping("/friends/{user_id}/{delete_id}")
-    public ResponseEntity deleteUserFromList(@PathVariable("user_id") long id,
-                                             @PathVariable("delete_id") long deleteId) {
+    @DeleteMapping("/friends/{delete_id}")
+    public ResponseEntity deleteUserFromList(@PathVariable("delete_id") Long deleteId) {
+        Long id = securityService.getCurrentUser().getId();
         Map<String, String> model = new HashMap<>();
         try {
             userInviteService.deleteUserFromList(id, deleteId);

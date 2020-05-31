@@ -15,7 +15,7 @@ import {UserActivity} from "../entities/user-activity";
 export class UserActivityService {
 
   // apiURL = 'http://localhost:8080/api';
-  apiURL = '/api';
+  apiURL = '/api/activity';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,15 +31,11 @@ export class UserActivityService {
   }
 
   getAll() {
-    return this.http.get<UserActivity[]>(this.apiURL + `/activity/all/`+this.userService.user.id,  {
+    return this.http.get<UserActivity[]>(this.apiURL + '/all',  {
       headers: new HttpHeaders()
         .set('Authorization',  `Bearer_${this.userService.getToken()}`)
     }).pipe(
       catchError(this.handleError<any>('getAll'))
     );
   }
-
-
-
-
 }

@@ -142,7 +142,7 @@ public class QuizController {
         userQuizFavoriteService.deleteFavorite(user_id,quiz_id);
     }
 
-    @GetMapping("/quiz/user/{id}")
+    @GetMapping("/quiz/user")
     public List<Quiz> userQuizzes() {
         Long id = securityService.getCurrentUser().getId();
         return quizService.getUserQuizes(id);
