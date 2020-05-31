@@ -19,4 +19,5 @@ public class UserInvite {
     private Long userIdFrom;
     private Long userIdTo;
     private String usernameFrom;
+    private String image;
 }

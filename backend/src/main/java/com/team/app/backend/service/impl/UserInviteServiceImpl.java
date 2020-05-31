@@ -21,17 +21,21 @@ public class UserInviteServiceImpl implements UserInviteService {
 
     private final long NOTIFICATION_INVITE = 3L;
 
-    @Autowired
-    private UserInviteDao userInviteDao;
+    private final UserInviteDao userInviteDao;
+
+    private final NotificationDao notificationDao;
+
+    private final MessageSource messageSource;
+
+    private final UserService userService;
 
     @Autowired
-    private NotificationDao notificationDao;
-
-    @Autowired
-    MessageSource messageSource;
-
-    @Autowired
-    UserService userService;
+    public UserInviteServiceImpl(UserInviteDao userInviteDao, NotificationDao notificationDao, MessageSource messageSource, UserService userService) {
+        this.userInviteDao = userInviteDao;
+        this.notificationDao = notificationDao;
+        this.messageSource = messageSource;
+        this.userService = userService;
+    }
 
     @Override
     public void sendUserInvite(UserInvite userInvite) {

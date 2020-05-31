@@ -34,6 +34,11 @@
                 <mat-icon inline=true>group</mat-icon><strong> {{'DASHBOARD.SIDEBAR.ADMINS_MODERATORS' | translate}}</strong>
               </a>
             </li>
+            <li *ngIf="getUserRole()=='user'" class="nav-item border-bottom">
+              <a class="nav-link btn" (click)="changeTab('Activity')">
+                <mat-icon inline=true>group</mat-icon><strong>{{'DASHBOARD.SIDEBAR.ACTIVITIES' | translate}}</strong>
+              </a>
+            </li>
             <li  class="nav-item border-bottom">
               <a class="nav-link btn" (click)="changeTab('Announcement')">
                 <mat-icon inline=true>event_note</mat-icon> <strong> {{'DASHBOARD.SIDEBAR.ANNOUNCEMENT' | translate}}</strong>
@@ -53,8 +58,36 @@
           </ul>
         </div>
       </nav>
-
       <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-1 align-self-start" >
+        <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button #closeModal type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="joinForm" (ngSubmit)="submit()">
+                  <div class="col-lg-11 ml-lg-3 mt-5 alert alert-danger" [hidden]="!join_message">
+                    {{join_message}}
+                  </div>
+                  <div class="form-group">
+                    <h4 class="form-control-label" style="color: black">{{'DASHBOARD.JOIN FORM.LABEL' | translate}}</h4>
+                    <input type="text" formControlName="accessCode"  class="form-control text-center"  placeholder="{{'DASHBOARD.JOIN FORM.PLACEHOLDER' | translate}}" required [minlength]="6" [maxlength]="6">
+                    <div *ngIf="joinForm.get('accessCode').invalid && joinForm.get('accessCode').touched"
+                         class="validation">
+                      <small *ngIf="joinForm.get('accessCode').errors.required">
+                        {{'DASHBOARD.JOIN FORM.VALIDATION' | translate}}
+                      </small>
+                    </div>
+                  </div>
+                  <button  class="btn btn-primary btn-lg" type="submit" [disabled]="joinForm.invalid">{{'DASHBOARD.JOIN FORM.BUTTON' | translate}}</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
         <div *ngIf="tab === 'Users' || tab === 'Friends' || tab === 'Admins-Moderators' || tab==='Moderators' || tab === 'Quizzes' " class=" main-frame container-fluid my-5 ">
           <form *ngIf="tab !== 'Quizzes'" class="form-inline ml-3 my-2 my-lg-0" >
             <input [(ngModel)]="term" name="term" id="search-box"  class="form-control my-2 mx-auto" type="text" placeholder="{{'DASHBOARD.SEARCH.PLACEHOLDER' | translate}}" style="width: 70%">
@@ -110,12 +143,12 @@
         </div>
         <!--Profile-->
         <div *ngIf="tab === 'Achievements'">
-
           <app-achievement-dashboard></app-achievement-dashboard>
         </div>
         <app-user-profile *ngIf="tab === 'Profile' || tab === 'AddProfile'" [user]="user" [editOnly]="tab!=='Profile'"></app-user-profile>
         <app-settings *ngIf="tab === 'Settings'"></app-settings>
         <app-announcement-dashboard *ngIf="tab === 'Announcement'" ></app-announcement-dashboard>
+        <app-user-activity-dashboard *ngIf="tab === 'Activity'"></app-user-activity-dashboard>
       </main>
     </div>
   </div>

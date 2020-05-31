@@ -16,11 +16,15 @@ import java.util.Locale;
 @RequestMapping("/api")
 public class LanguageController {
 
-    @Autowired
-    LocaleResolver localeResolver;
+    private final LocaleResolver localeResolver;
+
+    private final UserService userService;
 
     @Autowired
-    UserService userService;
+    public LanguageController(LocaleResolver localeResolver, UserService userService) {
+        this.localeResolver = localeResolver;
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/change/{lang}", method = RequestMethod.PUT)
     public void changeSessionLanguage(HttpServletRequest request, HttpServletResponse response,

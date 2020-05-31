@@ -7,7 +7,6 @@
         <img  src="https://img.icons8.com/plasticine/100/000000/user-male-circle.png"/>
         <div class="alert alert-danger" [hidden]="!error">
             {{error}}
-<!--            {{'LOGIN.ALERT' | translate}}-->
         </div>
         <form [formGroup]="userForm" (ngSubmit)="login()">
           <div class="form-group ">
@@ -15,14 +14,6 @@
           </div>
           <div class="form-group">
             <input type="password" formControlName="password" class="form-control text-center" id="exampleInputPassword1" placeholder="{{'LOGIN.FORM.PASSWORD' | translate}}" required maxlength="20">
-          </div>
-          <div class="form-group">
-            <div class="form-check ">
-              <label class="form-check-label" for="autoSizingCheck2">
-                <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
-                {{'LOGIN.FORM.REMEMBER_ME' | translate}}
-              </label>
-            </div>
           </div>
           <button  class="btn btn-secondary btn-lg btn-block" type="submit" [disabled]="!userForm.valid">{{'LOGIN.FORM.BUTTON.LOGIN' | translate}}</button>
         </form>

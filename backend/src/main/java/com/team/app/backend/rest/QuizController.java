@@ -20,16 +20,19 @@ import java.util.Map;
 @RequestMapping("api")
 public class QuizController {
 
-    @Autowired
-    QuizService quizService;
+    private final QuizService quizService;
+
+    private final UserQuizFavoriteService userQuizFavoriteService;
 
     @Autowired
-    UserQuizFavoriteService userQuizFavoriteService;
+    public QuizController(QuizService quizService, UserQuizFavoriteService userQuizFavoriteService) {
+        this.quizService = quizService;
+        this.userQuizFavoriteService = userQuizFavoriteService;
+    }
 
     @PostMapping("/quiz")
     public HashMap<String,Long> createMewQuiz(
             @RequestBody QuizAddDto quizDto) {
-        System.out.println(quizDto.getUser_id());
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addQuiz(quizDto));
         return result;
@@ -60,10 +63,8 @@ public class QuizController {
     }
 
 
- //   @PostMapping("/question/1")
     @RequestMapping(value={ "/question/1", "/question/2" },method = { RequestMethod.POST })
     public HashMap<String,Long>  createNewQuestion(@RequestBody QuestionDefAddDto questionDefAddDto) {
-        System.out.println("add question1");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addDefQuestion(questionDefAddDto));
         return result;
@@ -71,7 +72,6 @@ public class QuizController {
 
     @PostMapping("/question/3")
     public HashMap<String,Long> createNewQuestion(@RequestBody QuestionOptAddDto questionOptAddDto) {
-        System.out.println("add question3");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addOptQuestion(questionOptAddDto));
         return result;
@@ -79,7 +79,6 @@ public class QuizController {
 
     @PostMapping("/question/4")
     public HashMap<String,Long> createNewQuestion(@RequestBody QuestionSeqAddDto questionSeqAddDto) {
-        System.out.println("add question4");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addSeqOptQuestion(questionSeqAddDto));
         return result;
@@ -106,7 +105,6 @@ public class QuizController {
         return quizService.getAllQuizes();
     }
 
-    //
     @GetMapping("quiz/approved")
     public List<Quiz> approvedQuizes() {
         return quizService.getApprovedQuizes();
@@ -157,20 +155,10 @@ public class QuizController {
         return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateFrom(),quizCategoryDto.getDateTo(),quizCategoryDto.getUser());
     }
 
-	@GetMapping("/quiz/search/{searchstring}")
-    public List<Quiz> searchQuizes(@PathVariable("searchstring") String searchstring) {
-        System.out.println(searchstring);
-        return quizService.searchQuizes(searchstring);
-    }
 
     @PostMapping("/quiz/approve")
     public ResponseEntity approveQuiz(@RequestBody Quiz quiz) {
-        try {
-            quizService.aproveQuiz(quiz);
-        }
-        catch (DataAccessException sqlEx) {
-            return ResponseEntity.badRequest().body(sqlEx.toString());
-        }
+            quizService.approveQuiz(quiz);
             return ResponseEntity.ok().build();
     }
 

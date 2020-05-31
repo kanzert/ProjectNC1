@@ -21,19 +21,20 @@ public class RegistrationController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+
+    private final MessageSource messageSource;
 
     @Autowired
-    UserDao userDao;
-
-    @Autowired
-    MessageSource messageSource;
+    public RegistrationController(UserService userService, MessageSource messageSource) {
+        this.userService = userService;
+        this.messageSource = messageSource;
+    }
 
     @PostMapping("/sign-up")
     public ResponseEntity registerUserAccount(
             @RequestBody UserRegistrationDto userDto) {
-
         try {
             userService.registerNewUserAccount(userDto);
 
@@ -44,15 +45,6 @@ public class RegistrationController {
 
         }
         return ResponseEntity.ok().body(new HashMap<String,String>());
-
-
     }
-
-
-
-//    @GetMapping(value = "/{path:[^\\.]*}")
-//    public String redirect() {
-//        return "forward:/";
-//    }
 
 }

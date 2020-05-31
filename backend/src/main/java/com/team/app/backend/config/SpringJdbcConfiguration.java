@@ -22,9 +22,6 @@ public class SpringJdbcConfiguration {
         dataSource.setPassword("c8251c662c253a247023ad3dab0bf1891a4c99c0db50781ee5e271045e8d5452");
         return dataSource;
     }
-    @Bean
-    public UserDao getUserDao() {
-        return new UserDaoImpl(getDataSource());
-    }
+
 }
 

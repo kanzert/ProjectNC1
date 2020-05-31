@@ -16,17 +16,17 @@ import java.util.List;
 @Repository
 public class UserActivityDaoImpl implements UserActivityDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    Environment env;
+    private final Environment env;
 
     private UserActivityRowMapper userActivityRowMapper = new UserActivityRowMapper();
     private UserActivitySettingRowMapper userActivitySettingRowMapper = new UserActivitySettingRowMapper();
 
-    public UserActivityDaoImpl(DataSource dataSource) {
+    @Autowired
+    public UserActivityDaoImpl(DataSource dataSource, Environment env) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
     }
 
     @Override

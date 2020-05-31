@@ -4,4 +4,5 @@ export interface UserInvite {
   userIdFrom: number;
   userIdTo: number;
   usernameFrom: string;
+  image?: string;
 }

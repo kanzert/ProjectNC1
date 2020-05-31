@@ -13,7 +13,7 @@ import {CategoryService} from '../services/category.service';
 import {Category} from '../entities/category';
 import {AchievementService} from "../services/achievement.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DEBOUNCE_TIME} from "../parameters";
+import {DEBOUNCE_TIME, USER_DEFAULT_IMAGE} from "../parameters";
 import { NativeDateAdapter, DateAdapter,
   MAT_DATE_FORMATS } from '@angular/material/core';
 import { formatDate } from '@angular/common';
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('closeModal') closeModal: ElementRef;
   tab = '';
   user: User;
-  imageUrl: string = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';
+  imageUrl: string = USER_DEFAULT_IMAGE;
   users$: Observable<User[]>;
   quizes$: Observable<Quiz[]>;
   categoriesList: Category[] = [];
@@ -85,13 +85,10 @@ export class DashboardComponent implements OnInit {
     this.tab = this.route.snapshot.paramMap.get('tab');
     this.user = this.tab === 'Profile' ? this.userService.user : {role: {}} as User;
     this.user.image = this.getUserImage();
-    if (this.user.image != null) {
-      this.imageUrl = this.user.image;
-    }
+    this.checkImage();
     this.quizes$ = this.searchQuizTerms.pipe(
       debounceTime(DEBOUNCE_TIME),
       distinctUntilChanged(),
-      // switch to new search observable each time the term changes
       switchMap((obj: any) => this.quizService.searchQuizzes(obj.title, obj.categories, obj.dateFrom, obj.dateTo, obj.user)),
     );
     this.users$ = this.searchUserTerms.pipe(
@@ -117,8 +114,6 @@ export class DashboardComponent implements OnInit {
     } else {
       date_to = this.datePipe.transform(this.dateTo, "yyyy-MM-dd");
     }
-    console.log(date_from);
-    console.log(date_to);
     this.isVisible = false;
     if (this.tab === 'Quizzes') {
       this.searchQuizTerms.next({ title: this.term, categories: this.selectedCategories, dateFrom: date_from, dateTo: date_to, user: this.quizUser });
@@ -181,6 +176,10 @@ export class DashboardComponent implements OnInit {
   submit() {
     this.connectToSession(this.joinForm.get('accessCode').value);
   }
-
+  checkImage() {
+    if (this.user.image != null) {
+      this.imageUrl = this.user.image;
+    }
+  }
 
 }

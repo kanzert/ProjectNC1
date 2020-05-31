@@ -4,15 +4,15 @@ import com.team.app.backend.persistance.model.Session;
 
 public interface SessionDao {
 
-    Session save(Session session);
+    Long save(Session session);
 
     Session getById(Long id);
 
-    Session deleteById(Long id);
+    void deleteById(Long id);
 
-    Session update(Session session);
+    void update(Session session);
 
-    void setSesionStatus(Long ses_id,Long status_id);
+    void setSessionStatus(Long ses_id,Long status_id);
 
     boolean checkAccesCodeAvailability(String access_code);
 

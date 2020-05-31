@@ -1,35 +1,22 @@
-<div *ngIf="!isFriendList; else elseBlock" class="container-fluid my-1">
+<div class="container-fluid my-1">
   <div  class="card flex-fill"  style="color: #2d2d2d;height: 55%">
     <div class="row flex-fill h-auto no-gutters align-items-center">
       <div class="col-4 col-sm-1 col-md-2 col-lg-1 ">
-        <img src="https://img.icons8.com/plasticine/100/000000/user-male-circle.png" class="card-img rounded-circle">
+        <img [src]="userInvite.image || imageUrl" class="card-img">
         <h5>
           <span class="badge bg-primary">{{userInvite.usernameFrom}}</span>
         </h5>
       </div>
-
       <div class="col-2 col-sm-5 col-md-auto col-lg-6 text-center align-self-center" style="font-size: 20px">
           {{userInvite.inviteText}}
       </div>
       <div class="col-12 col-sm-6 col-md-7 col-lg-5 align-self-center" style="color: #2d2d2d;height: 55%">
         <div class="btn-group text-right">
-<!--          <button class="btn btn-outline-primary">Message</button>-->
-<!--          <div *ngIf="isFriendList; else elseBlock" >-->
-<!--            <button [disabled]="deleted" (click)="deleteFriend()" class="btn btn-outline-danger">Delete</button>-->
-<!--          </div>-->
-<!--          <ng-template #elseBlock>-->
-            <button class="btn btn-outline-success"  [disabled]="clicked" (click)="acceptUserInvite();">{{nameButtonAccept}}</button>
-            <button class="btn btn-outline-danger" [disabled]="clicked" (click)="declineUserInvite();">{{nameButtonDecline}}</button>
-<!--          </ng-template>-->
+            <button class="btn btn-outline-success" (click)="acceptUserInvite();" onclick="this.parentElement.parentElement.parentElement.parentElement.style.display='none';">{{'DASHBOARD.SIDEBAR.TABS.FRIENDS.USER_INVITE.ACCEPT' | translate}}</button>
+            <button class="btn btn-outline-danger" (click)="declineUserInvite();" onclick="this.parentElement.parentElement.parentElement.parentElement.style.display='none';">{{'DASHBOARD.SIDEBAR.TABS.FRIENDS.USER_INVITE.DECLINE' | translate}}</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<ng-template #elseBlock>
-  <div class="chip mr-2 mt-2 ml-3">
-    <img src="https://img.icons8.com/plasticine/100/000000/user-male-circle.png" alt="Person" width="96" height="96">
-    {{userInvite.usernameFrom}}
-    <span class="closebtn"  (click)="deleteFriend()" onclick="this.parentElement.style.display='none';">&times;</span>
-  </div>
-</ng-template>
+

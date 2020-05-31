@@ -17,8 +17,12 @@ import java.util.List;
 @Transactional
 public class OptionServiceImpl implements OptionService {
 
+    private final OptionDao optionDao;
+
     @Autowired
-    private OptionDao optionDao;
+    public OptionServiceImpl(OptionDao optionDao) {
+        this.optionDao = optionDao;
+    }
 
 
     @Override

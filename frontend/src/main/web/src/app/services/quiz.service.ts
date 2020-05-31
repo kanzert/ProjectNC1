@@ -6,8 +6,6 @@ import {Quiz} from "../entities/quiz";
 import {UserService} from "./user.service";
 import {Session} from "../entities/session";
 import {SessionStats} from "../entities/session-stats";
-import {UserSessionResult} from "../entities/UserSessionResult";
-import {User} from "../entities/user";
 
 @Injectable({
   providedIn: 'root'
@@ -87,12 +85,6 @@ export class QuizService {
   }
 
 
-  sendSessionStats(userSessionResult: UserSessionResult) {
-    return this.http.post<UserSessionResult>(this.quizzesUrl + `/finish`, userSessionResult,
-      { headers: this.httpHeader})
-      .pipe(catchError(this.handleError<UserSessionResult>('sendSessionStats')));
-  }
-
   getQuizzes(): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(this.quizzesUrl + "/approved/" + this.userId,
       { headers: this.httpHeader})
@@ -143,7 +135,8 @@ export class QuizService {
 
   approveQuiz(quiz: Quiz): Observable<any> {
     return  this.http.post<Quiz>(this.quizzesUrl + '/approve', quiz,
-      { headers: this.httpHeader})
+      { headers: new HttpHeaders()
+          .set('Authorization',  `Bearer_${this.userService.getToken()}`)})
 
   }
 

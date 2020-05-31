@@ -127,7 +127,14 @@
         "FRIENDS": {
           "LABEL": "Friends",
           "INVITES": "INVITES",
-          "NO_TO_SHOW": "No friends to show"
+          "NO_TO_SHOW": "No friends to show",
+          "USER_INVITE": {
+            "ACCEPT": "Accept",
+            "DECLINE": "Decline"
+          },
+          "BUTTON": {
+            "DELETE": "Delete"
+          }
         },
 
         "ANNOUNCEMENTS": {
@@ -412,6 +419,14 @@
       }
     },
     "RESULT": {
+      "COLLAPSE":{
+        "STATS":"Show session stats",
+        "BEST":"Show top results"
+      },
+      "STATS":{
+        "TITLE":"Session stats",
+        "NOT_FINISHED":"not finished yet"
+      },
       "TABLE":{
         "TITLE":"Best results",
         "USERNAME":"Username",
@@ -423,6 +438,11 @@
       "TIME": "Your time is",
       "BUTTON": "Go back to quizzes"
     }
+  },
+
+  "UPLOAD": {
+    "BUTTON": "Upload",
+    "VALIDATE": "This field is required!"
   },
 
   "LOADER": {

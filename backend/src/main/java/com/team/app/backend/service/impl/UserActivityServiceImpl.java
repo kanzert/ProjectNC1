@@ -14,14 +14,17 @@ import java.util.List;
 @Service
 public class UserActivityServiceImpl implements UserActivityService {
 
-    @Autowired
+    private final
     UserActivityDao userActivityDao;
 
-    @Autowired
-    QuizDao quizDao;
+    private final
+    AnnouncementDao announcementDao;
 
     @Autowired
-    AnnouncementDao announcementDao;
+    public UserActivityServiceImpl(UserActivityDao userActivityDao, AnnouncementDao announcementDao) {
+        this.userActivityDao = userActivityDao;
+        this.announcementDao = announcementDao;
+    }
 
     @Override
     public void createUserActivity(UserActivity userActivity) {
@@ -62,8 +65,4 @@ public class UserActivityServiceImpl implements UserActivityService {
         userActivityDao.setFriendActivitiesSetting(setting);
     }
 
-//    @Override
-//    public void setAchievmentActivity(Long user_id) {
-//        userActivityDao.setAchievmentActivity(user_id);
-//    }
 }

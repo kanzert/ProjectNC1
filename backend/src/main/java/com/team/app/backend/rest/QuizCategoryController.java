@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping("api")
 public class QuizCategoryController {
 
+    private final QuizCategoryService quizCategoryService;
+
     @Autowired
-    QuizCategoryService quizCategoryService;
+    public QuizCategoryController(QuizCategoryService quizCategoryService) {
+        this.quizCategoryService = quizCategoryService;
+    }
 
     @GetMapping("/categories")
     public List<QuizCategory> getQuestion() {

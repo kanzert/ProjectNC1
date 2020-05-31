@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {QuizService} from "./services/quiz.service";
-import {UserService} from "./services/user.service";
+import {QuizService} from "./quiz.service";
+import {UserService} from "./user.service";
 import {Observable, of} from "rxjs";
 
 @Injectable({
