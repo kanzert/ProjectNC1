@@ -88,8 +88,15 @@
     "SEARCH": {
       "PLACEHOLDER": "Пошук",
       "BUTTON": {
-        "SEARCH": "Пошук",
+        "SEARCH": "ПОШУК",
         "ADD": "Додайте"
+      },
+      "FILTERS": {
+        "MOREFILTERS": "Більше фільтрів",
+        "LESSFILTERS": "Менше фільтрів",
+        "USERNAME": "Автор",
+        "DATEFROM": "Оберіть дату з",
+        "DATETO": "Оберіть дату до"
       },
       "USER_CARD": {
         "INVITE_MESSAGE": "Текст запрошення*",
@@ -318,7 +325,7 @@
 
   "QUIZ_EDIT": {
     "TITLE": "Мої Запитання",
-
+    "QUIZ_EDIT_TITLE": "Редагувати квіз",
     "QUESTION_FORM": {
       "NAME": {
         "LABEL": "Запитання: ",
@@ -371,8 +378,11 @@
 
     "BUTTON": {
       "ADD_QUESTION": "Додати запитання",
-      "DONE": "Готово"
-    }
+      "DONE": "Готово",
+      "EDITQUIZ": "Редагувати"
+    },
+    "CHOOSEPICTURE": "3. Оберіть зображення",
+    "PICTUREVALIDATION": "Ви маєте вказати зображення"
   },
 
   "PLAY_QUIZ": {

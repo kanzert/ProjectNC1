@@ -152,6 +152,14 @@ export class QuizService {
       .pipe(catchError(this.handleError<Quiz>('createQuiz')));
   }
 
+  updateQuiz(quiz: Quiz): Observable<Quiz> {
+    console.log("Hello from updateQuiz");
+    return this.http.post<Quiz>(this.quizzesUrl + "/update/",
+      { id: quiz.id, title: quiz.title, description: quiz.description, image: quiz.image },
+      { headers: this.httpHeader})
+      .pipe(catchError(this.handleError<Quiz>('updateQuiz')));
+  }
+
   deleteQuiz(quiz: Quiz): Observable<Quiz> {
     return this.http.delete<Quiz>(this.quizzesUrl + '/' + quiz.id,
       {headers: this.httpHeader})

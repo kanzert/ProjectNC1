@@ -35,7 +35,7 @@ public class QuizController {
         return result;
     }
 
-    @PostMapping("/quiz/update/")
+    @PostMapping("/quiz/update")
     public ResponseEntity updateQuiz(
             @RequestBody QuizUpdateDto quizUpdateDto) {
         Map response = new HashMap<>();
@@ -154,7 +154,6 @@ public class QuizController {
 
     @PostMapping("/quiz/search")
     public List<Quiz> searchQuizes(@RequestBody QuizCategoryDto quizCategoryDto) {
-        System.out.println(quizCategoryDto.getTitle());
         return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateFrom(),quizCategoryDto.getDateTo(),quizCategoryDto.getUser());
     }
 

@@ -46,6 +46,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { DatePipe } from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -113,6 +114,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
     LoaderService,
     MatNativeDateModule,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Quiz} from "../entities/quiz";
+import {QuizService} from "../services/quiz.service";
 import {Question} from "../entities/question";
 import {QuestionService} from "../services/question.service";
 import {Option} from "../entities/option";
@@ -8,7 +10,8 @@ import {DefaultOption} from "../entities/default-option"
 import {Subscription} from "rxjs";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {SequenceOption} from "../entities/sequence-option";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, Validators, FormGroup} from "@angular/forms";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-edit',
@@ -22,9 +25,11 @@ export class QuizEditComponent implements OnInit, OnDestroy {
     'questionType': ['not selected', Validators.required],
     'questionTime': ['not selected', Validators.required]
   })
+  quiz: Quiz;
+  isQuizLoaded = false;
   questions: Question[] = [];
   titleEditor = 'Add a question';
-
+  quizForm: FormGroup;
   numberOfOptions = 2;
   options: Option[] = Array.from({length: this.numberOfOptions},()=>
     ({
@@ -44,8 +49,10 @@ export class QuizEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
+    private location: Location,
     private route: ActivatedRoute,
     private questionService: QuestionService,
+    private quizService: QuizService,
   ) { }
 
   ngOnInit(): void {
@@ -53,9 +60,44 @@ export class QuizEditComponent implements OnInit, OnDestroy {
       this.quiz_id = params['id'];
     });
     this.getQuestions();
+    this.quizService.getQuiz(this.quiz_id)
+        .subscribe(quiz => {
+        console.log(quiz);
+        this.quiz = quiz;
+        this.isQuizLoaded = true;
+        console.log(this.quiz.title);
+          this.quizForm = this.fb.group({
+            'title': [this.quiz.title, [Validators.required, Validators.maxLength(20)]],
+            'description': [this.quiz.description, [Validators.required, Validators.maxLength(30)]],
+            'image':[this.quiz.image]
+          });
+          console.log(this.quizForm.get('title').value);
+      }
+    );
   }
   ngOnDestroy() {
     this.routeSub.unsubscribe();
+  }
+
+  onChanged(url:string){
+    this.quizForm.patchValue({
+      image: url
+    });
+  }
+
+  editQuiz() {
+    this.quizService.updateQuiz({
+      id: this.quiz.id,
+      title: this.quizForm.get('title').value,
+      description: this.quizForm.get('description').value,
+      image: this.quizForm.get('image').value,
+      user_id: this.quiz.user_id
+    } as Quiz).subscribe(res => console.log(res));
+    console.log("quiz edited");
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   showEdit() {
