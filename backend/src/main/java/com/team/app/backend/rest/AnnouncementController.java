@@ -2,6 +2,7 @@ package com.team.app.backend.rest;
 
 import com.team.app.backend.persistance.model.Announcement;
 import com.team.app.backend.service.AnnouncementService;
+import com.team.app.backend.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -19,12 +20,14 @@ import java.util.Map;
 public class AnnouncementController {
 
     private final AnnouncementService announcementService;
-
     private final MessageSource messageSource;
+    private final SecurityService securityService;
 
-    public AnnouncementController(AnnouncementService announcementService, MessageSource messageSource) {
+    @Autowired
+    public AnnouncementController(AnnouncementService announcementService, MessageSource messageSource, SecurityService securityService) {
         this.announcementService = announcementService;
         this.messageSource = messageSource;
+        this.securityService = securityService;
     }
 
     @PostMapping("/create")
@@ -42,6 +45,7 @@ public class AnnouncementController {
                 .getMessage("announcement.success", null, LocaleContextHolder.getLocale()));
         return  ResponseEntity.ok(response);
     }
+
     @GetMapping("/created")
     public ResponseEntity getCreated() {
         List<Announcement> announcementList;
@@ -55,8 +59,10 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcementList);
 
     }
-    @GetMapping("/all/{id}")
-    public ResponseEntity getAll(@PathVariable("id") Long userId) {
+
+    @GetMapping("/all")
+    public ResponseEntity getAll() {
+        Long userId = securityService.getCurrentUser().getId();
         List<Announcement> announcementList;
         try {
             announcementList = announcementService.getAll(userId);
@@ -68,6 +74,7 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcementList);
 
     }
+
     @PostMapping("/approve")
     public ResponseEntity approve(@RequestBody Announcement announcement) {
         try {
@@ -79,6 +86,7 @@ public class AnnouncementController {
         }
         return ResponseEntity.ok().build();
     }
+
     @PutMapping("/update")
     public ResponseEntity updateAnnouncement(@RequestBody Announcement announcement) {
         Map<String, String> model = new HashMap<String, String>();
@@ -95,8 +103,9 @@ public class AnnouncementController {
         return ResponseEntity.ok(model);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity updateAnnouncement(@PathVariable("id") long id) {
+    @DeleteMapping("/delete")
+    public ResponseEntity updateAnnouncement() {
+        Long id = securityService.getCurrentUser().getId();
         Map<String, String> model = new HashMap<String, String>();
         try {
             announcementService.deleteAnnouncement(id);
