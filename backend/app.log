@@ -61,3 +61,471 @@ java.lang.NullPointerException: null
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
 	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
 
+2020-06-01 00:08:03.025  INFO 23672 --- [main] com.team.app.backend.Application         : Starting Application on Zung with PID 23672 (C:\FromZeroToHero\BrainDuel\ProjectNC1\backend\target\classes started by Zung Lane in C:\FromZeroToHero\BrainDuel\ProjectNC1\backend)
+2020-06-01 00:08:03.030  INFO 23672 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 00:08:06.858  INFO 23672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 00:08:06.896  INFO 23672 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 00:08:06.899  INFO 23672 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 00:08:07.470  INFO 23672 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 00:08:08.203  INFO 23672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 00:08:08.218  INFO 23672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 00:08:10.712  INFO 23672 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 00:08:10.855  INFO 23672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 00:08:11.585  INFO 23672 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 00:08:12.272  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 00:08:12.277  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 00:08:12.281  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 00:08:12.287  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 00:08:12.291  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 00:08:12.294  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 00:08:12.299  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 00:08:12.301  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 00:08:12.304  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 00:08:12.307  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 00:08:12.307  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 00:08:12.310  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 00:08:12.313  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 00:08:12.319  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 00:08:12.321  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 00:08:12.323  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 00:08:12.325  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 00:08:12.327  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 00:08:12.413  INFO 23672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a6da47a, org.springframework.security.web.context.SecurityContextPersistenceFilter@55adcf9e, org.springframework.security.web.header.HeaderWriterFilter@6e8f2094, org.springframework.web.filter.CorsFilter@8f39224, org.springframework.security.web.authentication.logout.LogoutFilter@5e5a8718, com.team.app.backend.security.jwt.JwtTokenFilter@7f642bf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f5ce33e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64c25a62, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43e3a390, org.springframework.security.web.session.SessionManagementFilter@394a6d2b, org.springframework.security.web.access.ExceptionTranslationFilter@5cd8d029, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b9697ae]
+2020-06-01 00:08:12.532  INFO 23672 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 00:08:12.534  INFO 23672 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 00:08:12.539  INFO 23672 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 00:08:15.319  INFO 23672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 00:08:15.328  INFO 23672 --- [main] com.team.app.backend.Application         : Started Application in 13.372 seconds (JVM running for 15.079)
+2020-06-01 00:09:13.535  INFO 23672 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 00:09:13.849 ERROR 23672 --- [clientInboundChannel-4] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:09:23.960 ERROR 23672 --- [http-nio-8080-exec-8] c.t.a.b.exception.SqlExceptionHandler    : org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [INSERT INTO user_quiz_fav(user_id, quiz_id) VALUES (?, ?)]; ERROR: duplicate key value violates unique constraint "User_quiz_fav_pkey"
+  Подробности: Key (user_id, quiz_id)=(28, 44) already exists.; nested exception is org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "User_quiz_fav_pkey"
+  Подробности: Key (user_id, quiz_id)=(28, 44) already exists.
+2020-06-01 00:10:30.237 ERROR 23672 --- [clientInboundChannel-12] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:10:53.130 ERROR 23672 --- [clientInboundChannel-16] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:10:59.452 ERROR 23672 --- [clientInboundChannel-14] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:11:50.690 ERROR 23672 --- [clientInboundChannel-13] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:12:03.037 ERROR 23672 --- [clientInboundChannel-15] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:12:03.858 ERROR 23672 --- [clientInboundChannel-11] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:15:02.912 ERROR 23672 --- [clientInboundChannel-25] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:16:38.148 ERROR 23672 --- [clientInboundChannel-30] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:18:07.352 ERROR 23672 --- [clientInboundChannel-36] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:20:30.341 ERROR 23672 --- [clientInboundChannel-44] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:20:49.346 ERROR 23672 --- [clientInboundChannel-46] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:21:16.910 ERROR 23672 --- [clientInboundChannel-47] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:23:52.300 ERROR 23672 --- [clientInboundChannel-53] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:27:10.801  INFO 23672 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-06-01 00:27:10.801  INFO 23672 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[1 sessions]]]]
+2020-06-01 00:27:10.802  INFO 23672 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-06-01 00:27:10.809  INFO 23672 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-06-01 00:27:10.810  INFO 23672 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 00:27:10.812  INFO 23672 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 00:27:10.813  INFO 23672 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 00:27:40.706  INFO 42480 --- [main] com.team.app.backend.Application         : Starting Application on Zung with PID 42480 (C:\FromZeroToHero\BrainDuel\ProjectNC1\backend\target\classes started by Zung Lane in C:\FromZeroToHero\BrainDuel\ProjectNC1\backend)
+2020-06-01 00:27:40.712  INFO 42480 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 00:27:43.444  INFO 42480 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 00:27:43.462  INFO 42480 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 00:27:43.463  INFO 42480 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 00:27:43.872  INFO 42480 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 00:27:44.633  INFO 42480 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 00:27:44.658  INFO 42480 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 00:27:45.807  INFO 42480 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 00:27:45.861  INFO 42480 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 00:27:46.322  INFO 42480 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 00:27:46.720  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 00:27:46.721  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 00:27:46.721  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 00:27:46.722  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 00:27:46.723  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 00:27:46.723  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 00:27:46.723  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 00:27:46.724  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 00:27:46.725  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 00:27:46.725  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 00:27:46.726  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 00:27:46.727  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 00:27:46.727  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 00:27:46.728  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 00:27:46.729  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 00:27:46.730  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 00:27:46.731  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 00:27:46.731  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 00:27:46.784  INFO 42480 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a85b4e6, org.springframework.security.web.context.SecurityContextPersistenceFilter@610fbe1c, org.springframework.security.web.header.HeaderWriterFilter@1515f782, org.springframework.web.filter.CorsFilter@766b6d02, org.springframework.security.web.authentication.logout.LogoutFilter@5fb7ab9c, com.team.app.backend.security.jwt.JwtTokenFilter@6b09ce57, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@570b2057, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a7a1a0d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c4f4330, org.springframework.security.web.session.SessionManagementFilter@675ec28b, org.springframework.security.web.access.ExceptionTranslationFilter@635ff2a5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2b9e69fb]
+2020-06-01 00:27:46.846  INFO 42480 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 00:27:46.847  INFO 42480 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 00:27:46.850  INFO 42480 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 00:27:47.514  INFO 42480 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 00:27:47.520  INFO 42480 --- [main] com.team.app.backend.Application         : Started Application in 7.615 seconds (JVM running for 9.039)
+2020-06-01 00:28:01.640  INFO 42480 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 00:28:02.264 ERROR 42480 --- [clientInboundChannel-4] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:29:06.204  INFO 42480 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-06-01 00:29:06.205  INFO 42480 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 00:29:06.207  INFO 42480 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-06-01 00:29:06.210  INFO 42480 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-06-01 00:29:06.211  INFO 42480 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 00:29:06.214  INFO 42480 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 00:29:06.223  INFO 42480 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 00:29:27.511  INFO 9092 --- [main] com.team.app.backend.Application         : Starting Application on Zung with PID 9092 (C:\FromZeroToHero\BrainDuel\ProjectNC1\backend\target\classes started by Zung Lane in C:\FromZeroToHero\BrainDuel\ProjectNC1\backend)
+2020-06-01 00:29:27.515  INFO 9092 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 00:29:29.817  INFO 9092 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 00:29:29.830  INFO 9092 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 00:29:29.830  INFO 9092 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 00:29:30.044  INFO 9092 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 00:29:30.382  INFO 9092 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 00:29:30.388  INFO 9092 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 00:29:31.077  INFO 9092 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 00:29:31.144  INFO 9092 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 00:29:31.408  INFO 9092 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 00:29:31.596  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 00:29:31.597  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 00:29:31.599  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 00:29:31.601  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 00:29:31.602  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 00:29:31.603  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 00:29:31.604  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 00:29:31.607  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 00:29:31.610  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 00:29:31.610  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 00:29:31.611  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 00:29:31.612  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 00:29:31.613  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 00:29:31.614  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 00:29:31.615  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 00:29:31.615  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 00:29:31.616  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 00:29:31.616  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 00:29:31.671  INFO 9092 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3120495d, org.springframework.security.web.context.SecurityContextPersistenceFilter@9be7319, org.springframework.security.web.header.HeaderWriterFilter@76e6c070, org.springframework.web.filter.CorsFilter@781c2497, org.springframework.security.web.authentication.logout.LogoutFilter@51ed2f68, com.team.app.backend.security.jwt.JwtTokenFilter@b75b890, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42730828, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6734ff92, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70c491b8, org.springframework.security.web.session.SessionManagementFilter@4e50ae56, org.springframework.security.web.access.ExceptionTranslationFilter@6a7a1a0d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2b170932]
+2020-06-01 00:29:31.720  INFO 9092 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 00:29:31.721  INFO 9092 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 00:29:31.722  INFO 9092 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 00:29:32.237  INFO 9092 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 00:29:32.241  INFO 9092 --- [main] com.team.app.backend.Application         : Started Application in 5.327 seconds (JVM running for 5.863)
+2020-06-01 00:29:37.476  INFO 9092 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 00:29:38.075 ERROR 9092 --- [clientInboundChannel-4] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+java.lang.NullPointerException: null
+	at com.team.app.backend.service.SecurityService.getCurrentUser(SecurityService.java:21) ~[classes/:na]
+	at com.team.app.backend.rest.NotificationController.getAll(NotificationController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-06-01 00:33:51.597  INFO 9092 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-06-01 00:33:51.598  INFO 9092 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 00:33:51.599  INFO 9092 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-06-01 00:33:51.601  INFO 9092 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-06-01 00:33:51.608  INFO 9092 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 00:33:51.609  INFO 9092 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 00:33:51.610  INFO 9092 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
