@@ -34,8 +34,6 @@ public interface QuizService {
     List<Quiz> getCategoryQuizes(String category);
 
     List<Quiz> searchQuizes(String[] categories, String searchstring, String dateFrom, String dateTo, String user);
-	
-	List<Quiz> searchQuizes(String searchstring);
 
     List<Question> getQuizQuestion(Long id);
 

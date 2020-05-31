@@ -1,5 +1,6 @@
 package com.team.app.backend.persistance.dao;
 
+import com.team.app.backend.dto.SessionStatsDto;
 import com.team.app.backend.persistance.model.Session;
 import com.team.app.backend.persistance.model.UserToSession;
 
@@ -15,6 +16,5 @@ public interface UserToSessionDao {
 
     void update(UserToSession session);
 
-    List<UserToSession>  getAllBySes(Long ses_id);
-
+    List<SessionStatsDto> getStats(Long sessionId);
 }

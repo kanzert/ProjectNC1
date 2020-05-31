@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Question} from "../entities/question";
 import {QuizService} from "../services/quiz.service";
@@ -10,13 +10,10 @@ import {OptionService} from "../services/option.service";
 import {Option} from "../entities/option";
 import {Answer} from "../entities/answer";
 import {UserService} from "../services/user.service";
-import {UserSessionResult} from "../entities/UserSessionResult";
 import {AchievementService} from "../services/achievement.service";
 import {SessionStats} from "../entities/session-stats";
-import {Notification} from "../entities/notification";
 import {NotificationService} from "../services/notification.service";
-declare var SockJS;
-declare var Stomp;
+
 
 @Component({
   selector: 'app-quiz',
@@ -25,14 +22,15 @@ declare var Stomp;
 })
 export class QuizComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
-  public stompClient;
-  private serverUrl = 'http://localhost:8080/ws';
+  @ViewChild('topStatsButton') topCollapse: ElementRef;
+  @ViewChild('sesStatsButton') sesCollapse: ElementRef;
+
+
   questionOptionPoints = 0;
   quizId;
   sessionId;
   access_code='';
   finish=false;
-  quizScore = 0;
   timeSpent=0;
   questions: Question[] = [];
   stats:SessionStats[]=[];
@@ -82,11 +80,10 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.startQuestionTimer();
     } else {
       this.interval = null;
+      this.finishSession();
     }
     this.optionSwitcher();
-    if (this.indexQuestion === this.questions.length - 1) {
-        this.finishSession();
-    }
+
   }
 
   optionSwitcher() {
@@ -237,36 +234,33 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   finishSession() {
     this.userService.user.joined=null;
-
-    this.quizService.sendSessionStats({
-      ses_id : this.sessionId,
-      user_id : +this.userService.user.id,
-      score : this.getScore(),
-      time: this.timeSpent
-    } as UserSessionResult).subscribe(data => {
-      console.log(data);
+    this.notficationService.stompClient.subscribe('/finish/'+this.sessionId, (message) => {
+      this.stats =JSON.parse(message.body);
+      console.table(this.stats);
       this.getTopStats();
-      this.finish=true;
-      console.log('Session finished, check achievements');
-      this.achievementService.setUserAchievement().subscribe(data => {
-
-        console.log(data);
-        console.log('set achiv');
-        this.finish=true;
-      });
-
     });
-    //this.getStats();
+    console.log("finish");
+    this.notficationService.stompClient.send('/app/finish/game' , {},
+      JSON.stringify({ses_id : this.sessionId,
+        user_id : +this.userService.user.id,
+        score : this.getScore(),
+        time: this.timeSpent}));
+          console.log('Session finished, check achievements');
+          this.achievementService.setUserAchievement().subscribe(data => {
+            console.log(data);
+            console.log('set achiv');
+            this.finish=true;
+
+        });
+
   }
 
   initializeWebSocketConnection() {
     this.notficationService.stompClient.subscribe('/start/'+this.sessionId, (message) => {
       if (message.body) {this.startQuestionTimer();}
     });
+
   }
-
-
-
 
 
 }

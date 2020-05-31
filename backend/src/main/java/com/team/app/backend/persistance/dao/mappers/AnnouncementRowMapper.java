@@ -2,10 +2,12 @@ package com.team.app.backend.persistance.dao.mappers;
 
 import com.team.app.backend.persistance.model.Announcement;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class AnnouncementRowMapper implements RowMapper<Announcement> {
 
     @Override

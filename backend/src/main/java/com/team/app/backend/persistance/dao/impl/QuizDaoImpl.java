@@ -3,15 +3,14 @@ package com.team.app.backend.persistance.dao.impl;
 import com.team.app.backend.dto.SessionStatsDto;
 import com.team.app.backend.persistance.dao.QuizDao;
 import com.team.app.backend.persistance.dao.mappers.QuizRowMapper;
+import com.team.app.backend.persistance.dao.mappers.SessionStatsRowMapper;
 import com.team.app.backend.persistance.model.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.core.env.Environment;
 
 
 import javax.sql.DataSource;
@@ -28,11 +27,14 @@ public class QuizDaoImpl implements QuizDao {
 
     private final QuizRowMapper quizRowMapper;
 
+    private final SessionStatsRowMapper sessionStatsRowMapper;
+
     @Autowired
-    public QuizDaoImpl(DataSource dataSource, Environment env, QuizRowMapper quizRowMapper) {
+    public QuizDaoImpl(DataSource dataSource, Environment env, QuizRowMapper quizRowMapper, SessionStatsRowMapper sessionStatsRowMapper) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.env = env;
         this.quizRowMapper = quizRowMapper;
+        this.sessionStatsRowMapper = sessionStatsRowMapper;
     }
 
 
@@ -125,15 +127,7 @@ public class QuizDaoImpl implements QuizDao {
         return jdbcTemplate.query(sqlQuizSearch, new Object[] {search, search, searchCategories[0], searchCategories[1], searchCategories[2], searchCategories[3], searchCategories[4], dateFrom, dateTo, searchUsername, searchUsername, searchUsername},
                 quizRowMapper);
     }
-	
-	@Override
-    public List<Quiz> searchQuizes(String searchstring) {
-        String search="%"+searchstring+"%";
-        System.out.println(search);
-        return jdbcTemplate.query("select Q.id,Q.title,Q.date,Q.description,Q.image,Q.status_id, Q.user_id from quiz Q where Q.title LIKE ? "
-                ,new Object[] {search},
-                quizRowMapper);
-    }
+
 
     @Override
     public List<Quiz> getAll() {
@@ -200,14 +194,7 @@ public class QuizDaoImpl implements QuizDao {
         return jdbcTemplate.query(
                 env.getProperty("get.top.stats"),
                 new Object[]{quizId},
-                (resultSet, i) -> {
-                    SessionStatsDto sessionStatsDto = new SessionStatsDto();
-                    sessionStatsDto.setPlace(resultSet.getInt("place"));
-                    sessionStatsDto.setScore(resultSet.getInt("score"));
-                    sessionStatsDto.setTime(resultSet.getInt("time"));
-                    sessionStatsDto.setUsername(resultSet.getString("username"));
-                    return sessionStatsDto;
-                });
+                sessionStatsRowMapper);
 
 
     }

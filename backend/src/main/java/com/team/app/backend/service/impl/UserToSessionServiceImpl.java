@@ -1,6 +1,7 @@
 package com.team.app.backend.service.impl;
 
 import com.team.app.backend.dto.FinishedQuizDto;
+import com.team.app.backend.dto.SessionStatsDto;
 import com.team.app.backend.persistance.dao.*;
 import com.team.app.backend.persistance.model.Session;
 import com.team.app.backend.persistance.model.User;
@@ -42,9 +43,14 @@ public class UserToSessionServiceImpl implements UserToSessionService {
     }
 
     @Override
-    public List<UserToSession> getAllBySessionId(Long sessionId) {
-        return userToSessionDao.getAllBySes(sessionId);
+    public List<SessionStatsDto> getStats(Long sessionId) {
+        List<SessionStatsDto> res = userToSessionDao.getStats(sessionId);
+        for (SessionStatsDto s:res) {
+            System.out.println(s.toString());
+        }
+        return res;
     }
+
 
     @Override
     public void insertScore(FinishedQuizDto finishedQuizDto) {

@@ -6,7 +6,6 @@ import com.team.app.backend.persistance.model.Achievement;
 import com.team.app.backend.persistance.model.UserAchievement;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -20,12 +19,13 @@ public class AchievementDaoImpl implements AchievementDao {
     private final JdbcTemplate jdbcTemplate;
     private final Environment env;
 
-    private AchievementRowMapper achievementRowMapper = new AchievementRowMapper();
+    private final AchievementRowMapper achievementRowMapper ;
 
     @Autowired
-    public AchievementDaoImpl(DataSource dataSource, Environment env) {
+    public AchievementDaoImpl(DataSource dataSource, Environment env, AchievementRowMapper achievementRowMapper) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.env = env;
+        this.achievementRowMapper = achievementRowMapper;
     }
 
     @Override

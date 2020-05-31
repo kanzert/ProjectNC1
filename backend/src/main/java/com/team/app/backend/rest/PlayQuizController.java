@@ -49,8 +49,16 @@ public class PlayQuizController {
     }
 
     @MessageMapping("/start/game")
-    public void sendMessage(Long sesId){
+    public void sendStart(Long sesId){
         this.template.convertAndSend("/start/"+sesId,  "true");
+    }
+
+    @MessageMapping("/finish/game")
+    public void sendStats(FinishedQuizDto finishedQuizDto){
+        Long sesId=finishedQuizDto.getSes_id();
+        sessionService.setSessionStatus(sesId,new SessionStatus(2L,"ended"));
+        userToSessionService.insertScore(finishedQuizDto);
+        this.template.convertAndSend("/finish/"+sesId,  userToSessionService.getStats(sesId));
     }
 
 
@@ -59,10 +67,7 @@ public class PlayQuizController {
             @PathVariable("user_id") long user_id,
             @PathVariable("quiz_id") long quiz_id) {
         Long ses_id = sessionService.newSessionForQuiz(quiz_id);
-
-        userService.getUserById(user_id);
         userToSessionService.createNewUserToSession(user_id, ses_id);
-
         return ResponseEntity.ok(sessionService.getSessionById(ses_id));
     }
 
@@ -96,20 +101,6 @@ public class PlayQuizController {
                     .body(messageSource.getMessage("session.start", null, LocaleContextHolder.getLocale()));
         }
 
-    }
-
-    @GetMapping("stats/{ses_id}")
-    public ResponseEntity calculateResults(
-            @PathVariable("ses_id") long ses_id
-    ) {
-        Map response = new HashMap();
-        List<UserToSession> userToSessionList = new ArrayList<>(userToSessionService.getAllBySessionId(ses_id));
-        userToSessionList.forEach(
-                uts -> {response.put("username",userService.getUserById(uts.getUser_id()).getUsername());
-                    response.put("score",uts.getScore());
-                    response.put("time",uts.getTime()); }
-        );
-        return ResponseEntity.ok(response);
     }
 
     @GetMapping("topstats/{quiz_id}")

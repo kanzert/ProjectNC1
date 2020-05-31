@@ -4,14 +4,11 @@ import com.team.app.backend.persistance.dao.AnnouncementDao;
 import com.team.app.backend.persistance.dao.mappers.AnnouncementRowMapper;
 import com.team.app.backend.persistance.model.Announcement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -21,12 +18,13 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 
     private final Environment env;
 
-    private AnnouncementRowMapper announcementRowMapper = new AnnouncementRowMapper();
+    private final AnnouncementRowMapper announcementRowMapper;
 
     @Autowired
-    public AnnouncementDaoImpl(DataSource dataSource,  Environment env) {
+    public AnnouncementDaoImpl(DataSource dataSource, Environment env, AnnouncementRowMapper announcementRowMapper) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.env = env;
+        this.announcementRowMapper = announcementRowMapper;
     }
 
 

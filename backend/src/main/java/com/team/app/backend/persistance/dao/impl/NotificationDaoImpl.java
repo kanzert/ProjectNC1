@@ -19,12 +19,13 @@ public class NotificationDaoImpl implements NotificationDao {
 
     private final Environment env;
 
-    private NotificationRowMapper notificationRowMapper = new NotificationRowMapper();
+    private NotificationRowMapper notificationRowMapper;
 
     @Autowired
-    public NotificationDaoImpl(DataSource dataSource, Environment env) {
+    public NotificationDaoImpl(DataSource dataSource, Environment env, NotificationRowMapper notificationRowMapper) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.env = env;
+        this.notificationRowMapper = notificationRowMapper;
     }
 
     @Override
