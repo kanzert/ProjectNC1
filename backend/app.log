@@ -750,3 +750,95 @@ java.lang.IllegalArgumentException: User must not be null
 2020-05-31 20:45:32.668  INFO 4787 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
 2020-05-31 20:45:32.668  INFO 4787 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
 2020-05-31 20:45:32.669  INFO 4787 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-05-31 22:23:23.050  INFO 38576 --- [main] com.team.app.backend.Application         : Starting Application on Zung with PID 38576 (C:\FromZeroToHero\BrainDuel\ProjectNC1\backend\target\classes started by Zung Lane in C:\FromZeroToHero\BrainDuel\ProjectNC1\backend)
+2020-05-31 22:23:23.055  INFO 38576 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-05-31 22:23:25.437  INFO 38576 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-05-31 22:23:25.458  INFO 38576 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-31 22:23:25.459  INFO 38576 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-31 22:23:25.662  INFO 38576 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-31 22:23:26.041  INFO 38576 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-31 22:23:26.045  INFO 38576 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-31 22:23:26.764  INFO 38576 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-31 22:23:26.810  INFO 38576 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-31 22:23:27.103  INFO 38576 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-05-31 22:23:27.471  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-05-31 22:23:27.471  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-05-31 22:23:27.471  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-05-31 22:23:27.472  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-05-31 22:23:27.472  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-05-31 22:23:27.472  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-05-31 22:23:27.473  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-05-31 22:23:27.473  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-05-31 22:23:27.473  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-05-31 22:23:27.473  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-05-31 22:23:27.473  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-05-31 22:23:27.474  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-05-31 22:23:27.474  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-05-31 22:23:27.474  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-05-31 22:23:27.474  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-05-31 22:23:27.474  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-05-31 22:23:27.475  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-05-31 22:23:27.475  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-05-31 22:23:27.513  INFO 38576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d1bf7bf, org.springframework.security.web.context.SecurityContextPersistenceFilter@54c11750, org.springframework.security.web.header.HeaderWriterFilter@4e5c8ef3, org.springframework.web.filter.CorsFilter@1182413a, org.springframework.security.web.authentication.logout.LogoutFilter@570b2057, com.team.app.backend.security.jwt.JwtTokenFilter@4d43a1b7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5cd8d029, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a5dd083, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b14f482, org.springframework.security.web.session.SessionManagementFilter@3a0896b3, org.springframework.security.web.access.ExceptionTranslationFilter@65844c96, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4ff66917]
+2020-05-31 22:23:27.558  INFO 38576 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-31 22:23:27.558  INFO 38576 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-31 22:23:27.560  INFO 38576 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-31 22:23:28.036  INFO 38576 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-31 22:23:28.040  INFO 38576 --- [main] com.team.app.backend.Application         : Started Application in 5.751 seconds (JVM running for 6.707)
+2020-05-31 22:24:16.335  INFO 38576 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-31 22:31:58.101 ERROR 38576 --- [http-nio-8080-exec-4] c.t.a.b.exception.SqlExceptionHandler    : org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [INSERT INTO user_to_ach (user_id, ach_id) (SELECT ? as user_id, A.id as ach_id FROM achievement A LEFT OUTER JOIN (SELECT A.title, COUNT(QTC.cat_id) AS played FROM user_to_ses US INNER JOIN session S ON US.ses_id = S.id INNER JOIN quiz_to_categ QTC ON QTC.quiz_id = S.quiz_id INNER JOIN achievement A ON A.cat_id = QTC.cat_id WHERE US.user_id = ? GROUP BY QTC.cat_id, A.title) AS UA ON A.title = UA.title WHERE UA.played >= A.quiz_amount)]; ERROR: duplicate key value violates unique constraint "user_to_ach_pkey"
+  Подробности: Key (user_id, ach_id)=(28, 5) already exists.; nested exception is org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "user_to_ach_pkey"
+  Подробности: Key (user_id, ach_id)=(28, 5) already exists.
+2020-05-31 22:35:14.416  INFO 38576 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-05-31 22:35:14.417  INFO 38576 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-31 22:35:14.417  INFO 38576 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-05-31 22:35:14.419  INFO 38576 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-05-31 22:35:14.420  INFO 38576 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-05-31 22:35:14.422  INFO 38576 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-05-31 22:35:14.422  INFO 38576 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-05-31 22:35:38.121  INFO 33932 --- [main] com.team.app.backend.Application         : Starting Application on Zung with PID 33932 (C:\FromZeroToHero\BrainDuel\ProjectNC1\backend\target\classes started by Zung Lane in C:\FromZeroToHero\BrainDuel\ProjectNC1\backend)
+2020-05-31 22:35:38.126  INFO 33932 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-05-31 22:35:40.198  INFO 33932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-05-31 22:35:40.212  INFO 33932 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-31 22:35:40.213  INFO 33932 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-31 22:35:40.410  INFO 33932 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-31 22:35:40.752  INFO 33932 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-05-31 22:35:40.757  INFO 33932 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-05-31 22:35:41.485  INFO 33932 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-05-31 22:35:41.549  INFO 33932 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-05-31 22:35:41.999  INFO 33932 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-05-31 22:35:42.388  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-05-31 22:35:42.390  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-05-31 22:35:42.391  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-05-31 22:35:42.392  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-05-31 22:35:42.394  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-05-31 22:35:42.394  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-05-31 22:35:42.397  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-05-31 22:35:42.401  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-05-31 22:35:42.403  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-05-31 22:35:42.403  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-05-31 22:35:42.403  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-05-31 22:35:42.403  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-05-31 22:35:42.404  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-05-31 22:35:42.404  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-05-31 22:35:42.405  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-05-31 22:35:42.405  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-05-31 22:35:42.405  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-05-31 22:35:42.405  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-05-31 22:35:42.447  INFO 33932 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67e77f52, org.springframework.security.web.context.SecurityContextPersistenceFilter@3a0896b3, org.springframework.security.web.header.HeaderWriterFilter@65844c96, org.springframework.web.filter.CorsFilter@7ead1d80, org.springframework.security.web.authentication.logout.LogoutFilter@610fbe1c, com.team.app.backend.security.jwt.JwtTokenFilter@1d1bf7bf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54c11750, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6e00837f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1182413a, org.springframework.security.web.session.SessionManagementFilter@4601047, org.springframework.security.web.access.ExceptionTranslationFilter@1b0e031b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7d8b66d9]
+2020-05-31 22:35:42.506  INFO 33932 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-05-31 22:35:42.507  INFO 33932 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-31 22:35:42.509  INFO 33932 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-05-31 22:35:43.018  INFO 33932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-31 22:35:43.023  INFO 33932 --- [main] com.team.app.backend.Application         : Started Application in 5.5 seconds (JVM running for 6.049)
+2020-05-31 22:36:01.798  INFO 33932 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-31 22:36:51.453 ERROR 33932 --- [http-nio-8080-exec-1] c.t.a.b.exception.SqlExceptionHandler    : org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [INSERT INTO user_to_ach (user_id, ach_id) (SELECT ? as user_id, A.id as ach_id FROM achievement A LEFT OUTER JOIN (SELECT A.title, COUNT(QTC.cat_id) AS played FROM user_to_ses US INNER JOIN session S ON US.ses_id = S.id INNER JOIN quiz_to_categ QTC ON QTC.quiz_id = S.quiz_id INNER JOIN achievement A ON A.cat_id = QTC.cat_id WHERE US.user_id = ? GROUP BY QTC.cat_id, A.title) AS UA ON A.title = UA.title WHERE UA.played >= A.quiz_amount)]; ERROR: duplicate key value violates unique constraint "user_to_ach_pkey"
+  Подробности: Key (user_id, ach_id)=(28, 5) already exists.; nested exception is org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "user_to_ach_pkey"
+  Подробности: Key (user_id, ach_id)=(28, 5) already exists.
+2020-05-31 22:37:29.358  INFO 33932 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-05-31 22:37:29.360  INFO 33932 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[3 destination(s)], registry[1 sessions]]]]
+2020-05-31 22:37:29.387  INFO 33932 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-05-31 22:37:29.391  INFO 33932 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-05-31 22:37:29.392  INFO 33932 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-05-31 22:37:29.396  INFO 33932 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-05-31 22:37:29.403  INFO 33932 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'

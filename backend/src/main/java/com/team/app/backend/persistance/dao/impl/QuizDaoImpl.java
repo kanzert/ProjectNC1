@@ -209,14 +209,7 @@ public class QuizDaoImpl implements QuizDao {
         return jdbcTemplate.query(
                 env.getProperty("get.top.stats"),
                 new Object[]{quizId},
-                (resultSet, i) -> {
-                    SessionStatsDto sessionStatsDto = new SessionStatsDto();
-                    sessionStatsDto.setPlace(resultSet.getInt("place"));
-                    sessionStatsDto.setScore(resultSet.getInt("score"));
-                    sessionStatsDto.setTime(resultSet.getInt("time"));
-                    sessionStatsDto.setUsername(resultSet.getString("username"));
-                    return sessionStatsDto;
-                });
+                sessionStatsRowMapper);
     }
 
 
