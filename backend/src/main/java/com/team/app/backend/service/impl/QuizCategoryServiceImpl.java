@@ -21,25 +21,6 @@ public class QuizCategoryServiceImpl implements QuizCategoryService {
         this.quizCategoryDao = quizCategoryDao;
     }
 
-    @Override
-    public void createQuizCategory(QuizCategory quizCategory) {
-
-    }
-
-    @Override
-    public QuizCategory getQuizCategory(Long id) {
-        return quizCategoryDao.get(id);
-    }
-
-    @Override
-    public void updateQuizCategory(QuizCategory quizCategory) {
-
-    }
-
-    @Override
-    public void deleteQuizCategory(Long id) {
-        quizCategoryDao.delete(id);
-    }
 
     @Override
     public List<QuizCategory> getAllQuizCategories() {
