@@ -32,12 +32,6 @@ public class UserController {
         this.securityService = securityService;
     }
 
-    @Autowired
-    public UserController(UserService userService, MessageSource messageSource) {
-        this.userService = userService;
-        this.messageSource = messageSource;
-    }
-
     @GetMapping("/user/search/{name}/{first}/{last}")
     public List<User> searchUser(
             @PathVariable("name") String name,
