@@ -11,7 +11,6 @@ export class FriendProfileCardComponent implements OnInit {
   @Input() userInvite: UserInvite;
   imageUrl = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';
 
-
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
