@@ -16,6 +16,7 @@ export class UserCardComponent implements OnInit {
   user: User;
   @Output()
   onChanged = new EventEmitter<User>();
+
   inviteForm = new FormGroup({
     'inviteText' : new FormControl(null, [
       Validators.required,
@@ -23,7 +24,7 @@ export class UserCardComponent implements OnInit {
     ]),
   });
   name: string = this.userService.user.firstName;
-
+  imageUrl = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';
   nameSendButton = 'Send invitation';
   clicked: boolean = false;
 

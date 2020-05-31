@@ -15,11 +15,13 @@ import java.util.List;
 @Service
 @Transactional
 public class AchievementServiceImpl implements AchievementService {
-    @Autowired
-    private AchievementDao achievementDao;
+
+    private final AchievementDao achievementDao;
 
     @Autowired
-    private UserActivityService userActivityService;
+    public AchievementServiceImpl(AchievementDao achievementDao) {
+        this.achievementDao = achievementDao;
+    }
 
     @Override
     public List<UserAchievement> getUserAchievements(long id) {

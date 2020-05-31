@@ -23,8 +23,6 @@ public interface QuizDao {
     List<Quiz> getCategoryQuizes(String category);
 
     List<Quiz> searchQuizes(String[] categories, String searchstring, String dateFrom, String dateTo, String user);
-	
-	List<Quiz> searchQuizes(String searchstring);
 
     List<Quiz> getAll();
 
@@ -37,6 +35,10 @@ public interface QuizDao {
     void approve(Long id);
 
     List<Quiz> getCreated();
+
+    Long getUserIdByQuiz(Long quizId);
+
+    String getTitle(Long quizId);
 
     List<SessionStatsDto>getTopStats(Long quizId);
 

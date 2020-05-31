@@ -12,8 +12,8 @@ import {SequenceOption} from "../entities/sequence-option";
   providedIn: 'root'
 })
 export class OptionService {
-  // private optionsUrl = 'http://localhost:8080/api';  // URL to web api
-  private optionsUrl = '/api';  // URL to web api
+  private optionsUrl = 'http://localhost:8080/api';  // URL to web api
+  // private optionsUrl = '/api';  // URL to web api
   private readonly token: string;
   private httpHeader: HttpHeaders;
   constructor(private http: HttpClient, private userService: UserService) {

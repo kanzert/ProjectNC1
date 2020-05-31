@@ -1,108 +1,79 @@
 package com.team.app.backend.persistance.dao.impl;
 
+import com.team.app.backend.dto.SessionStatsDto;
 import com.team.app.backend.persistance.dao.UserToSessionDao;
-import com.team.app.backend.persistance.model.Session;
+import com.team.app.backend.persistance.dao.mappers.SessionStatsRowMapper;
+import com.team.app.backend.persistance.dao.mappers.UserToSessionRowMapper;
 import com.team.app.backend.persistance.model.UserToSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
+import javax.sql.DataSource;
 import java.util.List;
 
-@Component
+@Repository
 public class UserToSessionDaoImpl implements UserToSessionDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public UserToSession save(UserToSession userToSession) {
-        String sql = "INSERT INTO user_to_ses (ses_id, user_id, score, time) VALUES ( ?, ?, ?, ?)";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        System.out.println();
-        jdbcTemplate.update(
-                connection -> {
-                    PreparedStatement ps = connection.prepareStatement(
-                            sql,
-                            new String[] {"id"}
-                    );
-                    ps.setLong(1, userToSession.getSession_id());
-                    ps.setLong(2, userToSession.getUser_id());
-                    ps.setInt(3, userToSession.getScore());
-                    ps.setInt(4, userToSession.getTime());
+    private final Environment env;
 
-                    return ps;
-                },
-                keyHolder
-        );
-        return getById(keyHolder.getKey().longValue());
+    private final UserToSessionRowMapper userToSessionRowMapper;
+
+    private final SessionStatsRowMapper sessionStatsRowMapper;
+
+    @Autowired
+    public UserToSessionDaoImpl(DataSource dataSource, Environment env, UserToSessionRowMapper userToSessionRowMapper, SessionStatsRowMapper sessionStatsRowMapper) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
+        this.userToSessionRowMapper = userToSessionRowMapper;
+        this.sessionStatsRowMapper = sessionStatsRowMapper;
+    }
+
+    @Override
+    public void save(UserToSession userToSession) {
+        jdbcTemplate.update(
+                env.getProperty("save.user.session"),
+                userToSession.getSession_id(),
+                userToSession.getUser_id());
     }
 
     @Override
     public UserToSession getById(Long id) {
-        String sql = "SELECT * FROM user_to_ses WHERE id = ?";
         return jdbcTemplate.queryForObject(
-                sql,
+                env.getProperty("get.user.session.by.id"),
                 new Object[]{id},
-                (resultSet, i) -> {
-                    UserToSession userToSession = new UserToSession();
-                    userToSession.setId(resultSet.getLong("id"));
-                    userToSession.setSession_id(resultSet.getLong("ses_id"));
-                    userToSession.setUser_id(resultSet.getLong("user_id"));
-                    userToSession.setScore(resultSet.getInt("score"));
-                    userToSession.setTime(resultSet.getInt("time"));
-
-                    return userToSession;
-                });
+                userToSessionRowMapper);
     }
 
     @Override
-    public UserToSession deleteById(Long id) {
-        return null;
+    public void deleteById(Long id) {
+         jdbcTemplate.update(
+                env.getProperty("delete.user.session.by.id"),
+                id);
     }
 
 
     @Override
-    public UserToSession update(UserToSession userToSession) {
-        String sql = "UPDATE user_to_ses SET  score = ? , time = ? WHERE ses_id = ? AND user_id = ? ";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+    public void update(UserToSession userToSession) {
         jdbcTemplate.update(
-                connection -> {
-                    PreparedStatement ps = connection.prepareStatement(
-                            sql,
-                            new String[] {"id"}
-                    );
-                    ps.setInt(1, userToSession.getScore());
-                    ps.setInt(2,userToSession.getTime());
-                    ps.setLong(3, userToSession.getSession_id());
-                    ps.setLong(4, userToSession.getUser_id());
-
-                    return ps;
-                },
-                keyHolder
+                env.getProperty("update.user.session"),
+                userToSession.getScore(),
+                userToSession.getTime(),
+                userToSession.getSession_id(),
+                userToSession.getUser_id()
         );
-        return getById(keyHolder.getKey().longValue());
     }
 
     @Override
-    public List<UserToSession> getAllBySes(Long ses_id) {
-        String sql = "SELECT * FROM user_to_ses WHERE ses_id = ?";
+    public List<SessionStatsDto> getStats(Long sessionId) {
         return jdbcTemplate.query(
-                sql,
-                new Object[]{ses_id},
-                (resultSet, i) -> {
-                    UserToSession userToSession = new UserToSession();
-                    userToSession.setId(resultSet.getLong("id"));
-                    userToSession.setSession_id(resultSet.getLong("ses_id"));
-                    userToSession.setUser_id(resultSet.getLong("user_id"));
-                    userToSession.setScore(resultSet.getInt("score"));
-                    userToSession.setTime(resultSet.getInt("time"));
-                    return userToSession;
-                });
-
+                env.getProperty("get.stats"),
+                new Object[]{sessionId},
+                sessionStatsRowMapper);
     }
+
+
 }

@@ -20,10 +20,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/notification")
 public class NotificationController {
-
     private final NotificationService notificationService;
     private final SecurityService securityService;
 
+    @Autowired
     public NotificationController(NotificationService notificationService, SecurityService securityService) {
         this.notificationService = notificationService;
         this.securityService = securityService;
@@ -38,58 +38,33 @@ public class NotificationController {
     public void getAll(StompHeaderAccessor stompHeaderAccessor){
         Long userId = securityService.getCurrentUser().getId();
         notificationService.add(stompHeaderAccessor.getSessionId(), userId);
+        notificationService.dispatch(stompHeaderAccessor.getSessionId());
     }
 
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody Notification not) {
-        try {
-            notificationService.create(not);
-        }
-        catch (DataAccessException sqlEx) {
-            ResponseEntity.badRequest();
-        }
+        notificationService.create(not);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/update")
     public ResponseEntity update(@RequestBody Notification not) {
-        try {
-            notificationService.update(not);
-        }
-        catch (DataAccessException sqlEx) {
-            ResponseEntity.badRequest();
-        }
+        notificationService.update(not);
         return ResponseEntity.ok().build();
     }
-
-
 
     @GetMapping("/settings/get/")
     public  ResponseEntity getSetting() {
         Long userId = securityService.getCurrentUser().getId();
         List<Notification> notifications = null;
-        try {
-            notifications = this.notificationService.getSetting(userId);
-        }
-        catch (DataAccessException sqlEx)
-        {
-            ResponseEntity.badRequest();
-        }
+        notifications = this.notificationService.getSetting(userId);
         return ResponseEntity.ok(notifications);
     }
 
     @PostMapping("/settings")
     public ResponseEntity setSetting(@RequestBody Notification not) {
-        try {
-            this.notificationService.setSetting(not);
-        }
-        catch (DataAccessException sqlEx)
-        {
-            ResponseEntity.badRequest();
-        }
+        this.notificationService.setSetting(not);
         return ResponseEntity.ok().build();
 
     }
-
-
 }

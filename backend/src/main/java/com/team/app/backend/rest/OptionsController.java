@@ -15,9 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api")
 public class OptionsController {
-
     private final OptionService optionService;
 
+
+    @Autowired
     public OptionsController(OptionService optionService) {
         this.optionService = optionService;
     }

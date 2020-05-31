@@ -1,6 +1,7 @@
 package com.team.app.backend.persistance.dao.impl;
 
 import com.team.app.backend.persistance.dao.SessionDao;
+import com.team.app.backend.persistance.dao.mappers.SessionRowMapper;
 import com.team.app.backend.persistance.model.Session;
 import com.team.app.backend.persistance.model.SessionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +11,27 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 @Repository
 public class SessionDaoImpl implements SessionDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private final Environment env;
+
+    private final SessionRowMapper sessionRowMapper;
+
     @Autowired
-    Environment env;
+    public SessionDaoImpl(DataSource dataSource, Environment env, SessionRowMapper sessionRowMapper) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
+        this.sessionRowMapper = sessionRowMapper;
+    }
 
     @Override
-    public Session save(Session session) {
+    public Long save(Session session) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
                 connection -> {
@@ -38,7 +47,7 @@ public class SessionDaoImpl implements SessionDao {
                 },
                 keyHolder
         );
-        return getById(keyHolder.getKey().longValue());
+        return keyHolder.getKey().longValue();
     }
 
     @Override
@@ -46,47 +55,28 @@ public class SessionDaoImpl implements SessionDao {
         return jdbcTemplate.queryForObject(
                 env.getProperty("get.session"),
                 new Object[]{id},
-                (resultSet, i) -> {
-                    Session session = new Session();
-                    session
-                            .setId(resultSet.getLong("id"))
-                            .setAccessCode(resultSet.getString("access_code"))
-                            .setDate(resultSet.getTimestamp("date"))
-                            .setQuiz_id(resultSet.getLong("quiz_id"))
-
-                            .setStatus(new SessionStatus(resultSet.getLong("status_id"),resultSet.getString("status_name")));
-                    return session;
-                });
+                sessionRowMapper);
     }
 
     @Override
-    public Session deleteById(Long id) {
-        return null;
-    }
-
-    @Override
-    public Session update(Session session) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+    public void deleteById(Long id) {
         jdbcTemplate.update(
-                connection -> {
-                    PreparedStatement ps = connection.prepareStatement(
-                            env.getProperty("update.session"),
-                            new String[] {"id"}
-                    );
-                    ps.setString(1, session.getAccessCode());
-                    ps.setTimestamp(2, session.getDate());
-                    ps.setLong(3, session.getQuiz_id());
-                    ps.setLong(4, session.getId());
-                    return ps;
-                },
-                keyHolder
-        );
-        return getById(keyHolder.getKey().longValue());
+                env.getProperty("delete.session"),
+                id);
     }
 
     @Override
-    public void setSesionStatus(Long ses_id, Long status_id) {
+    public void update(Session session) {
+        jdbcTemplate.update(
+                env.getProperty("update.session"),
+                session.getAccessCode(),
+                session.getDate(),
+                session.getQuiz_id(),
+                session.getId());
+    }
 
+    @Override
+    public void setSessionStatus(Long ses_id, Long status_id) {
         jdbcTemplate.update(
                 env.getProperty("update.status.session"),
                 status_id,ses_id
@@ -94,31 +84,20 @@ public class SessionDaoImpl implements SessionDao {
     }
 
 
-
-
     @Override
     public boolean checkAccesCodeAvailability(String access_code) {
         return jdbcTemplate.queryForObject(
                 env.getProperty("check.access_code.session"),
-                new Object[]{access_code},Boolean.class
-        );
+                new Object[]{access_code},
+                Boolean.class);
     }
 
     @Override
     public Session getSessionByCode(String access_code) {
         return jdbcTemplate.queryForObject(
                 env.getProperty("get.session.by.access_code"),
-                 new Object[]{access_code},
-                (resultSet, i) -> {
-                    Session session = new Session();
-                    session
-                            .setId(resultSet.getLong("id"))
-                            .setAccessCode(resultSet.getString("access_code"))
-                            .setDate(resultSet.getTimestamp("date"))
-                            .setQuiz_id(resultSet.getLong("quiz_id"))
-                            .setStatus(new SessionStatus(resultSet.getLong("status_id"),resultSet.getString("status_name")));
-                    return session;
-                });
+                new Object[]{access_code},
+                sessionRowMapper);
     }
 
 

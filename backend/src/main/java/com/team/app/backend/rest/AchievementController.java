@@ -18,10 +18,17 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/achievement")
 public class AchievementController {
-
     private final AchievementService achievementService;
     private final MessageSource messageSource;
     private final SecurityService securityService;
+
+
+    @Autowired
+    public AchievementController(AchievementService achievementService, MessageSource messageSource) {
+        this.achievementService = achievementService;
+        this.messageSource = messageSource;
+    }
+
 
     public AchievementController(AchievementService achievementService, MessageSource messageSource, SecurityService securityService) {
         this.achievementService = achievementService;
@@ -44,12 +51,7 @@ public class AchievementController {
     public ResponseEntity checkUserAchievements() {
         Long id = securityService.getCurrentUser().getId();
         Map<String, String> response = new HashMap<>();
-        try {
-            achievementService.setUserAchievement(id);
-        } catch (DataAccessException sqlEx){
-            response.put("message", "There is a problem while creating achievement");
-            ResponseEntity.badRequest().body(response);
-        }
+        achievementService.setUserAchievement(id);
         response.put("message", "Achievement was set!");
         return ResponseEntity.ok(response);
     }
@@ -57,12 +59,7 @@ public class AchievementController {
     @PostMapping("/create")
     public ResponseEntity createAchievement(@RequestBody Achievement achievement) {
         Map<String, String> response = new HashMap<>();
-        try {
-            achievementService.createAchievement(achievement);
-        } catch (DataAccessException sqlEx){
-            response.put("message", messageSource.getMessage("achievement.fail", null, LocaleContextHolder.getLocale()));
-            ResponseEntity.badRequest().body(response);
-        }
+        achievementService.createAchievement(achievement);
         response.put("message", messageSource.getMessage("achievement.success", null, LocaleContextHolder.getLocale()));
         return ResponseEntity.ok(response);
     }

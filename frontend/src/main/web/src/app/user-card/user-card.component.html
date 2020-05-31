@@ -2,7 +2,7 @@
   <div class="card flex-fill"  style="color: #2d2d2d;height: 55%">
     <div class="row flex-fill h-auto no-gutters align-items-center">
       <div class="col-4 row-4 col-sm-1 col-md-2 col-lg-1 ">
-        <img src="https://img.icons8.com/plasticine/100/000000/user-male-circle.png" class="card-img rounded-circle">
+        <img [src]="user.image || imageUrl" class="card-img rounded-circle">
         <h5>
           <span class="badge bg-primary" style="color: white;">{{user.username}}</span>
         </h5>
@@ -18,7 +18,6 @@
             </div>
           </div>
           <div class="btn-group text-right">
-            <!--            <a *ngIf="userRole() ==='user'" href="#" class="btn  btn-outline-danger">Unfollow</a>-->
             <a *ngIf="userRole() ==='super admin' || userRole() ==='admin'" (click)="goToProfile()" class="btn  btn-outline-primary">{{'DASHBOARD.SEARCH.USER_CARD.ADMIN_BUTTON.EDIT' | translate}}</a>
           </div>
         </div>

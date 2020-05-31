@@ -8,7 +8,7 @@ import {MustMatchValidator} from "../registration/_helpers/must-match.validator"
 import {HashBcrypt} from "../util/hashBcrypt";
 import {UploadFilesService} from "../services/upload-files.service";
 import {FileValidator} from "./_helpers/file-input.validator";
-import {USER_STATUS_ACTIVE, USER_STATUS_DEACTIVE} from '../parameters';
+import {USER_DEFAULT_IMAGE, USER_STATUS_ACTIVE, USER_STATUS_DEACTIVE} from '../parameters';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,11 +29,10 @@ export class UserProfileComponent implements OnInit {
 
   uploadResponse = { status: '', message: '', filePath: '' };
   userForm: FormGroup;
-  imageUrl: string = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';
+  imageUrl: string = USER_DEFAULT_IMAGE;
 
   constructor(private fb: FormBuilder,
-              private userService: UserService,
-              private router: Router) { }
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.setUserForm();
@@ -109,6 +108,7 @@ export class UserProfileComponent implements OnInit {
     this.error = '';
     this.message = '';
   }
+
   private checkPassword() {
     if(this.userForm.get('password').dirty && this.userForm.get('confirmPassword').dirty) {
       if(HashBcrypt.compare(this.userForm.get('confirmPassword').value, this.userService.user.password)){
@@ -119,6 +119,7 @@ export class UserProfileComponent implements OnInit {
       return this.user.password;
     }
   }
+
   clearPass() {
     this.userForm.get('password').reset();
     this.userForm.get('confirmPassword').reset();

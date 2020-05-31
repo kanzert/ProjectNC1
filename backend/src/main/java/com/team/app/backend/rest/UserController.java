@@ -21,7 +21,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("api")
 public class UserController {
-
     private final UserService userService;
     private final MessageSource messageSource;
     private final SecurityService securityService;
@@ -31,6 +30,12 @@ public class UserController {
         this.userService = userService;
         this.messageSource = messageSource;
         this.securityService = securityService;
+    }
+
+    @Autowired
+    public UserController(UserService userService, MessageSource messageSource) {
+        this.userService = userService;
+        this.messageSource = messageSource;
     }
 
     @GetMapping("/user/search/{name}/{first}/{last}")
@@ -57,7 +62,6 @@ public class UserController {
     public ModelAndView activateUser(@RequestParam("token") String token){
         if(userService.activateUserAccount(token)) return new ModelAndView("redirect:" + "https://brainduel.herokuapp.com/#/login" );
         return new ModelAndView("redirect:" + "https://brainduel.herokuapp.com/#/signup" );
-        //else return ResponseEntity.ok(messageSource.getMessage("registry.bad", null, LocaleContextHolder.getLocale()));
     }
 
     @DeleteMapping("user/delete/")
@@ -79,13 +83,7 @@ public class UserController {
     @PostMapping("/user/status/{id}")
     public ResponseEntity setStatus(@PathVariable("id") Long statusId) {
         Long userId = securityService.getCurrentUser().getId();
-        try{
-            userService.setStatus(statusId,userId);
-        }
-        catch (DataAccessException sqlEx) {
-           return ResponseEntity.badRequest().body(messageSource
-                   .getMessage("set.status.user.bad", null, LocaleContextHolder.getLocale()));
-        }
+        userService.setStatus(statusId,userId);
         return ResponseEntity.ok().build();
     }
 

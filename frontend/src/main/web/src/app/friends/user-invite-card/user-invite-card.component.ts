@@ -9,12 +9,9 @@ import {UserService} from "../../services/user.service";
 })
 export class UserInviteCardComponent implements OnInit {
   @Input() userInvite: UserInvite;
-  @Input() isFriendList: boolean;
-  @Output()
-  onChanged = new EventEmitter<UserInvite>();
-  nameButtonAccept = 'Accept';
-  nameButtonDecline = 'Decline';
-  clicked = false;
+  @Output() onChanged = new EventEmitter<UserInvite>();
+  imageUrl = 'https://img.icons8.com/plasticine/100/000000/user-male-circle.png';
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -22,30 +19,12 @@ export class UserInviteCardComponent implements OnInit {
 
   acceptUserInvite(): void {
     this.userService.acceptUserInvite(this.userInvite.id).subscribe(userInvites => {
-      console.log(userInvites);
-      this.onInviteAction('Accepted');
+      this.onChanged.emit(this.userInvite);
     });
   }
 
   declineUserInvite(): void {
     this.userService.declineUserInvite(this.userInvite.id).subscribe(userInvites => {
-      console.log(userInvites);
-      this.onInviteAction('Declined');
     });
-  }
-
-  onInviteAction(action: string) {
-    this.clicked = true;
-    if (action === 'Accepted') {
-      this.nameButtonAccept = action;
-    } else {
-      this.nameButtonDecline = action;
-    }
-  }
-
-  deleteFriend(): void {
-    this.userService.deleteFriendFromList(this.userInvite.userIdFrom).subscribe(response => {
-      console.log(response);
-    })
   }
 }

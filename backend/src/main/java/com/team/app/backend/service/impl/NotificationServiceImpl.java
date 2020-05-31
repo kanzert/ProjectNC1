@@ -8,7 +8,6 @@ import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
@@ -18,16 +17,15 @@ import java.util.*;
 @Service
 public class NotificationServiceImpl implements NotificationService {
 
-    @Autowired
-    private NotificationDao notificationDao;
-    @Autowired
+    private final NotificationDao notificationDao;
     private final SimpMessagingTemplate template;
 
     private Map<String,Long> listeners = new HashMap<>();
 
     @Autowired
-    public NotificationServiceImpl(SimpMessagingTemplate template) {
+    public NotificationServiceImpl(NotificationDao notificationDao, SimpMessagingTemplate template) {
         this.template = template;
+        this.notificationDao = notificationDao;
     }
 
     public void add(String sessionId, Long userId) {
@@ -38,18 +36,17 @@ public class NotificationServiceImpl implements NotificationService {
         listeners.remove(sessionId);
     }
 
-    @Scheduled(fixedDelay = 2000)
-    public void dispatch() {
-        for (Map.Entry<String,Long> listener : listeners.entrySet()) {
-            SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
-            headerAccessor.setSessionId(listener.getKey());
-            headerAccessor.setLeaveMutable(true);
-            template.convertAndSendToUser(
-                    listener.getKey(),
-                    "/notification",
-                    getAll(listener.getValue()),
-                    headerAccessor.getMessageHeaders());
-        }
+    @Override
+    public void dispatch(String sessionId) {
+
+        SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
+        headerAccessor.setSessionId(sessionId);
+        headerAccessor.setLeaveMutable(true);
+        template.convertAndSendToUser(
+                sessionId,
+                "/notification",
+                getAll(listeners.get(sessionId)),
+                headerAccessor.getMessageHeaders());
     }
 
     @EventListener
@@ -57,17 +54,17 @@ public class NotificationServiceImpl implements NotificationService {
         String sessionId = event.getSessionId();
         remove(sessionId);
     }
+
     @Transactional
     @Override
     public void create(Notification not) {
-
         notificationDao.create(not);
+        dispatch(getKey(not.getUserId()));
     }
     @Transactional
     @Override
     public void update(Notification not) {
         notificationDao.update(not);
-
     }
     @Transactional
     @Override
@@ -79,12 +76,13 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<Notification> getAll (Long user_id) {
+
         return notificationDao.getAll(user_id);
     }
 
-
     @Override
     public List<Notification> getSetting(Long userId) {
+
         return notificationDao.getSetting(userId);
     }
 
@@ -92,5 +90,15 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void setSetting(Notification not) {
         this.notificationDao.setSetting(not);
+        dispatch(getKey(not.getUserId()));
+    }
+
+    private String getKey(Long value) {
+        for (Map.Entry<String, Long> entry : listeners.entrySet()) {
+            if (entry.getValue().equals(value)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 }

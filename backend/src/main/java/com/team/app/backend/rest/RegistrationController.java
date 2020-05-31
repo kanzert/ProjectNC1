@@ -23,6 +23,7 @@ public class RegistrationController {
     private final UserDao userDao;
     private final MessageSource messageSource;
 
+
     @Autowired
     public RegistrationController(UserService userService, UserDao userDao, MessageSource messageSource) {
         this.userService = userService;
@@ -33,7 +34,6 @@ public class RegistrationController {
     @PostMapping("/sign-up")
     public ResponseEntity registerUserAccount(
             @RequestBody UserRegistrationDto userDto) {
-
         try {
             userService.registerNewUserAccount(userDto);
 
@@ -44,15 +44,6 @@ public class RegistrationController {
 
         }
         return ResponseEntity.ok().body(new HashMap<String,String>());
-
-
     }
-
-
-
-//    @GetMapping(value = "/{path:[^\\.]*}")
-//    public String redirect() {
-//        return "forward:/";
-//    }
 
 }

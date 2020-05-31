@@ -13,8 +13,6 @@ export class QuizAproveFormComponent implements OnInit {
 
   @Input()
   quizId: number;
-  @Input()
-  userId: number;
   approveForm: FormGroup;
 
   message = '';
@@ -28,10 +26,9 @@ export class QuizAproveFormComponent implements OnInit {
      );
   }
   submit() {
-      console.log(this.userId);
       this.quizService.approveQuiz({id: this.quizId, description: this.approveForm.get('comment').value,
-        user_id: this.userId.toString(), status: {name: this.approveForm.get('approveStatus').value}} as Quiz).
+        status: {name: this.approveForm.get('approveStatus').value}} as Quiz).
       subscribe(res => {this.router.navigateByUrl('/dashboard')}
-      , error => this.error = 'There is a problem :(');
+      , error => this.error = error.error.message);
   }
 }

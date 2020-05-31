@@ -15,11 +15,12 @@ import java.util.Random;
 @Transactional
 public class SessionServiceImpl implements SessionService {
 
-    @Autowired
-    SessionDao sessionDao;
+    private final SessionDao sessionDao;
 
     @Autowired
-    UserToSessionService userToSessionService;
+    public SessionServiceImpl(SessionDao sessionDao) {
+        this.sessionDao = sessionDao;
+    }
 
 
     private String generateAccessCode(){
@@ -35,37 +36,30 @@ public class SessionServiceImpl implements SessionService {
 
 
     @Override
-    public Session newSessionForQuiz(Quiz quiz) {
+    public Long newSessionForQuiz(Long quiz_id) {
         long millis=System.currentTimeMillis();
         java.sql.Timestamp date=new java.sql.Timestamp(millis);
 
-        Session session= new Session(
-                quiz.getId(),
-                generateAccessCode(),
-                date,
-                new SessionStatus(1L,"waiting")
-        );
+        Session session= new Session();
+        session.setAccessCode(generateAccessCode());
+        session.setQuiz_id(quiz_id);
+        session.setDate(date);
+        session.setStatus(new SessionStatus(1L,"waiting"));
         return sessionDao.save(session);
     }
 
     @Override
-    public Session updateSession(Session session) {
-        return sessionDao.update(session);
-    }
+    public void updateSession(Session session) { sessionDao.update(session); }
 
     @Override
     public Session getSessionById(Long id) {
         return sessionDao.getById(id);
     }
 
-    @Override
-    public List<Session> getAllByQuizId(Long quizId) {
-        return null;
-    }
 
     @Override
-    public void setSesionStatus(Long ses_id, SessionStatus sessionStatus) {
-        sessionDao.setSesionStatus(ses_id,sessionStatus.getId());
+    public void setSessionStatus(Long ses_id, SessionStatus sessionStatus) {
+        sessionDao.setSessionStatus(ses_id,sessionStatus.getId());
     }
 
     @Override

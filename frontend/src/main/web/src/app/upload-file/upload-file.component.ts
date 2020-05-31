@@ -37,18 +37,6 @@ export class UploadFileComponent implements OnInit {
       const nextSibling = event.target.nextElementSibling;
       nextSibling.innerText = fileName;
       file = event.target.files[0];
-      // let image;
-      //
-      // if (file) {
-      //   image = new Image();
-      //   image.src = _URL.createObjectURL(file);
-      // }
-      // image.onload = function () {
-      //   if (this.width != 150 && this.height != 150) {
-      //     alert("The image width should be " + 150 + " and image height is " + 150);
-      //     alert("The image width is " + this.width + " and image height is " + this.height);
-      //   }
-      // }
     }
     this.form.get('image').setValue(file);
   }

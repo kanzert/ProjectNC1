@@ -18,6 +18,7 @@ public class QuizCategoryController {
 
     private final QuizCategoryService quizCategoryService;
 
+    @Autowired
     public QuizCategoryController(QuizCategoryService quizCategoryService) {
         this.quizCategoryService = quizCategoryService;
     }

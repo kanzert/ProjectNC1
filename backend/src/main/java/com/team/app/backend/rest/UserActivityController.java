@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/activity")
 public class UserActivityController {
-
     private final UserActivityService userActivityService;
     private final SecurityService securityService;
 
@@ -20,6 +19,7 @@ public class UserActivityController {
         this.userActivityService = userActivityService;
         this.securityService = securityService;
     }
+
 
     @GetMapping("/all")
     public ResponseEntity getFriendsActivities() {

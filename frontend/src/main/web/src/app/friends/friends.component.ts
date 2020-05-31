@@ -30,4 +30,12 @@ export class FriendsComponent implements OnInit {
       this.friendsList = friendsList;
     })
   }
+
+  onChanged($event: UserInvite) {
+    const index = this.userInvites.indexOf($event);
+    if (index > -1) {
+      this.userInvites.splice(index, 1);
+    }
+    this.getFriends();
+  }
 }

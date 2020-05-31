@@ -3,6 +3,7 @@ package com.team.app.backend.service.impl;
 import com.team.app.backend.dto.*;
 import com.team.app.backend.persistance.dao.*;
 import com.team.app.backend.persistance.model.*;
+import com.team.app.backend.service.NotificationService;
 import com.team.app.backend.service.QuizService;
 import com.team.app.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,32 +22,39 @@ public class QuizServiceImpl implements QuizService {
 
     private final long NOTIFICATION_APPROVED = 2L;
 
-    @Autowired
-    private QuizDao quizDao;
+    private final QuizDao quizDao;
+    private final NotificationDao notificationDao;
 
     @Autowired
-    private NotificationDao notificationDao;
+    private NotificationService notificationService;
+
+
+    private final UserActivityDao userActivityDao;
+
+    private final UserDao userDao;
+
+    private final QuestionDao questionDao;
+
+    private final OptionDao optionDao;
+
+    private final QuizCategoryDao quizCategoryDao;
+
+    private final MessageSource messageSource;
+
+    private final UserService userService;
 
     @Autowired
-    private UserActivityDao userActivityDao;
-
-    @Autowired
-    private UserDao userDao;
-
-    @Autowired
-    private QuestionDao questionDao;
-
-    @Autowired
-    private OptionDao optionDao;
-
-    @Autowired
-    private QuizCategoryDao quizCategoryDao;
-
-    @Autowired
-    MessageSource messageSource;
-
-    @Autowired
-    UserService userService;
+    public QuizServiceImpl(QuizDao quizDao, NotificationDao notificationDao, UserActivityDao userActivityDao, UserDao userDao, QuestionDao questionDao, OptionDao optionDao, QuizCategoryDao quizCategoryDao, MessageSource messageSource, UserService userService) {
+        this.quizDao = quizDao;
+        this.notificationDao = notificationDao;
+        this.userActivityDao = userActivityDao;
+        this.userDao = userDao;
+        this.questionDao = questionDao;
+        this.optionDao = optionDao;
+        this.quizCategoryDao = quizCategoryDao;
+        this.messageSource = messageSource;
+        this.userService = userService;
+    }
 
     @Override
     public Long addDefQuestion(QuestionDefAddDto questionDefAddDto) {
@@ -159,10 +167,7 @@ public class QuizServiceImpl implements QuizService {
         return quizDao.searchQuizes(categories,searchstring, dateFrom, dateTo, user);
     }
 
-	@Override
-    public List<Quiz> searchQuizes(String searchstring) {
-        return quizDao.searchQuizes(searchstring);
-    }
+
 	
     @Override
     public List<Question> getQuizQuestion(Long id) {
@@ -216,28 +221,29 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Quiz getQuiz(Long id) {
+
         return quizDao.get(id);
     }
 
     @Override
-    public void aproveQuiz(Quiz quiz) {
+    public void approveQuiz(Quiz quiz) {
         Notification notification = new Notification();
         notification.setCategoryId(NOTIFICATION_APPROVED);
-        notification.setUserId(quiz.getUser_id());
-        String[] params = new String[]{quiz.getTitle()};
+        notification.setUserId(getUserIdByQuiz(quiz.getId()));
+        String[] params = new String[]{getTitle(quiz.getId())};
         if(quiz.getStatus().getName().equals("approved")) {
             quizDao.approve(quiz.getId());
             notification.setText(messageSource.
                     getMessage("quiz.approved", params,
-                            userService.getUserLanguage(quiz.getUser_id())));
+                            userService.getUserLanguage(getUserIdByQuiz(quiz.getId()))));
         } else {
             notification.setText(quiz.getDescription());
             quizDao.delete(quiz.getId());
         }
-        notificationDao.create(notification);
+        notificationService.create(notification);
     }
 
-    @Transactional(propagation= Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<Quiz> getCreated() {
         return this.quizDao.getCreated();
@@ -247,4 +253,18 @@ public class QuizServiceImpl implements QuizService {
     public List<SessionStatsDto> getTopStats(Long quizId) {
         return quizDao.getTopStats(quizId);
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public Long getUserIdByQuiz(Long quizId) {
+        return quizDao.getUserIdByQuiz(quizId);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public String getTitle(Long quizId) {
+        return quizDao.getTitle(quizId);
+    }
+
+
 }

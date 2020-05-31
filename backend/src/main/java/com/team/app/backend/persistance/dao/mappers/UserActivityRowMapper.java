@@ -2,10 +2,12 @@ package com.team.app.backend.persistance.dao.mappers;
 
 import com.team.app.backend.persistance.model.UserActivity;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class UserActivityRowMapper implements RowMapper<UserActivity> {
 
     @Override

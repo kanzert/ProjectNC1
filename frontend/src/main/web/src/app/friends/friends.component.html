@@ -1,17 +1,15 @@
-<div class="container d-flex justify-content-left">
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+<div class="container d-flex">
+  <button class="btn btn-primary invite-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     {{'DASHBOARD.SIDEBAR.TABS.FRIENDS.INVITES' | translate}} <span class="badge badge-light">{{userInvites.length}}</span>
-    <span class="sr-only">unread messages</span>
   </button>
 </div>
 <div class="collapse" id="collapseExample">
-  <app-user-invite-card *ngFor="let userInvite of userInvites" [userInvite]="userInvite" [isFriendList]="false"></app-user-invite-card>
+  <app-user-invite-card *ngFor="let userInvite of userInvites" [userInvite]="userInvite" (onChanged)="onChanged($event)"></app-user-invite-card>
 </div>
-
 <div *ngIf="friendsList.length > 0; else elseBlock">
   <h2>{{'DASHBOARD.SIDEBAR.TABS.FRIENDS.LABEL' | translate}}</h2>
-  <div class="d-flex flex-row">
-    <app-user-invite-card *ngFor="let friend of friendsList" [userInvite]="friend" [isFriendList]="true"></app-user-invite-card>
+  <div class="d-flex flex-row justify-content-center">
+    <app-friend-profile-card *ngFor="let friend of friendsList" [userInvite]="friend"></app-friend-profile-card>
   </div>
   </div>
 <ng-template #elseBlock>

@@ -45,11 +45,12 @@ public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final MessageSource messageSource;
 
-    public LoginController(UserService userService, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, MessageSource messageSource) {
-        this.userService = userService;
-        this.jwtTokenProvider = jwtTokenProvider;
-        this.authenticationManager = authenticationManager;
+    @Autowired
+    public LoginController(MessageSource messageSource, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
         this.messageSource = messageSource;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.userService = userService;
     }
 
     @PostMapping("/login")

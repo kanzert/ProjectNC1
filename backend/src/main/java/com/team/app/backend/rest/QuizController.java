@@ -25,6 +25,7 @@ import java.util.List;
 public class QuizController {
 
     private final QuizService quizService;
+
     private final UserQuizFavoriteService userQuizFavoriteService;
     private final SecurityService securityService;
 
@@ -37,7 +38,6 @@ public class QuizController {
     @PostMapping("/quiz")
     public HashMap<String,Long> createNewQuiz(
             @RequestBody QuizAddDto quizDto) {
-        System.out.println(quizDto.getUser_id());
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addQuiz(quizDto));
         return result;
@@ -54,7 +54,6 @@ public class QuizController {
     }
 
 
- //   @PostMapping("/question/1")
     @RequestMapping(value={ "/question/1", "/question/2" },method = { RequestMethod.POST })
     public HashMap<String,Long>  createNewQuestion(@RequestBody QuestionDefAddDto questionDefAddDto) {
         HashMap<String,Long>result = new HashMap<String,Long>();
@@ -153,19 +152,15 @@ public class QuizController {
         return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateFrom(),quizCategoryDto.getDateTo(),quizCategoryDto.getUser());
     }
 
-	@GetMapping("/quiz/search/{searchstring}")
+
+	  @GetMapping("/quiz/search/{searchstring}")
     public List<Quiz> searchQuizes(@PathVariable("searchstring") String searchstring) {
         return quizService.searchQuizes(searchstring);
     }
 
     @PostMapping("/quiz/approve")
     public ResponseEntity approveQuiz(@RequestBody Quiz quiz) {
-        try {
-            quizService.aproveQuiz(quiz);
-        }
-        catch (DataAccessException sqlEx) {
-            return ResponseEntity.badRequest().body(sqlEx.toString());
-        }
+            quizService.approveQuiz(quiz);
             return ResponseEntity.ok().build();
     }
 

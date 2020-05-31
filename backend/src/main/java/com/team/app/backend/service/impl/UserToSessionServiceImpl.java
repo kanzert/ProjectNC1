@@ -1,6 +1,7 @@
 package com.team.app.backend.service.impl;
 
 import com.team.app.backend.dto.FinishedQuizDto;
+import com.team.app.backend.dto.SessionStatsDto;
 import com.team.app.backend.persistance.dao.*;
 import com.team.app.backend.persistance.model.Session;
 import com.team.app.backend.persistance.model.User;
@@ -17,39 +18,44 @@ import java.util.List;
 @Transactional
 public class UserToSessionServiceImpl implements UserToSessionService {
 
-    @Autowired
+    private final
     UserToSessionDao userToSessionDao;
 
-    @Autowired
+    private final
     SessionDao sessionDao;
 
-    @Autowired
+    private final
     UserActivityDao userActivityDao;
 
     @Autowired
-    QuizDao quizDao;
-
-    @Autowired
-    UserDao userDao;
+    public UserToSessionServiceImpl(UserToSessionDao userToSessionDao, SessionDao sessionDao, UserActivityDao userActivityDao) {
+        this.userToSessionDao = userToSessionDao;
+        this.sessionDao = sessionDao;
+        this.userActivityDao = userActivityDao;
+    }
 
     @Override
-    public UserToSession createNewUserToSession(User user, Session session) {
+    public void createNewUserToSession(Long user_id, Long ses_id) {
         UserToSession userToSession = new UserToSession();
-        userToSession.setUser_id(user.getId());
-        userToSession.setSession_id(session.getId());
-        return userToSessionDao.save(userToSession);
+        userToSession.setUser_id(user_id);
+        userToSession.setSession_id(ses_id);
+        userToSessionDao.save(userToSession);
     }
 
     @Override
-    public List<UserToSession> getAllBySessionId(Long sessionId) {
-        return userToSessionDao.getAllBySes(sessionId);
+    public List<SessionStatsDto> getStats(Long sessionId) {
+        List<SessionStatsDto> res = userToSessionDao.getStats(sessionId);
+        for (SessionStatsDto s:res) {
+            System.out.println(s.toString());
+        }
+        return res;
     }
+
 
     @Override
     public void insertScore(FinishedQuizDto finishedQuizDto) {
         Session session=sessionDao.getById(finishedQuizDto.getSes_id());
         Long user_id =finishedQuizDto.getUser_id();
-        System.out.println("service "+finishedQuizDto.getUser_id()+" "+finishedQuizDto.getSes_id()+" "+finishedQuizDto.getTime()+" "+finishedQuizDto.getScore());
 
         UserToSession userToSession = new UserToSession();
         userToSession.setScore(finishedQuizDto.getScore());
@@ -62,7 +68,6 @@ public class UserToSessionServiceImpl implements UserToSessionService {
         userActivity.setCategoryId(1L);
         userActivity.setDate(session.getDate());
         userActivity.setUserId(user_id);
-        //userActivity.setText(String.format("%s played quiz named \"%s\"",userDao.get(user_id).getUsername(),quizDao.get(session.getQuiz_id()).getTitle()));
         userActivity.setElem_id(session.getQuiz_id());
         userActivityDao.create(userActivity);
         userToSessionDao.update(userToSession);

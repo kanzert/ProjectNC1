@@ -13,4 +13,5 @@ public class UserAchievement {
     private String title;
     private Long quizAmount;
     private Long played;
+    private String image;
 }

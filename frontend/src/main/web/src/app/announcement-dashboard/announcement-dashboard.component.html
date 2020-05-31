@@ -23,7 +23,6 @@
         </div>
           <app-announcement-edit *ngIf="editOnly" [announcement]="announcement"  [editOnly]="editOnly"></app-announcement-edit>
         </div>
-
       <div  class="tab-pane" id="approve">
         <div *ngIf="!editOnly" class="raw">
           <h2 *ngIf="newAnnouncements.length == 0 ">{{'DASHBOARD.SIDEBAR.TABS.ANNOUNCEMENTS.TABS.ANNOUNCEMENT_APPROVE.NO_SHOW' | translate}}</h2>

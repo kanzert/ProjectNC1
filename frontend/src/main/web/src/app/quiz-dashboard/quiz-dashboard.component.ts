@@ -14,7 +14,7 @@ export class QuizDashboardComponent implements OnInit {
   userQuizzes: Quiz[] = [];
   favoriteQuizzes: Quiz[] = [];
   suggestionQuizzes: Quiz[] = [];
-  sessionStats:SessionStats[]=[];
+
   completedQuizes:Quiz[]=[];
   currentTab = 'Quizzes';
 

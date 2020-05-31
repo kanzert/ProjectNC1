@@ -4,30 +4,29 @@ import com.team.app.backend.persistance.dao.AnnouncementDao;
 import com.team.app.backend.persistance.dao.mappers.AnnouncementRowMapper;
 import com.team.app.backend.persistance.model.Announcement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public class AnnouncementDaoImpl implements AnnouncementDao {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+
+    private final Environment env;
+
+    private final AnnouncementRowMapper announcementRowMapper;
 
     @Autowired
-    Environment env;
-
-    private AnnouncementRowMapper announcementRowMapper = new AnnouncementRowMapper();
-
-    public AnnouncementDaoImpl(DataSource dataSource) {
+    public AnnouncementDaoImpl(DataSource dataSource, Environment env, AnnouncementRowMapper announcementRowMapper) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.env = env;
+        this.announcementRowMapper = announcementRowMapper;
     }
+
 
 
     @Override
@@ -87,9 +86,9 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 
     @Override
     public Announcement get(Long id) {
-        return new Announcement();
+        return jdbcTemplate.queryForObject(env.getProperty("get.announcement"),
+                new Object[]{id},
+                announcementRowMapper);
     }
-
-
 
 }

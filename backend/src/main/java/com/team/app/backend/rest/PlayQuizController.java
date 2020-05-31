@@ -38,6 +38,7 @@ public class PlayQuizController {
 
     @Autowired
     PlayQuizController(SimpMessagingTemplate template, SessionService sessionService, QuizService quizService, UserService userService, UserToSessionService userToSessionService, QuestionService questionService, UserAnswerService userAnswerService, MessageSource messageSource, SecurityService securityService){
+
         this.template = template;
         this.sessionService = sessionService;
         this.quizService = quizService;
@@ -51,14 +52,22 @@ public class PlayQuizController {
 
     @MessageMapping("/start/game/{session_id}")
     public void sendMessage(@PathVariable("session_id") Long sesId){
-        this.template.convertAndSend("/start/"+sesId,  "true");
+        this.messageSource = messageSource;
+    }
+
+
+    @MessageMapping("/finish/game")
+    public void sendStats(FinishedQuizDto finishedQuizDto){
+        Long sesId=finishedQuizDto.getSes_id();
+        sessionService.setSessionStatus(sesId,new SessionStatus(2L,"ended"));
+        userToSessionService.insertScore(finishedQuizDto);
+        this.template.convertAndSend("/finish/"+sesId,  userToSessionService.getStats(sesId));
     }
 
 
     @GetMapping("play/{quiz_id}")
     public ResponseEntity playQuiz(
             @PathVariable("quiz_id") long quiz_id) {
-
         Long user_id = securityService.getCurrentUser().getId();
         Quiz quiz = quizService.getQuiz(quiz_id);
         Session session = sessionService.newSessionForQuiz(quiz);
@@ -72,8 +81,9 @@ public class PlayQuizController {
 
 
     @PostMapping("start/{ses_id}")
-    public ResponseEntity startSession(@PathVariable("ses_id") long ses_id){
-        sessionService.setSesionStatus(ses_id,new SessionStatus(3L,"started"));
+    public ResponseEntity startSession(
+            @PathVariable("ses_id") long ses_id){
+        sessionService.setSessionStatus(ses_id,new SessionStatus(3L,"started"));
         return ResponseEntity.ok("");
     }
 
@@ -92,34 +102,14 @@ public class PlayQuizController {
     ) {
         Long user_id = securityService.getCurrentUser().getId();
         Session session = sessionService.getSessionByAccessCode(accessCode);
-        System.out.println(session);
         if(session != null){
-            System.out.println("not null ses");
-            User user = userService.getUserById(user_id);
-            userToSessionService.createNewUserToSession(user, session);
+            userToSessionService.createNewUserToSession(user_id, session.getId());
             return ResponseEntity.ok(session);
         }else{
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(messageSource.getMessage("session.start", null, LocaleContextHolder.getLocale()));
         }
 
-    }
-
-    @GetMapping("stats/{ses_id}")
-    public ResponseEntity calculateResults(
-            @PathVariable("ses_id") long ses_id
-    ) {
-
-        Map response = new HashMap();
-
-        List<UserToSession> userToSessionList = new ArrayList<>(userToSessionService.getAllBySessionId(ses_id));
-
-        userToSessionList.forEach(
-                uts -> {response.put("username",userService.getUserById(uts.getUser_id()).getUsername());
-                    response.put("score",uts.getScore());
-                    response.put("time",uts.getTime()); }
-        );
-        return ResponseEntity.ok(response);
     }
 
     @GetMapping("topstats/{quiz_id}")
@@ -129,8 +119,7 @@ public class PlayQuizController {
 
     @PostMapping("finish")
     public ResponseEntity finishQuiz(@RequestBody FinishedQuizDto finishedQuizDto) {
-        System.out.println(finishedQuizDto.getUser_id()+" "+finishedQuizDto.getSes_id()+" "+finishedQuizDto.getTime()+" "+finishedQuizDto.getScore());
-        sessionService.setSesionStatus(finishedQuizDto.getSes_id(),new SessionStatus(2L,"ended"));
+        sessionService.setSessionStatus(finishedQuizDto.getSes_id(),new SessionStatus(2L,"ended"));
         userToSessionService.insertScore(finishedQuizDto);
         return ResponseEntity.ok(messageSource.getMessage("result.ok", null, LocaleContextHolder.getLocale()));
     }

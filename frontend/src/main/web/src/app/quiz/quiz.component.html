@@ -6,7 +6,6 @@
         <button class="btn btn-primary my-2 w-50" (click)="startNewGame();" >{{'PLAY_QUIZ.START_MENU.BUTTON.START' | translate}}</button>
       </div>
     </div>
-
     <div #elseBlock class="row" [hidden]="!getUserJoin()">
       <div class="col">
         <h4>{{'PLAY_QUIZ.START_MENU.JOIN' | translate}}</h4>
@@ -23,48 +22,74 @@
   </div>
   <div *ngIf="interval===null && finish" class="container text-white p-2 align-items-center w-50" [hidden]="interval" >
     <div *ngIf="getUserRole() === 'user'">
-      <div *ngIf="topStats.length > 0;" class="raw">
-        <div class="card card-cascade narrower" style="background-color: transparent; border:1px solid">
-          <div class="align-items-center">
-            <h3>{{'PLAY_QUIZ.RESULT.TABLE.TITLE' | translate}}</h3>
+      <div class="row  justify-content-center align-items-center">
+        <button  type="button" data-toggle="collapse"  data-target="#topStatsCollapse" aria-expanded="false" aria-controls="topStatsCollapse" class="btn btn-primary mt-2 w-50 col-4 mr-3 collapsed">{{'PLAY_QUIZ.RESULT.COLLAPSE.BEST' | translate}}</button>
+        <button  type="button" data-toggle="collapse"  data-target="#sesStatsCollapse" aria-expanded="false" aria-controls="sesStatsCollapse" class="btn btn-primary mt-2 w-50 col-4 mr-3 collapsed">{{'PLAY_QUIZ.RESULT.COLLAPSE.STATS' | translate}}</button>
+      </div>
+
+      <div class="accordion" id="accordion">
+        <div class="collapse" id="topStatsCollapse" style="margin: 15px;" data-parent="#accordion">
+          <div class="card card-cascade narrower" style="background-color: transparent; border:1px solid">
+            <div class="align-items-center">
+              <h3>{{'PLAY_QUIZ.RESULT.TABLE.TITLE' | translate}}</h3>
+            </div>
+            <div class="table-wrapper">
+              <table class="table table-hover mb-0 text-white">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.USERNAME' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.SCORE' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.TIME' | translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  *ngFor="let sessionStat of topStats">
+                  <td>{{sessionStat.place}}</td>
+                  <td>{{sessionStat.username}}</td>
+                  <td>{{sessionStat.score}}</td>
+                  <td>{{sessionStat.time}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="table-wrapper">
-            <table class="table table-hover mb-0 text-white">
-              <thead>
-              <tr>
-                <th>#</th>
-                <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.USERNAME' | translate}}</th>
-                <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.SCORE' | translate}}</th>
-                <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.TIME' | translate}}</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr  *ngFor="let sessionStat of topStats">
-                <td>{{sessionStat.place}}</td>
-                <td>{{sessionStat.username}}</td>
-                <td>{{sessionStat.score}}</td>
-                <td>{{sessionStat.time}}</td>
-              </tr>
-              </tbody>
-            </table>
+        </div>
+        <div class="collapse" id="sesStatsCollapse" style="margin: 15px;" data-parent="#accordion">
+          <div class="card card-cascade narrower" style="background-color: transparent; border:1px solid">
+            <div class="align-items-center">
+              <h3>{{'PLAY_QUIZ.RESULT.STATS.TITLE' | translate}}</h3>
+            </div>
+            <div class="table-wrapper">
+              <table class="table table-hover mb-0 text-white">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.USERNAME' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.SCORE' | translate}}</th>
+                  <th class="th-lg">{{'PLAY_QUIZ.RESULT.TABLE.TIME' | translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  *ngFor="let sessionStat1 of stats">
+                  <td>{{sessionStat1.place}}</td>
+                  <td>{{sessionStat1.username}}</td>
+                  <td *ngIf="sessionStat1.score !== null">{{sessionStat1.score}}</td>
+                  <td *ngIf="sessionStat1.time !== null">{{sessionStat1.time}}</td>
+                  <td [hidden]="sessionStat1.score !== null || sessionStat1.time !== null" colspan="2" > {{'PLAY_QUIZ.RESULT.STATS.NOT_FINISHED' | translate}} </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-
 
       <h2 class="mt-2" >{{'PLAY_QUIZ.RESULT.TEXT' | translate}} {{getScore()}}</h2>
       <h2 class="mt-2">{{'PLAY_QUIZ.RESULT.TIME' | translate}} {{timeSpent}} {{'PLAY_QUIZ.RESULT.SECONDS' | translate}}</h2>
     </div>
 
-    <!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sessionStats" aria-expanded="false" aria-controls="collapseExample">-->
-      <!--Show stats-->
-    <!--</button>-->
-    <!--<div class="collapse" id="sessionStats">-->
-      <!--<ul *ngFor="let stat of stats" >-->
-      <!--{{stat.username}} : {{stat.score}}-->
-      <!--</ul>-->
-    <!--</div>-->
-    <app-quiz-aprove-form *ngIf="getUserRole() !== 'user'" [userId]="72" [quizId]="quizId">
+    <app-quiz-aprove-form *ngIf="getUserRole() !== 'user'" [quizId]="quizId">
     </app-quiz-aprove-form>
     <a routerLink="/dashboard"><h3>{{'PLAY_QUIZ.RESULT.BUTTON' | translate}}</h3></a>
   </div>
@@ -87,7 +112,7 @@
         <div class="container " id="bod2">
           <div id="questions" class="row mt-2">
             <div class="col text-right">
-              <button (click)="nextQuestion(true)" class="btn text-right my-1 btn-primary">{{'PLAY_QUIZ.GAME.BUTTON.SKIP' | translate}}</button>
+              <button (click)="clearTimer(); nextQuestion();" class="btn text-right my-1 btn-primary">{{'PLAY_QUIZ.GAME.BUTTON.SKIP' | translate}}</button>
             </div>
           </div>
 
@@ -101,7 +126,6 @@
           </div>
           <div class="row mt-1 justify-content-center">
             <div class="col-12 text-center" >
-              <!--              <img src="https://cdn.pixabay.com/photo/2020/04/09/12/28/dog-5021242_1280.jpg" style="max-height: 200px;max-width: 100px" class="my-2 img-fluid rounded" alt="news">-->
               <h3 style="color:black">{{questions[indexQuestion].text}}</h3>
             </div>
           </div>
@@ -140,15 +164,16 @@
           </div>
           <div class="col-5 align-self-center">
             <div *ngIf="optionType === 4" class="mb-3">
-              <ul class="list-unstyled">
-                <div cdkDropList (cdkDropListDropped)="drop($event)">
-                  <button *ngFor="let option of optionsSequence;" class="col btn mx-1 btn-success mb-2">
-                    <li cdkDrag>
-                      {{option.text}}
-                    </li>
-                  </button>
+              <div class="drop_area" (cdkDropListDropped)="drop($event)" cdkDropList #cdkDropList>
+                <div *ngFor="let option of optionsSequence; let i = index"
+                     (cdkDragStarted)="dragStart($event)"
+                     (cdkDragMoved)="dragMoved($event, option, i)"
+                     cdkDrag>
+                  <mat-card class="my_action">
+                    {{ option.text }}
+                  </mat-card>
                 </div>
-              </ul>
+              </div>
             </div>
           </div>
         </div>

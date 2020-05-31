@@ -4,7 +4,12 @@ import {UserService} from '../services/user.service';
 import {AnnouncementService} from '../services/announcement.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
-import {ANNOUNCEMENT_APPROVED, ANNOUNCEMENT_CREATED, ANNOUNCEMENT_IMPORTANT} from "../parameters";
+import {
+  ANNOUNCEMENT_APPROVED,
+  ANNOUNCEMENT_CREATED,
+  ANNOUNCEMENT_DEFAULT_IMAGE,
+  ANNOUNCEMENT_IMPORTANT
+} from "../parameters";
 import {UploadFilesService} from "../services/upload-files.service";
 
 @Component({
@@ -20,7 +25,7 @@ export class AnnouncementEditComponent implements OnInit {
   announcement: Announcement = {} as Announcement;
   error = '';
   message = '';
-  imageUrl = 'https://cdn.pixabay.com/photo/2020/04/09/12/28/dog-5021242_1280.jpg';
+  imageUrl = ANNOUNCEMENT_DEFAULT_IMAGE;
   form: FormGroup;
   announcementForm: FormGroup;
 
@@ -91,6 +96,5 @@ export class AnnouncementEditComponent implements OnInit {
     }
   }
   submit() {
-
   }
 }

@@ -8,8 +8,8 @@ import {Observable, of} from "rxjs";
   providedIn: 'root'
 })
 export class UploadFilesService {
-  // private apiURL = "http://localhost:8080/api/storage";
-  private apiURL = "/api/storage";
+  private apiURL = "http://localhost:8080/api/storage";
+  // private apiURL = "/api/storage";
   private userId;
   private readonly token: string;
   private httpHeader: HttpHeaders;

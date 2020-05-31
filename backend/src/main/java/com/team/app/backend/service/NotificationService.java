@@ -13,4 +13,5 @@ public interface NotificationService {
     List<Notification> getSetting(Long userId);
     void add(String sessionId, Long userId);
     void remove(String userId);
+    void dispatch(String sessionId);
 }
