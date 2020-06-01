@@ -23,7 +23,6 @@ public class RegistrationController {
 
     private final UserService userService;
 
-
     private final MessageSource messageSource;
 
     @Autowired

@@ -17,7 +17,7 @@ export class AchievementsComponent implements OnInit {
   @Input()
   achievement : Achievement;
   role: string;
-  urlIcon;
+  urlIcon = 'url("' + "https://cdn3.iconfinder.com/data/icons/project-management-49/50/66-128.png" +'")';
   percentStatus;
   played;
 
@@ -33,9 +33,10 @@ export class AchievementsComponent implements OnInit {
         this.percentStatus = (this.userAchievement.played / this.userAchievement.quizAmount * 100);
         this.played = this.userAchievement.played;
       }
-      this.urlIcon = 'url("' + this.userAchievement.image +'")';
+
+      if(this.userAchievement.image !== null)this.urlIcon = 'url("' + this.userAchievement.image +'")';
     } else {
-      this.urlIcon = 'url("' + this.achievement.icon +'")';
+      if(this.achievement.icon !== null) this.urlIcon = 'url("' + this.achievement.icon +'")';
     }
 
   }

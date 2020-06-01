@@ -1209,3 +1209,301 @@ java.lang.IllegalArgumentException: User must not be null
 2020-06-01 14:12:20.125  INFO 16524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2020-06-01 14:12:20.129  INFO 16524 --- [main] com.team.app.backend.Application         : Started Application in 4.969 seconds (JVM running for 7.57)
 2020-06-01 14:12:26.754  INFO 16524 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 14:18:53.372  INFO 8604 --- [main] com.team.app.backend.Application         : Starting Application on DESKTOP-A6LFJAR with PID 8604 (C:\ProjectNC1\backend\target\classes started by Никита in C:\ProjectNC1)
+2020-06-01 14:18:53.377  INFO 8604 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 14:18:54.967  INFO 8604 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 14:18:54.992  INFO 8604 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 14:18:54.992  INFO 8604 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 14:18:55.179  INFO 8604 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 14:18:55.534  INFO 8604 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 14:18:55.539  INFO 8604 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 14:18:55.993  INFO 8604 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 14:18:56.034  INFO 8604 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 14:18:56.288  INFO 8604 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 14:18:56.473  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 14:18:56.473  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 14:18:56.473  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 14:18:56.474  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 14:18:56.474  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 14:18:56.474  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 14:18:56.474  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 14:18:56.474  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 14:18:56.475  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 14:18:56.515  INFO 8604 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@239b98cb, org.springframework.security.web.context.SecurityContextPersistenceFilter@2eebce87, org.springframework.security.web.header.HeaderWriterFilter@4438938e, org.springframework.web.filter.CorsFilter@117b2cc6, org.springframework.security.web.authentication.logout.LogoutFilter@29dcdd1c, com.team.app.backend.security.jwt.JwtTokenFilter@6def0632, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6775c0d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@53bb71e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49038f97, org.springframework.security.web.session.SessionManagementFilter@51eb0e84, org.springframework.security.web.access.ExceptionTranslationFilter@7404ddca, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1a0f349]
+2020-06-01 14:18:56.596  INFO 8604 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 14:18:56.597  INFO 8604 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 14:18:56.599  INFO 8604 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 14:18:56.630  INFO 8604 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 14:18:56.634  INFO 8604 --- [main] com.team.app.backend.Application         : Started Application in 4.546 seconds (JVM running for 7.764)
+2020-06-01 14:19:00.987  INFO 8604 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 14:21:11.623  INFO 900 --- [main] com.team.app.backend.Application         : Starting Application on DESKTOP-A6LFJAR with PID 900 (C:\ProjectNC1\backend\target\classes started by Никита in C:\ProjectNC1)
+2020-06-01 14:21:11.629  INFO 900 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 14:21:13.545  INFO 900 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 14:21:13.562  INFO 900 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 14:21:13.562  INFO 900 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 14:21:13.747  INFO 900 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 14:21:14.075  INFO 900 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 14:21:14.081  INFO 900 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 14:21:14.489  INFO 900 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 14:21:14.525  INFO 900 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 14:21:14.710  INFO 900 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 14:21:14.869  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 14:21:14.870  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 14:21:14.870  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 14:21:14.870  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 14:21:14.870  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 14:21:14.870  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 14:21:14.902  INFO 900 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64c8fcfb, org.springframework.security.web.context.SecurityContextPersistenceFilter@2b9aeedb, org.springframework.security.web.header.HeaderWriterFilter@43e3a390, org.springframework.web.filter.CorsFilter@21be14c2, org.springframework.security.web.authentication.logout.LogoutFilter@239b98cb, com.team.app.backend.security.jwt.JwtTokenFilter@19105a87, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@23ea8830, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d512652, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@83b0d0f, org.springframework.security.web.session.SessionManagementFilter@6b09ce57, org.springframework.security.web.access.ExceptionTranslationFilter@8f39224, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5be51aa]
+2020-06-01 14:21:14.951  INFO 900 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 14:21:14.951  INFO 900 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 14:21:14.954  INFO 900 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 14:21:14.999  INFO 900 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 14:21:15.004  INFO 900 --- [main] com.team.app.backend.Application         : Started Application in 4.527 seconds (JVM running for 6.6)
+2020-06-01 14:21:19.570  INFO 900 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 16:36:31.346  INFO 8944 --- [main] com.team.app.backend.Application         : Starting Application on DESKTOP-A6LFJAR with PID 8944 (C:\ProjectNC1\backend\target\classes started by Никита in C:\ProjectNC1)
+2020-06-01 16:36:31.358  INFO 8944 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 16:36:39.057  INFO 8944 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 16:36:39.087  INFO 8944 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 16:36:39.088  INFO 8944 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 16:36:39.447  INFO 8944 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 16:36:40.122  INFO 8944 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 16:36:40.130  INFO 8944 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 16:36:41.354  INFO 8944 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 16:36:41.402  INFO 8944 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 16:36:41.723  INFO 8944 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 16:36:41.951  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 16:36:41.951  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 16:36:41.952  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 16:36:41.953  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 16:36:41.953  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 16:36:41.954  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 16:36:41.955  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 16:36:41.955  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 16:36:41.955  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 16:36:41.955  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 16:36:41.955  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 16:36:41.955  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 16:36:41.955  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 16:36:41.956  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 16:36:41.956  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 16:36:41.958  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 16:36:41.958  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 16:36:41.959  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 16:36:42.030  INFO 8944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61ab6521, org.springframework.security.web.context.SecurityContextPersistenceFilter@33751d49, org.springframework.security.web.header.HeaderWriterFilter@6def0632, org.springframework.web.filter.CorsFilter@328e4ec2, org.springframework.security.web.authentication.logout.LogoutFilter@7be38eba, com.team.app.backend.security.jwt.JwtTokenFilter@7757025d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4eeb14e0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72a7aa4f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@68fc9167, org.springframework.security.web.session.SessionManagementFilter@14a1769d, org.springframework.security.web.access.ExceptionTranslationFilter@239b98cb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@100d0218]
+2020-06-01 16:36:42.130  INFO 8944 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 16:36:42.130  INFO 8944 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 16:36:42.132  INFO 8944 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 16:36:42.195  INFO 8944 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 16:36:42.216  INFO 8944 --- [main] com.team.app.backend.Application         : Started Application in 12.088 seconds (JVM running for 19.239)
+2020-06-01 16:55:13.736  INFO 8944 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 16:55:33.297  INFO 8448 --- [main] com.team.app.backend.Application         : Starting Application on DESKTOP-A6LFJAR with PID 8448 (C:\ProjectNC1\backend\target\classes started by Никита in C:\ProjectNC1)
+2020-06-01 16:55:33.302  INFO 8448 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 16:55:37.537  INFO 8448 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 16:55:37.557  INFO 8448 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 16:55:37.558  INFO 8448 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 16:55:37.919  INFO 8448 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 16:55:38.541  INFO 8448 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 16:55:38.553  INFO 8448 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 16:55:39.852  INFO 8448 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 16:55:39.890  INFO 8448 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 16:55:40.139  INFO 8448 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 16:55:41.956  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 16:55:41.956  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 16:55:41.957  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 16:55:41.958  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 16:55:41.961  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 16:55:41.962  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 16:55:41.962  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 16:55:41.962  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 16:55:41.962  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 16:55:41.962  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 16:55:41.962  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 16:55:41.963  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 16:55:41.963  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 16:55:41.963  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 16:55:41.963  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 16:55:41.963  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 16:55:41.963  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 16:55:41.963  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 16:55:42.028  INFO 8448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@632241f5, org.springframework.security.web.context.SecurityContextPersistenceFilter@7a1371, org.springframework.security.web.header.HeaderWriterFilter@42107318, org.springframework.web.filter.CorsFilter@64bba0eb, org.springframework.security.web.authentication.logout.LogoutFilter@35e2b89f, com.team.app.backend.security.jwt.JwtTokenFilter@577bfadb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c28181b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@d70e9a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25ae1f80, org.springframework.security.web.session.SessionManagementFilter@3c60c681, org.springframework.security.web.access.ExceptionTranslationFilter@2b170932, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@99c4993]
+2020-06-01 16:55:42.439  INFO 8448 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 16:55:42.440  INFO 8448 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 16:55:42.443  INFO 8448 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 16:55:42.493  INFO 8448 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 16:55:42.499  INFO 8448 --- [main] com.team.app.backend.Application         : Started Application in 10.267 seconds (JVM running for 15.025)
+2020-06-01 16:55:46.634  INFO 8448 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 17:04:14.770  INFO 9192 --- [main] com.team.app.backend.Application         : Starting Application on DESKTOP-A6LFJAR with PID 9192 (C:\ProjectNC1\backend\target\classes started by Никита in C:\ProjectNC1)
+2020-06-01 17:04:14.776  INFO 9192 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 17:04:16.700  INFO 9192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 17:04:16.726  INFO 9192 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:04:16.727  INFO 9192 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 17:04:16.968  INFO 9192 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:04:17.358  INFO 9192 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 17:04:17.365  INFO 9192 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 17:04:17.957  INFO 9192 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 17:04:17.995  INFO 9192 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 17:04:18.239  INFO 9192 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 17:04:18.466  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 17:04:18.467  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 17:04:18.468  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 17:04:18.469  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 17:04:18.469  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 17:04:18.470  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 17:04:18.471  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 17:04:18.471  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 17:04:18.471  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 17:04:18.471  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 17:04:18.471  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 17:04:18.510  INFO 9192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@464ede1f, org.springframework.security.web.context.SecurityContextPersistenceFilter@6d7740f0, org.springframework.security.web.header.HeaderWriterFilter@4b4927e5, org.springframework.web.filter.CorsFilter@64910b2d, org.springframework.security.web.authentication.logout.LogoutFilter@74b1838, com.team.app.backend.security.jwt.JwtTokenFilter@1247c72e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1de7f898, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4cb24e2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6fef75c6, org.springframework.security.web.session.SessionManagementFilter@cfd5cd2, org.springframework.security.web.access.ExceptionTranslationFilter@7606bd03, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@bfb93cf]
+2020-06-01 17:04:18.556  INFO 9192 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 17:04:18.556  INFO 9192 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 17:04:18.559  INFO 9192 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 17:04:18.593  INFO 9192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 17:04:18.596  INFO 9192 --- [main] com.team.app.backend.Application         : Started Application in 5.486 seconds (JVM running for 8.444)
+2020-06-01 17:05:30.978  INFO 8288 --- [main] com.team.app.backend.Application         : Starting Application on DESKTOP-A6LFJAR with PID 8288 (C:\ProjectNC1\backend\target\classes started by Никита in C:\ProjectNC1)
+2020-06-01 17:05:31.003  INFO 8288 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 17:05:32.912  INFO 8288 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 17:05:32.929  INFO 8288 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:05:32.930  INFO 8288 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 17:05:33.174  INFO 8288 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:05:33.552  INFO 8288 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 17:05:33.561  INFO 8288 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 17:05:34.128  INFO 8288 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 17:05:34.178  INFO 8288 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 17:05:34.401  INFO 8288 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 17:05:34.631  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 17:05:34.632  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 17:05:34.633  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 17:05:34.636  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 17:05:34.636  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 17:05:34.636  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 17:05:34.636  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 17:05:34.637  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 17:05:34.637  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 17:05:34.638  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 17:05:34.638  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 17:05:34.638  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 17:05:34.638  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 17:05:34.638  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 17:05:34.639  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 17:05:34.639  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 17:05:34.639  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 17:05:34.639  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 17:05:34.679  INFO 8288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@73aaec54, org.springframework.security.web.context.SecurityContextPersistenceFilter@4ce267cc, org.springframework.security.web.header.HeaderWriterFilter@615e83ac, org.springframework.web.filter.CorsFilter@239b98cb, org.springframework.security.web.authentication.logout.LogoutFilter@597a7afa, com.team.app.backend.security.jwt.JwtTokenFilter@117b2cc6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6ee37ca7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1412682c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6def0632, org.springframework.security.web.session.SessionManagementFilter@6734ff92, org.springframework.security.web.access.ExceptionTranslationFilter@5e5a8718, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@28367da7]
+2020-06-01 17:05:34.723  INFO 8288 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 17:05:34.723  INFO 8288 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 17:05:34.725  INFO 8288 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 17:05:34.771  INFO 8288 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 17:05:34.778  INFO 8288 --- [main] com.team.app.backend.Application         : Started Application in 5.711 seconds (JVM running for 8.324)
+2020-06-01 17:05:41.433  INFO 8288 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 17:11:08.040 ERROR 8288 --- [clientInboundChannel-20] .WebSocketAnnotationMethodMessageHandler : Unhandled exception from message handler method
+
+org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:97) ~[spring-tx-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:784) ~[spring-jdbc-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at com.team.app.backend.persistance.dao.impl.SessionDaoImpl.getById(SessionDaoImpl.java:55) ~[classes/:na]
+	at com.team.app.backend.persistance.dao.impl.SessionDaoImpl$$FastClassBySpringCGLIB$$964a94f8.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at com.team.app.backend.persistance.dao.impl.SessionDaoImpl$$EnhancerBySpringCGLIB$$4891d5d4.getById(<generated>) ~[classes/:na]
+	at com.team.app.backend.service.impl.UserToSessionServiceImpl.insertScore(UserToSessionServiceImpl.java:57) ~[classes/:na]
+	at com.team.app.backend.service.impl.UserToSessionServiceImpl$$FastClassBySpringCGLIB$$370157cf.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:366) ~[spring-tx-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:118) ~[spring-tx-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691) ~[spring-aop-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at com.team.app.backend.service.impl.UserToSessionServiceImpl$$EnhancerBySpringCGLIB$$25427acd.insertScore(<generated>) ~[classes/:na]
+	at com.team.app.backend.rest.PlayQuizController.sendStats(PlayQuizController.java:58) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120) ~[spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:565) [spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511) [spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94) [spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:520) [spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:454) [spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144) [spring-messaging-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1135) [na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [na:na]
+	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
+
+2020-06-01 17:11:08.224 ERROR 8288 --- [http-nio-8080-exec-5] c.t.a.b.exception.SqlExceptionHandler    : org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [INSERT INTO user_to_ach (user_id, ach_id) (SELECT ? as user_id, A.id as ach_id FROM achievement A LEFT OUTER JOIN (SELECT A.title, COUNT(QTC.cat_id) AS played FROM user_to_ses US INNER JOIN session S ON US.ses_id = S.id INNER JOIN quiz_to_categ QTC ON QTC.quiz_id = S.quiz_id INNER JOIN achievement A ON A.cat_id = QTC.cat_id WHERE US.user_id = ? GROUP BY QTC.cat_id, A.title) AS UA ON A.title = UA.title WHERE UA.played >= A.quiz_amount)]; ERROR: duplicate key value violates unique constraint "user_to_ach_pkey"
+  Подробности: Key (user_id, ach_id)=(13, 1) already exists.; nested exception is org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "user_to_ach_pkey"
+  Подробности: Key (user_id, ach_id)=(13, 1) already exists.
+2020-06-01 17:16:58.919  INFO 4812 --- [main] com.team.app.backend.Application         : Starting Application on DESKTOP-A6LFJAR with PID 4812 (C:\ProjectNC1\backend\target\classes started by Никита in C:\ProjectNC1)
+2020-06-01 17:16:58.924  INFO 4812 --- [main] com.team.app.backend.Application         : No active profile set, falling back to default profiles: default
+2020-06-01 17:17:01.652  INFO 4812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-06-01 17:17:01.685  INFO 4812 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-06-01 17:17:01.692  INFO 4812 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 17:17:01.936  INFO 4812 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-06-01 17:17:02.346  INFO 4812 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-06-01 17:17:02.352  INFO 4812 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-06-01 17:17:02.916  INFO 4812 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-06-01 17:17:02.972  INFO 4812 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-06-01 17:17:03.252  INFO 4812 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [resources/index.html]
+2020-06-01 17:17:03.443  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-06-01 17:17:03.444  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-06-01 17:17:03.445  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/polyfills*.js'], []
+2020-06-01 17:17:03.447  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/runtime*.js'], []
+2020-06-01 17:17:03.447  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/styles*.js'], []
+2020-06-01 17:17:03.448  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scripts.js'], []
+2020-06-01 17:17:03.448  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='https://brain-duel.herokuapp.com*'], []
+2020-06-01 17:17:03.448  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/main*.js'], []
+2020-06-01 17:17:03.448  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ua.svg'], []
+2020-06-01 17:17:03.448  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/gb.svg'], []
+2020-06-01 17:17:03.449  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/en.json'], []
+2020-06-01 17:17:03.449  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/i18n/ua.json'], []
+2020-06-01 17:17:03.449  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/loader_brainduel.svg'], []
+2020-06-01 17:17:03.449  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/logo_brainduel.png'], []
+2020-06-01 17:17:03.449  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/vendor*.js'], []
+2020-06-01 17:17:03.449  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/stomp.min.js'], []
+2020-06-01 17:17:03.450  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/sockjs.min.js'], []
+2020-06-01 17:17:03.450  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/ws/**'], []
+2020-06-01 17:17:03.530  INFO 4812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2774dcf4, org.springframework.security.web.context.SecurityContextPersistenceFilter@61808ecd, org.springframework.security.web.header.HeaderWriterFilter@7a1371, org.springframework.web.filter.CorsFilter@20b829d5, org.springframework.security.web.authentication.logout.LogoutFilter@3957d88b, com.team.app.backend.security.jwt.JwtTokenFilter@7c5f29c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@77ea806f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7606bd03, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4baf997, org.springframework.security.web.session.SessionManagementFilter@4fe8f2ae, org.springframework.security.web.access.ExceptionTranslationFilter@3c60c681, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@23b71d24]
+2020-06-01 17:17:03.599  INFO 4812 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-06-01 17:17:03.599  INFO 4812 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-06-01 17:17:03.601  INFO 4812 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-06-01 17:17:03.636  INFO 4812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-01 17:17:03.641  INFO 4812 --- [main] com.team.app.backend.Application         : Started Application in 6.39 seconds (JVM running for 9.352)
