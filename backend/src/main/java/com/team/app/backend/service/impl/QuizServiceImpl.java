@@ -243,15 +243,19 @@ public class QuizServiceImpl implements QuizService {
         Notification notification = new Notification();
         notification.setCategoryId(NOTIFICATION_APPROVED);
         notification.setUserId(getUserIdByQuiz(quiz.getId()));
-        String[] params = new String[]{getTitle(quiz.getId())};
         if(quiz.getStatus().getName().equals("approved")) {
-            quizDao.approve(quiz.getId());
+            String[] approveParams = new String[]{getTitle(quiz.getId())};
+            quizDao.approve(quiz.getId(),2L);
             notification.setText(messageSource.
-                    getMessage("quiz.approved", params,
+                    getMessage("quiz.approved", approveParams,
                             userService.getUserLanguage(getUserIdByQuiz(quiz.getId()))));
         } else {
-            notification.setText(quiz.getDescription());
-            quizDao.delete(quiz.getId());
+            String[] disapproveParams = new String[]{getTitle(quiz.getId()),quiz.getDescription()};
+            notification.setText(messageSource.
+                    getMessage("quiz.disapproved", disapproveParams,
+                            userService.getUserLanguage(getUserIdByQuiz(quiz.getId()))));
+            quizDao.approve(quiz.getId(),3L);
+            //quizDao.delete(quiz.getId());
         }
         notificationService.create(notification);
     }

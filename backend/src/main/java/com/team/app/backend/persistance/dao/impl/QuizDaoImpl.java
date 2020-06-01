@@ -160,7 +160,7 @@ public class QuizDaoImpl implements QuizDao {
                 quiz.getDate(),
                 quiz.getDescription(),
                 quiz.getImage(),
-                quiz.getStatus().getId(),
+                1L,
                 quiz.getUser_id(),
                 quiz.getId()
         );
@@ -172,9 +172,9 @@ public class QuizDaoImpl implements QuizDao {
         jdbcTemplate.update(env.getProperty("delete.quiz"),id);
     }
     @Override
-    public void approve(Long id) {
+    public void approve(Long id, Long status_id) {
 
-        jdbcTemplate.update(env.getProperty("approve.quiz"),id);
+        jdbcTemplate.update(env.getProperty("approve.quiz"),status_id,id);
     }
 
     @Override
