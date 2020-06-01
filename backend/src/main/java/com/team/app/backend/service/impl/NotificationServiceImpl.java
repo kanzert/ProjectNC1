@@ -38,7 +38,6 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void dispatch(String sessionId) {
-
         SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
         headerAccessor.setSessionId(sessionId);
         headerAccessor.setLeaveMutable(true);
@@ -59,7 +58,8 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void create(Notification not) {
         notificationDao.create(not);
-        dispatch(getKey(not.getUserId()));
+        if(getKey(not.getUserId()) != null)
+            dispatch(getKey(not.getUserId()));
     }
     @Transactional
     @Override
@@ -90,7 +90,8 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void setSetting(Notification not) {
         this.notificationDao.setSetting(not);
-        dispatch(getKey(not.getUserId()));
+        if(getKey(not.getUserId()) != null)
+            dispatch(getKey(not.getUserId()));
     }
 
     private String getKey(Long value) {
