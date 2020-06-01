@@ -10,7 +10,8 @@ declare var Stomp;
   providedIn: 'root'
 })
 export class NotificationService {
-  private serverUrl = 'http://localhost:8080/ws';
+  // private serverUrl = 'http://localhost:8080/ws';
+  private serverUrl = '/ws';
   notifications: Notification[] = [];
   public stompClient;
 
