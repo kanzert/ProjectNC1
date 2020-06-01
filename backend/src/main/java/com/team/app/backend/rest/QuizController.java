@@ -158,7 +158,6 @@ public class QuizController {
         return ResponseEntity.ok().body(quizzes);
     }
 
-
     @PostMapping("/quiz/update")
     public ResponseEntity updateQuiz(
             @RequestBody QuizUpdateDto quizUpdateDto) {

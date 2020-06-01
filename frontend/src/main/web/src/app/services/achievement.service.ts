@@ -13,8 +13,8 @@ import {Quiz} from "../entities/quiz";
 })
 export class AchievementService {
 
-  private achievementUrl = 'http://localhost:8080/api/achievement';
-  // private achievementUrl = '/api/achievement';
+  // private achievementUrl = 'http://localhost:8080/api/achievement';
+  private achievementUrl = '/api/achievement';
   private readonly token;
   private httpHeader;
 
