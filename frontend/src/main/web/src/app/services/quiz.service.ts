@@ -92,6 +92,7 @@ export class QuizService {
   }
 
   getUserQuizzes(): Observable<Quiz[]> {
+    console.log("get user quizes" +this.userId );
     return this.http.get<Quiz[]>(this.quizzesUrl + "/user/" + this.userId,
       { headers: this.httpHeader})
       .pipe(catchError(this.handleError<Quiz[]>('getUserQuizzes', [])));
