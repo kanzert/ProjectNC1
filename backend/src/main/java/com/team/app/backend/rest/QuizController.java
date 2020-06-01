@@ -1,7 +1,10 @@
 package com.team.app.backend.rest;
 
-import com.team.app.backend.dto.*;
-import com.team.app.backend.exception.QuizNotFoundException;
+import com.team.app.backend.dto.QuizAddDto;
+import com.team.app.backend.dto.QuizCategoryDto;
+import com.team.app.backend.dto.QuestionDefAddDto;
+import com.team.app.backend.dto.QuestionOptAddDto;
+import com.team.app.backend.dto.QuestionSeqAddDto;
 import com.team.app.backend.persistance.model.Question;
 import com.team.app.backend.persistance.model.Quiz;
 import com.team.app.backend.service.QuizService;
@@ -13,43 +16,26 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 
 @RestController
 @RequestMapping("api")
 public class QuizController {
 
-    private final QuizService quizService;
-
-    private final UserQuizFavoriteService userQuizFavoriteService;
+    @Autowired
+    QuizService quizService;
 
     @Autowired
-    public QuizController(QuizService quizService, UserQuizFavoriteService userQuizFavoriteService) {
-        this.quizService = quizService;
-        this.userQuizFavoriteService = userQuizFavoriteService;
-    }
+    UserQuizFavoriteService userQuizFavoriteService;
 
     @PostMapping("/quiz")
     public HashMap<String,Long> createMewQuiz(
             @RequestBody QuizAddDto quizDto) {
+        System.out.println(quizDto.getUser_id());
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addQuiz(quizDto));
         return result;
-    }
-
-    @PostMapping("/quiz/update")
-    public ResponseEntity updateQuiz(
-            @RequestBody QuizUpdateDto quizUpdateDto) {
-        Map response = new HashMap<>();
-        try {
-            quizService.updateQuiz(quizUpdateDto);
-            response.put("message", "Quiz update successful");
-            return ResponseEntity.ok(response);
-        } catch (QuizNotFoundException e) {
-            response.put("message", e.getMessage());
-            return ResponseEntity.badRequest().body(response);
-        }
     }
 
     @DeleteMapping("/quiz/{id}")
@@ -63,8 +49,10 @@ public class QuizController {
     }
 
 
+ //   @PostMapping("/question/1")
     @RequestMapping(value={ "/question/1", "/question/2" },method = { RequestMethod.POST })
     public HashMap<String,Long>  createNewQuestion(@RequestBody QuestionDefAddDto questionDefAddDto) {
+        System.out.println("add question1");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addDefQuestion(questionDefAddDto));
         return result;
@@ -72,6 +60,7 @@ public class QuizController {
 
     @PostMapping("/question/3")
     public HashMap<String,Long> createNewQuestion(@RequestBody QuestionOptAddDto questionOptAddDto) {
+        System.out.println("add question3");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addOptQuestion(questionOptAddDto));
         return result;
@@ -79,6 +68,7 @@ public class QuizController {
 
     @PostMapping("/question/4")
     public HashMap<String,Long> createNewQuestion(@RequestBody QuestionSeqAddDto questionSeqAddDto) {
+        System.out.println("add question4");
         HashMap<String,Long>result = new HashMap<String,Long>();
         result.put("id",quizService.addSeqOptQuestion(questionSeqAddDto));
         return result;
@@ -105,6 +95,7 @@ public class QuizController {
         return quizService.getAllQuizes();
     }
 
+    //
     @GetMapping("quiz/approved")
     public List<Quiz> approvedQuizes() {
         return quizService.getApprovedQuizes();
@@ -152,9 +143,14 @@ public class QuizController {
 
     @PostMapping("/quiz/search")
     public List<Quiz> searchQuizes(@RequestBody QuizCategoryDto quizCategoryDto) {
+        System.out.println(quizCategoryDto.getTitle());
         return quizService.searchQuizes(quizCategoryDto.getCategories(),quizCategoryDto.getTitle(),quizCategoryDto.getDateFrom(),quizCategoryDto.getDateTo(),quizCategoryDto.getUser());
     }
 
+	@GetMapping("/quiz/search/{searchstring}")
+    public List<Quiz> searchQuizes(@PathVariable("searchstring") String searchstring) {
+        return quizService.searchQuizes(searchstring);
+    }
 
     @PostMapping("/quiz/approve")
     public ResponseEntity approveQuiz(@RequestBody Quiz quiz) {
