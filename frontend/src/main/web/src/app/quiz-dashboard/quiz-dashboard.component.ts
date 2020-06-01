@@ -49,7 +49,7 @@ export class QuizDashboardComponent implements OnInit {
   }
   getUserQuizzes(): void {
     this.quizService.getUserQuizzes()
-      .subscribe(quizzes => this.userQuizzes = quizzes);
+      .subscribe(quizzes => {this.userQuizzes = quizzes; console.table(quizzes)});
   }
 
   getFavorite(): void {

@@ -30,7 +30,6 @@ public class PlayQuizController {
 
     private final QuizService quizService;
 
-    private final UserService userService;
 
     private final UserToSessionService userToSessionService;
 
@@ -39,11 +38,10 @@ public class PlayQuizController {
     private final SimpMessagingTemplate template;
 
     @Autowired
-    PlayQuizController(SimpMessagingTemplate template, SessionService sessionService, QuizService quizService, UserService userService, UserToSessionService userToSessionService, MessageSource messageSource){
+    PlayQuizController(SimpMessagingTemplate template, SessionService sessionService, QuizService quizService, UserToSessionService userToSessionService, MessageSource messageSource){
         this.template = template;
         this.sessionService = sessionService;
         this.quizService = quizService;
-        this.userService = userService;
         this.userToSessionService = userToSessionService;
         this.messageSource = messageSource;
     }

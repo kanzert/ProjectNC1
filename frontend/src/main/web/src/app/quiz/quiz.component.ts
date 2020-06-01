@@ -106,7 +106,7 @@ export class QuizComponent implements OnInit, OnDestroy {
         break;
       }
       case SEQUENCE_QUESTION:
-        this.setSequenceQuestion()
+        this.setSequenceQuestion();
         break;
       default:
         this.optionType = 0;
@@ -130,7 +130,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       points: this.questionOptions
         .get(this.questions[this.indexQuestion].id)[0].answer === answer ? USER_POINTS : 0});
     this.timeSpent+=this.questions[this.indexQuestion].time-this.timer;
-    this.clearTimer()
+    this.clearTimer();
     this.nextQuestion();
   }
 
@@ -144,7 +144,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       points: this.questionOptionPoints*USER_POINTS
     });
     this.timeSpent+=this.questions[this.indexQuestion].time-this.timer;
-    this.clearTimer()
+    this.clearTimer();
     this.nextQuestion();
   }
 
@@ -159,7 +159,7 @@ export class QuizComponent implements OnInit, OnDestroy {
        points: questionPoints*USER_POINTS
     });
     this.timeSpent+=this.questions[this.indexQuestion].time-this.timer;
-    this.clearTimer()
+    this.clearTimer();
     this.nextQuestion();
   }
 
@@ -249,7 +249,7 @@ export class QuizComponent implements OnInit, OnDestroy {
             console.log('set achiv');
             this.finish=true;
 
-        });
+        },error => this.finish=true);
 
 
   }
