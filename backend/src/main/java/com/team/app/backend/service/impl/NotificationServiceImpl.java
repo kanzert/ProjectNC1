@@ -58,7 +58,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void create(Notification not) {
         notificationDao.create(not);
-        if(getKey(not.getUserId()) != null)
+        if (getKey(not.getUserId())!=null)
             dispatch(getKey(not.getUserId()));
     }
     @Transactional

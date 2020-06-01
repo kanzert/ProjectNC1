@@ -32,7 +32,7 @@ public interface QuizDao {
 
     void delete(Long id);
 
-    void approve(Long id);
+    void approve(Long id,Long status);
 
     List<Quiz> getCreated();
 
